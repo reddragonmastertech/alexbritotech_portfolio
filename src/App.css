@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  /* Primary Colors */
+  --primary-color: #0ea5e9; /* Sky blue */
+  --primary-light: #7dd3fc; /* Light blue */
+  --primary-dark: #0369a1; /* Dark blue */
+
+  /* Neutral Colors */
+  --bg-primary: #0f172a; /* Dark background */
+  --bg-secondary: #1e293b; /* Secondary background */
+  --text-primary: #f8fafc; /* Light text */
+  --text-secondary: #cbd5e1; /* Secondary text */
+
+  /* Accent Colors */
+  --accent: #14b8a6; /* Teal accent */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-900 text-slate-100;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Custom utility classes */
+.blue-gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-600;
+}
+
+.section-padding {
+  @apply py-16 px-4 sm:px-8 md:px-16 lg:px-24;
+}
+
+.btn-primary {
+  @apply bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-4 rounded-md transition-all duration-300;
+}
+
+.btn-outline {
+  @apply border border-sky-500 text-sky-500 hover:bg-sky-500 hover:text-white font-semibold py-2 px-4 rounded-md transition-all duration-300;
+}
+
+.card {
+  @apply bg-slate-800 rounded-lg shadow-lg p-6 hover:shadow-sky-500/20 transition-all duration-300;
+}
