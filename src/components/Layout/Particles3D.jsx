@@ -1,301 +1,221 @@
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect, useState, useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeContext'
 import * as THREE from 'three'
-import gsap from 'gsap'
+
+// Hàm kiểm tra tương thích WebGL
+function isWebGLAvailable() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && 
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+  } catch (e) {
+    return false;
+  }
+}
 
 function Particles3D() {
   const mountRef = useRef(null)
-
+  const [isReady, setIsReady] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const { darkMode } = useContext(ThemeContext)
+  
   useEffect(() => {
-    let scene, camera, renderer
-    let particles = []
-    let cameraMovement = { x: 0, y: 0 }
-    let mouseX = 0, mouseY = 0
-    let windowHalfX = window.innerWidth / 2
-    let windowHalfY = window.innerHeight / 2
-    let time = 0
+    // Wait a bit to let the DOM fully render
+    const timer = setTimeout(() => {
+      setIsReady(true)
+    }, 500)
     
-    // Colors in hex format - Modern blue and purple palette
-    const colors = [
-      0x3b82f6, // Blue
-      0x4f46e5, // Indigo
-      0x8b5cf6, // Violet
-      0x6366f1, // Blue/Indigo
-      0xa855f7, // Purple
-    ]
-
-    const init = () => {
+    return () => clearTimeout(timer)
+  }, [])
+  
+  useEffect(() => {
+    if (!isReady || !mountRef.current) return
+    if (hasError) return
+    
+    // Check WebGL compatibility first
+    if (!isWebGLAvailable()) {
+      console.warn("WebGL is not available in this browser");
+      setHasError(true);
+      return;
+    }
+    
+    let scene, camera, renderer, particles;
+    
+    try {
       // Scene setup
       scene = new THREE.Scene()
       
-      // Camera setup with wider field of view
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000)
-      camera.position.z = 30
+      // Camera with good perspective
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+      camera.position.z = 50
       
-      // Renderer setup with antialiasing
-      renderer = new THREE.WebGLRenderer({ 
-        antialias: true, 
+      // Renderer setup with transparency
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
         alpha: true,
-        powerPreference: 'high-performance'
+        powerPreference: 'default' // Use 'low-power' for mobile devices
       })
       renderer.setSize(window.innerWidth, window.innerHeight)
-      renderer.setClearColor(0x000000, 0) // Transparent background
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      
+      // Add canvas to DOM
       mountRef.current.appendChild(renderer.domElement)
       
-      // Create particle systems with different characteristics
-      createParticleLayer(1800, 120, 0.6, 1.2, 'small')  // Far layer: more particles, larger area, smaller size
-      createParticleLayer(600, 80, 0.7, 1.8, 'medium')   // Mid layer
-      createParticleLayer(200, 40, 0.9, 2.5, 'large')    // Close layer: fewer particles, smaller area, larger size
+      // Create particles geometry - reduced count for better performance
+      const particlesCount = 500 // Reduced from 1000
+      const particlesGeometry = new THREE.BufferGeometry()
+      const positions = new Float32Array(particlesCount * 3)
+      const colors = new Float32Array(particlesCount * 3)
       
-      // Add a subtle ambient light
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.1)
-      scene.add(ambientLight)
-      
-      // Event listeners
-      document.addEventListener('mousemove', onDocumentMouseMove, { passive: true })
-      window.addEventListener('resize', onWindowResize)
-    }
-    
-    const createParticleLayer = (count, spread, opacity, maxSize, type) => {
-      // Create texture for particles
-      const texture = createParticleTexture(type)
-      
-      const positions = new Float32Array(count * 3)
-      const scales = new Float32Array(count)
-      const colorArray = new Float32Array(count * 3)
-      
-      const color = new THREE.Color()
-      
-      for (let i = 0; i < count; i++) {
-        // Position particles in a spherical distribution with some randomness for natural look
-        const radius = Math.random() * spread
+      // Set particle positions and colors
+      for (let i = 0; i < particlesCount; i++) {
+        // Random positions in a sphere
+        const radius = 100 + Math.random() * 100
         const theta = Math.random() * Math.PI * 2
-        const phi = Math.random() * Math.PI
+        const phi = Math.acos(Math.random() * 2 - 1)
         
-        positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta)     // x
+        positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta) // x
         positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) // y
-        positions[i * 3 + 2] = radius * Math.cos(phi) * Math.random()   // z
+        positions[i * 3 + 2] = radius * Math.cos(phi) // z
         
-        // Random size variation for depth effect 
-        scales[i] = Math.random() * maxSize + 0.5
-        
-        // Assign colors with variation from our palette
-        const selectedColor = colors[Math.floor(Math.random() * colors.length)]
-        color.set(selectedColor)
-        
-        // Add slight color variation for more natural look
-        color.offsetHSL(0, (Math.random() - 0.5) * 0.3, (Math.random() - 0.5) * 0.2)
-        
-        colorArray[i * 3] = color.r
-        colorArray[i * 3 + 1] = color.g
-        colorArray[i * 3 + 2] = color.b
-      }
-      
-      const geometry = new THREE.BufferGeometry()
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-      geometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3))
-      geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1))
-      
-      // Custom shader material for more advanced visual effects
-      const material = new THREE.ShaderMaterial({
-        uniforms: {
-          pointTexture: { value: texture },
-          time: { value: 0.0 },
-          opacity: { value: opacity },
-        },
-        vertexShader: `
-          attribute float scale;
-          attribute vec3 color;
-          varying vec3 vColor;
-          uniform float time;
-          
-          void main() {
-            vColor = color;
-            
-            // Add subtle motion based on position and time
-            vec3 pos = position;
-            float waveX = sin(time * 0.3 + pos.x * 0.03) * 0.5;
-            float waveY = cos(time * 0.2 + pos.y * 0.04) * 0.5;
-            
-            pos.x += waveX;
-            pos.y += waveY;
-            
-            vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-            
-            // Size attenuation based on distance
-            gl_PointSize = scale * (300.0 / -mvPosition.z);
-            gl_Position = projectionMatrix * mvPosition;
-          }
-        `,
-        fragmentShader: `
-          uniform sampler2D pointTexture;
-          uniform float opacity;
-          varying vec3 vColor;
-          
-          void main() {
-            // Apply the texture with soft edges
-            vec4 texColor = texture2D(pointTexture, gl_PointCoord);
-            gl_FragColor = vec4(vColor, opacity) * texColor;
-            
-            // Discard transparent pixels for better blending
-            if (gl_FragColor.a < 0.05) discard;
-          }
-        `,
-        blending: THREE.AdditiveBlending,
-        depthTest: false,
-        transparent: true,
-        vertexColors: true,
-      })
-      
-      const particleSystem = new THREE.Points(geometry, material)
-      
-      // Add different initial rotation for each layer
-      particleSystem.rotation.x = Math.random() * 6
-      particleSystem.rotation.y = Math.random() * 6
-      particleSystem.rotation.z = Math.random() * 6
-      
-      // Store the type to control animation behavior
-      particleSystem.userData.type = type
-      
-      scene.add(particleSystem)
-      particles.push(particleSystem)
-    }
-    
-    // Create different textures for different sized particles
-    const createParticleTexture = (type) => {
-      const canvas = document.createElement('canvas')
-      canvas.width = 128
-      canvas.height = 128
-      
-      const context = canvas.getContext('2d')
-      
-      // Create gradient for glow effect
-      const gradient = context.createRadialGradient(
-        64, 64, 0, 64, 64, 64
-      )
-      
-      let softness = 0.2
-      if (type === 'medium') softness = 0.15
-      if (type === 'large') softness = 0.1
-      
-      gradient.addColorStop(0, `rgba(255, 255, 255, 1)`)
-      gradient.addColorStop(0.3, `rgba(255, 255, 255, 0.8)`)
-      gradient.addColorStop(0.6, `rgba(255, 255, 255, ${softness})`)
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')
-      
-      // Draw the particle
-      context.fillStyle = gradient
-      context.beginPath()
-      context.arc(64, 64, 64, 0, Math.PI * 2, false)
-      context.fill()
-      
-      const texture = new THREE.CanvasTexture(canvas)
-      texture.needsUpdate = true
-      
-      return texture
-    }
-    
-    const onDocumentMouseMove = (event) => {
-      // Track mouse movement for interactive camera effect
-      mouseX = (event.clientX - windowHalfX) * 0.05
-      mouseY = (event.clientY - windowHalfY) * 0.05
-    }
-    
-    const onWindowResize = () => {
-      windowHalfX = window.innerWidth / 2
-      windowHalfY = window.innerHeight / 2
-      
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-    }
-    
-    const animate = () => {
-      requestAnimationFrame(animate)
-      
-      time += 0.01
-      
-      // Smooth camera movement based on mouse position
-      cameraMovement.x += (mouseX - cameraMovement.x) * 0.03
-      cameraMovement.y += (mouseY - cameraMovement.y) * 0.03
-      
-      camera.position.x += (cameraMovement.x - camera.position.x) * 0.05
-      camera.position.y += (-cameraMovement.y - camera.position.y) * 0.05
-      camera.lookAt(scene.position)
-      
-      // Update each particle system differently
-      particles.forEach(particleSystem => {
-        const type = particleSystem.userData.type
-
-        // Different rotation speeds based on particle type
-        if (type === 'small') {
-          particleSystem.rotation.y += 0.0005
-          particleSystem.rotation.x += 0.0002
-        } else if (type === 'medium') {
-          particleSystem.rotation.y += 0.0003
-          particleSystem.rotation.z += 0.0001
+        // Colors - use theme based colors
+        if (darkMode) {
+          // Dark theme - blue/purple
+          colors[i * 3] = 0.2 + Math.random() * 0.2 // r (low for blue/purple)
+          colors[i * 3 + 1] = 0.3 + Math.random() * 0.3 // g (medium for blue/purple)
+          colors[i * 3 + 2] = 0.6 + Math.random() * 0.4 // b (high for blue/purple)
         } else {
-          particleSystem.rotation.x += 0.0001
-          particleSystem.rotation.z += 0.0002
+          // Light theme - light blue/cyan
+          colors[i * 3] = 0.2 + Math.random() * 0.2 // r (low)
+          colors[i * 3 + 1] = 0.7 + Math.random() * 0.3 // g (high for cyan)
+          colors[i * 3 + 2] = 0.5 + Math.random() * 0.5 // b (medium)
+        }
+      }
+      
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+      particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+      
+      // Use a basic PointsMaterial instead of custom shaders
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.6,
+        transparent: true,
+        opacity: 0.6,
+        vertexColors: true,
+        sizeAttenuation: true,
+        blending: THREE.AdditiveBlending
+      })
+      
+      // Create particle system
+      particles = new THREE.Points(particlesGeometry, particlesMaterial)
+      scene.add(particles)
+      
+      // Store original positions for animation
+      const originalPositions = positions.slice()
+      
+      // Animation - use requestAnimationFrame properly
+      let animationFrameId;
+      
+      const animate = () => {
+        const time = Date.now() * 0.0001
+        
+        // Slowly rotate particle system
+        particles.rotation.y = time * 0.1
+        
+        // Gently move particles (but less often for better performance)
+        if (Math.floor(time * 10) % 2 === 0) {
+          for (let i = 0; i < particlesCount; i++) {
+            const i3 = i * 3
+            
+            // Add subtle wave effect
+            const x = originalPositions[i3]
+            const y = originalPositions[i3 + 1]
+            const z = originalPositions[i3 + 2]
+            const sinOffset = Math.sin(time + x * 0.01) * 2
+            const cosOffset = Math.cos(time + y * 0.01) * 2
+            
+            particlesGeometry.attributes.position.array[i3] = x + sinOffset
+            particlesGeometry.attributes.position.array[i3 + 1] = y + cosOffset
+            particlesGeometry.attributes.position.array[i3 + 2] = z + sinOffset * cosOffset * 0.5
+          }
+          
+          particlesGeometry.attributes.position.needsUpdate = true
         }
         
-        // Update time uniform for shader animation
-        if (particleSystem.material.uniforms && particleSystem.material.uniforms.time) {
-          particleSystem.material.uniforms.time.value = time
+        // Render scene
+        renderer.render(scene, camera)
+        
+        // Call animate recursively
+        animationFrameId = requestAnimationFrame(animate)
+      }
+      
+      animate()
+      
+      // Handle window resize
+      const handleResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+      }
+      
+      window.addEventListener('resize', handleResize)
+      
+      // Handle mouse movement to create interactive effect - throttled for better performance
+      let lastMoveTime = 0;
+      const handleMouseMove = (event) => {
+        const now = performance.now();
+        if (now - lastMoveTime < 50) return; // throttle to 20fps
+        lastMoveTime = now;
+        
+        const mouseX = (event.clientX / window.innerWidth) * 2 - 1
+        const mouseY = -(event.clientY / window.innerHeight) * 2 + 1
+        
+        // Move camera slightly based on mouse position
+        camera.position.x += (mouseX * 2 - camera.position.x) * 0.01
+        camera.position.y += (mouseY * 2 - camera.position.y) * 0.01
+        
+        camera.lookAt(scene.position)
+      }
+      
+      window.addEventListener('mousemove', handleMouseMove)
+      
+      // Clean up
+      return () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
         }
-      })
-      
-      renderer.render(scene, camera)
-    }
-    
-    init()
-    animate()
-    
-    // Add a pulse animation to the particles on load
-    gsap.to(particles, {
-      duration: 2,
-      ease: "power2.inOut",
-      onUpdate: () => {
-        particles.forEach((particle, i) => {
-          particle.scale.set(
-            1 + Math.sin(time + i * 0.2) * 0.05,
-            1 + Math.sin(time + i * 0.2) * 0.05,
-            1 + Math.sin(time + i * 0.2) * 0.05
-          )
-        })
-      }
-    })
-    
-    return () => {
-      // Cleanup
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement)
-      }
-      
-      window.removeEventListener('resize', onWindowResize)
-      document.removeEventListener('mousemove', onDocumentMouseMove)
-      
-      // Dispose resources properly to prevent memory leaks
-      particles.forEach(particle => {
-        scene.remove(particle)
-        if (particle.geometry) particle.geometry.dispose()
-        if (particle.material) {
-          if (particle.material.uniforms && particle.material.uniforms.pointTexture) {
-            particle.material.uniforms.pointTexture.value.dispose()
+        
+        if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
+          try {
+            mountRef.current.removeChild(renderer.domElement)
+          } catch (e) {
+            console.log('Error removing canvas', e)
           }
-          particle.material.dispose()
         }
-      })
-      
-      renderer.dispose()
-      scene.clear()
+        
+        window.removeEventListener('resize', handleResize)
+        window.removeEventListener('mousemove', handleMouseMove)
+        
+        // Dispose geometries and materials
+        if (particlesGeometry) particlesGeometry.dispose()
+        if (particlesMaterial) particlesMaterial.dispose()
+        if (renderer) renderer.dispose()
+      }
+    } catch (error) {
+      console.error('Error initializing 3D particles:', error);
+      setHasError(true);
+      return () => {}; // Return empty cleanup function
     }
-  }, [])
+  }, [isReady, darkMode, hasError])
+  
+  // If there's an error, render nothing
+  if (hasError) {
+    return null;
+  }
   
   return (
-    <div
+    <div 
       ref={mountRef}
-      className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"
+      className="fixed inset-0 pointer-events-none z-0"
       aria-hidden="true"
     />
   )
