@@ -4,8 +4,13 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-blue)
 ![Vite](https://img.shields.io/badge/Vite-6-green)
 ![Three.js](https://img.shields.io/badge/Three.js-0.176.0-orange)
+![Vercel](https://img.shields.io/badge/Deployment-Vercel-black)
 
 Modern personal portfolio website built with React 19, Vite 6, TailwindCSS 4, and Three.js. Features 3D elements, animations, blog section, contact form, and dark/light mode.
+
+## 🔗 Live Demo
+
+**Production Site**: [https://gia-si-portfolio.vercel.app](https://gia-si-portfolio.vercel.app)
 
 ![GiaSi Portfolio Screenshot](https://placehold.co/800x400/0f172a/0ea5e9?text=GiaSi+Portfolio)
 
@@ -60,6 +65,23 @@ Modern personal portfolio website built with React 19, Vite 6, TailwindCSS 4, an
    ```bash
    npm run preview
    ```
+
+## 🚀 Deployment
+
+This project is automatically deployed to Vercel using GitHub Actions.
+
+### Automatic Deployment
+- **Production**: Pushes to `main` branch trigger automatic deployment
+- **Preview**: Pull requests create preview deployments  
+- **Domain**: [gia-si-portfolio.vercel.app](https://gia-si-portfolio.vercel.app)
+
+### Manual Deployment
+```bash
+# Deploy to Vercel
+npm install -g vercel
+vercel login
+vercel --prod
+```
 
 ## 📋 Project Structure
 
