@@ -1,11 +1,9 @@
 {
-  "framework": "vite",
-  "buildCommand": "npm run build",
+  "framework": null,
+  "buildCommand": "echo 'Build handled by GitHub Actions'",
   "outputDirectory": "dist",
-  "installCommand": "npm install --legacy-peer-deps",
-  "env": {
-    "NODE_OPTIONS": "--max_old_space_size=4096"
-  },
+  "installCommand": "echo 'Install handled by GitHub Actions'",
+  "functions": {},
   "headers": [
     {
       "source": "/(.*)",
