@@ -44,7 +44,7 @@ function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link to="/" onClick={closeNavbar} className="flex items-center">
-              <span className="text-2xl font-bold blue-gradient-text">GiaSi</span>
+              <span className="text-2xl font-bold blue-gradient-text">GiaSi Portfolio</span>
             </Link>
           </div>
           
@@ -62,7 +62,7 @@ function Navbar() {
             </div>
             
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/giasinguyen" 
               target="_blank" 
               rel="noreferrer" 
               className="btn-outline"
@@ -112,7 +112,7 @@ function Navbar() {
         
         <div className="px-5 pt-2 pb-6 border-t border-slate-200 dark:border-slate-700">
           <a 
-            href="https://github.com/yourusername" 
+            href="https://github.com/giasinguyen" 
             target="_blank" 
             rel="noreferrer" 
             className="w-full btn-outline flex justify-center"

@@ -15,6 +15,7 @@ import Home from './components/Home/Home'
 import About from './components/About/About'
 import Projects from './components/Projects/Projects'
 import Resume from './components/Resume/Resume'
+import ResumeWithPDF from './components/Resume/ResumeWithPDF'
 import Blog from './components/Blog/Blog'
 import Contact from './components/Contact/Contact'
 
@@ -30,7 +31,8 @@ function AnimatedRoutes() {
         <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
         <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/resume" element={<PageTransition><Resume /></PageTransition>} />
+        <Route path="/resume" element={<PageTransition><ResumeWithPDF /></PageTransition>} />
+        <Route path="/resume-old" element={<PageTransition><Resume /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
