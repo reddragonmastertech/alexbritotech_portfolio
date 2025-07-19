@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { motion } from 'framer-motion'
 import { Toaster, toast } from 'sonner'
 import { FaEnvelope, FaUser, FaPaperPlane, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 
@@ -8,7 +7,7 @@ function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
   
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     setIsSubmitting(true)
     
     // Simulate form submission - in real app, replace with actual API call
@@ -21,7 +20,7 @@ function Contact() {
       
       // Reset form
       reset()
-    } catch (error) {
+    } catch {
       toast.error('Failed to send message. Please try again later.')
     } finally {
       setIsSubmitting(false)

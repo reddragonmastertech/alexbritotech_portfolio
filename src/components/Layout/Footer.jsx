@@ -8,7 +8,6 @@ import {
   FaHeart,
   FaArrowUp,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 function Footer() {

@@ -16,7 +16,7 @@ import {
   SiHibernate,
 } from "react-icons/si";
 import { TbBrandVscode } from "react-icons/tb";
-import { motion } from "framer-motion";
+
 function About() {
   const [isVisible, setIsVisible] = useState(false);
 

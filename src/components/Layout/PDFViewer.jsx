@@ -75,7 +75,7 @@ function PDFViewer({
     setScale((prev) => Math.max(prev - 0.2, 0.5));
   };
 
-  const downloadPDF = () => {
+  const _downloadPDF = () => {
     const link = document.createElement("a");
     link.href = pdfPath;
     link.download = `${title}.pdf`;

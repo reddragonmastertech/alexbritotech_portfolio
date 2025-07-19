@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import BlogPostCard from './BlogPostCard'
-import { motion } from 'framer-motion'
 import { FaSearch } from 'react-icons/fa'
 
 function Blog() {
@@ -9,7 +8,7 @@ function Blog() {
   const [filteredPosts, setFilteredPosts] = useState([])
   
   // Sample blog posts data
-  const blogPosts = [
+  const blogPosts = useMemo(() => [
     {
       id: 1,
       title: 'Building Responsive Websites with TailwindCSS',
@@ -88,7 +87,7 @@ function Blog() {
       coverImage: 'https://placehold.co/600x400/0f172a/0ea5e9?text=Modern+CSS',
       tags: ['CSS', 'Web Development']
     }
-  ]
+  ], [])
   
   // Extract unique categories
   const categories = ['all', ...new Set(blogPosts.map(post => post.category))]
@@ -103,7 +102,7 @@ function Blog() {
         return matchesCategory && matchesSearch
       })
     )
-  }, [activeCategory, searchTerm])
+  }, [activeCategory, searchTerm, blogPosts])
   
   return (
     <main className="section-padding pt-28">

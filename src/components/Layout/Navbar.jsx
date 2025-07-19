@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaBars, FaTimes, FaHome, FaUser, FaLaptopCode, FaFile, FaBlog, FaEnvelope } from 'react-icons/fa'
 import ThemeSwitcher from './ThemeSwitcher'
-import { motion } from 'framer-motion'
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

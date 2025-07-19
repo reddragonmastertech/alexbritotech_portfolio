@@ -53,7 +53,7 @@ function AlternatePDFViewer({ pdfPath, title = "PDF Document" }) {
     );
   }
 
-  const downloadPDF = () => {
+  const _downloadPDF = () => {
     const link = document.createElement("a");
     link.href = pdfPath;
     link.download = `${title}.pdf`;

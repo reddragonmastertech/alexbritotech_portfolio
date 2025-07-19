@@ -3,7 +3,6 @@
   "buildCommand": "echo 'Build handled by GitHub Actions'",
   "outputDirectory": "dist",
   "installCommand": "echo 'Install handled by GitHub Actions'",
-  "functions": {},
   "headers": [
     {
       "source": "/(.*)",
