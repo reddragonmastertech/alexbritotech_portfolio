@@ -35,6 +35,8 @@ function Particles3D() {
     if (!isReady || !mountRef.current) return;
     if (hasError) return;
 
+    const mountNode = mountRef.current;
+
     // Check WebGL compatibility first
     if (!isWebGLAvailable()) {
       console.warn("WebGL is not available in this browser");
@@ -67,7 +69,7 @@ function Particles3D() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       // Add canvas to DOM
-      mountRef.current.appendChild(renderer.domElement);
+      mountNode.appendChild(renderer.domElement);
 
       // Create particles geometry - reduced count for better performance
       const particlesCount = 500; // Reduced from 1000
@@ -200,11 +202,11 @@ function Particles3D() {
         }
 
         if (
-          mountRef.current &&
-          mountRef.current.contains(renderer.domElement)
+          mountNode &&
+          mountNode.contains(renderer.domElement)
         ) {
           try {
-            mountRef.current.removeChild(renderer.domElement);
+            mountNode.removeChild(renderer.domElement);
           } catch (e) {
             console.log("Error removing canvas", e);
           }

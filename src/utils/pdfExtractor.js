@@ -83,22 +83,22 @@ export const parseResumeData = (textContent) => {
  * Extract personal information
  */
 const extractPersonalInfo = (text) => {
-  text = typeof text === 'string' ? text : '';
-  const email = text.match(EXTRACTION_CONFIG.DATA_PATTERNS.email)?.[0] || ''
-  const phone = text.match(EXTRACTION_CONFIG.DATA_PATTERNS.phone)?.[0] || ''
-  const linkedin = text.match(EXTRACTION_CONFIG.DATA_PATTERNS.linkedin)?.[1] || ''
-  const github = text.match(EXTRACTION_CONFIG.DATA_PATTERNS.github)?.[1] || ''
+  const safeText = typeof text === 'string' ? text : '';
+  const email = safeText.match(EXTRACTION_CONFIG.DATA_PATTERNS.email)?.[0] || '';
+  const phone = safeText.match(EXTRACTION_CONFIG.DATA_PATTERNS.phone)?.[0] || '';
+  const linkedin = safeText.match(EXTRACTION_CONFIG.DATA_PATTERNS.linkedin)?.[1] || '';
+  const github = safeText.match(EXTRACTION_CONFIG.DATA_PATTERNS.github)?.[1] || '';
   // Extract name (usually in the first few lines)
-  const lines = text.split('\n').filter(line => line.trim().length > 0)
-  const name = lines[0] || 'Name not found'
+  const lines = safeText.split('\n').filter(line => line.trim().length > 0);
+  const name = lines[0] || 'Name not found';
   return {
     name,
     email,
     phone,
     linkedin: linkedin ? `linkedin.com/in/${linkedin}` : '',
     github: github ? `github.com/${github}` : '',
-    location: extractLocation(text)
-  }
+    location: extractLocation(safeText)
+  };
 }
 
 /**

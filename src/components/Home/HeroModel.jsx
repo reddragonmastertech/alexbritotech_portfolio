@@ -418,23 +418,24 @@ function HeroModel() {
     })
     
     // Add event listeners
-    mountRef.current.addEventListener('mousemove', handleMouseMove)
+    const mountNode = mountRef.current;
+    mountNode.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('resize', onWindowResize)
-    
+
     function onWindowResize() {
       camera.updateProjectionMatrix()
       renderer.setSize(500, 500)
     }
-    
+
     // Cleanup function
     return () => {
-      if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement)
-        mountRef.current.removeEventListener('mousemove', handleMouseMove)
+      if (mountNode) {
+        mountNode.removeChild(renderer.domElement)
+        mountNode.removeEventListener('mousemove', handleMouseMove)
       }
-      
+
       window.removeEventListener('resize', onWindowResize)
-      
+
       // Dispose of all geometries and materials
       allObjects.forEach(object => {
         if (object instanceof THREE.Mesh || object instanceof THREE.Points) {
