@@ -155,20 +155,6 @@ export const PDF_DATA = {
   }
 }
 
-/**
- * Utility functions for PDF handling
- */
-
-// Check if PDF file exists
-export const checkPDFExists = async (pdfPath) => {
-  try {
-    const response = await fetch(pdfPath, { method: 'HEAD' })
-    return response.ok
-  } catch (error) {
-    console.warn(`PDF not found: ${pdfPath}`)
-    return false
-  }
-}
 
 // Get PDF metadata
 export const getPDFInfo = (pdfDocument) => {
@@ -223,7 +209,7 @@ export const formatResumeSection = (sectionData, sectionType) => {
 }
 
 // Generate dynamic resume data based on PDF content
-export const generateDynamicResume = (extractedText) => {
+export const generateDynamicResume = () => {
   // This would parse the extracted text and create structured data
   // For now, return the static data
   return PDF_DATA.resume
@@ -232,7 +218,6 @@ export const generateDynamicResume = (extractedText) => {
 export default {
   PDF_CONFIG,
   PDF_DATA,
-  checkPDFExists,
   getPDFInfo,
   extractTextFromPage,
   formatResumeSection,

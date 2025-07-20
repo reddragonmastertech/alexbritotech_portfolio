@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { FaSun, FaMoon } from 'react-icons/fa'
 import { ThemeContext } from '../../context/ThemeContext'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
 function ThemeSwitcher() {
