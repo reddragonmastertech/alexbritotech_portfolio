@@ -10,6 +10,8 @@ import {
 } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 function Footer() {
   const year = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -222,7 +224,7 @@ function Footer() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                &copy; {year} GiaSi Portfolio. 
+                &copy; {year} GiaSi Portfolio.
               </motion.p>
 
               <motion.div

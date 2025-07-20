@@ -17,6 +17,8 @@ import {
 } from "react-icons/si";
 import { TbBrandVscode } from "react-icons/tb";
 
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 function About() {
   const [isVisible, setIsVisible] = useState(false);
 

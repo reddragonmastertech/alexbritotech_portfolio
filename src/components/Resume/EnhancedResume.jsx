@@ -17,6 +17,8 @@ import {
   formatResumeSection,
 } from "../../utils/pdfUtils";
 
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 function EnhancedResume() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
