@@ -1,5 +1,5 @@
 {
-  "framework": null,
+  "framework": "vite",
   "buildCommand": "echo 'Build handled by GitHub Actions'",
   "outputDirectory": "dist",
   "installCommand": "echo 'Install handled by GitHub Actions'",
