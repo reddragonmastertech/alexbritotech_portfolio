@@ -29,6 +29,7 @@ jobs:
 
       - name: Run linting
         run: npm run lint || echo "Linting completed with warnings"
+        continue-on-error: true # Không dừng workflow nếu có warning
 
       - name: Build project
         run: npm run build
@@ -41,6 +42,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -55,7 +62,7 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel Preview
-        run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --cwd=dist --confirm
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -65,6 +72,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -79,7 +92,7 @@ jobs:
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel Production
-        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd=dist --confirm
+        run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
   deployment-success:
     runs-on: ubuntu-latest

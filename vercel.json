@@ -1,8 +1,8 @@
 {
   "framework": "vite",
-  "buildCommand": "echo 'Build handled by GitHub Actions'",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "echo 'Install handled by GitHub Actions'",
+  "installCommand": "npm ci --legacy-peer-deps",
   "headers": [
     {
       "source": "/(.*)",
@@ -20,6 +20,12 @@
           "value": "1; mode=block"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
