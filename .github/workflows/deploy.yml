@@ -14,6 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug - Check directory structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Directory contents:"
+          ls -la
+          echo "Looking for project files:"
+          find . -name "package.json" -type f
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -21,18 +30,35 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd GiaSi-Portfolio
-          npm install --legacy-peer-deps
+          if [ -f "GiaSi-Portfolio/package.json" ]; then
+            echo "Found package.json in GiaSi-Portfolio/"
+            cd GiaSi-Portfolio
+            npm install --legacy-peer-deps
+          elif [ -f "package.json" ]; then
+            echo "Found package.json in root"
+            npm install --legacy-peer-deps
+          else
+            echo "No package.json found!"
+            exit 1
+          fi
 
       - name: Build project
         run: |
-          cd GiaSi-Portfolio
-          npm run build
+          if [ -f "GiaSi-Portfolio/package.json" ]; then
+            cd GiaSi-Portfolio
+            npm run build
+          else
+            npm run build
+          fi
 
       - name: Run linting
         run: |
-          cd GiaSi-Portfolio
-          npm run lint || echo "Linting completed with warnings"
+          if [ -f "GiaSi-Portfolio/package.json" ]; then
+            cd GiaSi-Portfolio
+            npm run lint || echo "Linting completed with warnings"
+          else
+            npm run lint || echo "Linting completed with warnings"
+          fi
         continue-on-error: true
 
       - name: Success message
