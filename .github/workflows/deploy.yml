@@ -28,10 +28,16 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
-          cache-dependency-path: 'GiaSi-Portfolio/package-lock.json'
+
+      - name: Generate package-lock.json if missing
+        run: |
+          if [ ! -f "package-lock.json" ]; then
+            npm install --package-lock-only
+          fi
 
       - name: Clean install dependencies
-        run: npm ci --legacy-peer-deps
+        run: |
+          npm ci --legacy-peer-deps --prefer-offline --no-audit
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
@@ -59,10 +65,10 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
-          cache-dependency-path: 'GiaSi-Portfolio/package-lock.json'
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: |
+          npm ci --legacy-peer-deps --prefer-offline --no-audit
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
@@ -95,10 +101,10 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
-          cache-dependency-path: 'GiaSi-Portfolio/package-lock.json'
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: |
+          npm ci --legacy-peer-deps --prefer-offline --no-audit
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
