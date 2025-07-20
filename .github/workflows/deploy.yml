@@ -1,4 +1,4 @@
-name: Deploy to Vercel
+name: Build and Test
 
 on:
   push:
@@ -6,139 +6,36 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  NODE_ENV: production
-
-# Remove defaults to avoid path issues
-
 jobs:
-  lint-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: '18'
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: GiaSi-Portfolio/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('GiaSi-Portfolio/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Clean install dependencies
+      - name: Install dependencies
         run: |
-          npm ci --legacy-peer-deps --prefer-offline --no-audit
-        working-directory: GiaSi-Portfolio
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
+          cd GiaSi-Portfolio
+          npm install --legacy-peer-deps
+
+      - name: Build project
+        run: |
+          cd GiaSi-Portfolio
+          npm run build
 
       - name: Run linting
-        run: npm run lint || echo "Linting completed with warnings"
-        working-directory: GiaSi-Portfolio
+        run: |
+          cd GiaSi-Portfolio
+          npm run lint || echo "Linting completed with warnings"
         continue-on-error: true
 
-      - name: Build project with verbose output
-        run: npm run build
-        working-directory: GiaSi-Portfolio
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-          CI: true
-
-  deploy-preview:
-    runs-on: ubuntu-latest
-    needs: lint-and-test
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Install dependencies
+      - name: Success message
         run: |
-          npm ci --legacy-peer-deps --prefer-offline --no-audit
-        working-directory: GiaSi-Portfolio
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-
-      - name: Build project
-        run: npm run build
-        working-directory: GiaSi-Portfolio
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-          CI: true
-
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: GiaSi-Portfolio
-
-      - name: Deploy to Vercel Preview
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: GiaSi-Portfolio
-
-  deploy-production:
-    runs-on: ubuntu-latest
-    needs: lint-and-test
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Install dependencies
-        run: |
-          npm ci --legacy-peer-deps --prefer-offline --no-audit
-        working-directory: GiaSi-Portfolio
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-
-      - name: Build project
-        run: npm run build
-        working-directory: GiaSi-Portfolio
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-          CI: true
-
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: GiaSi-Portfolio
-
-      - name: Deploy to Vercel Production
-        run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: GiaSi-Portfolio
-
-  deployment-success:
-    runs-on: ubuntu-latest
-    needs: [deploy-production]
-    if: success()
-
-    steps:
-      - name: Deployment Success Notification
-        run: |
-          echo "🎉 Deployment successful!"
-          echo "🔗 Production URL: https://giasinguyen.vercel.app"
-          echo "📊 View project: https://vercel.com/giasinguyens-projects/gia-si-portfolio"
+          echo "✅ Build completed successfully!"
+          echo "🔗 Site will be deployed automatically by Vercel"
