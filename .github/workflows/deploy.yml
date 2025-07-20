@@ -9,6 +9,7 @@ on:
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  NODE_ENV: production
 
 jobs:
   lint-and-test:
@@ -21,20 +22,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
-      - name: Clean and install dependencies
+      - name: Clean install dependencies
         run: |
-          rm -rf package-lock.json node_modules
-          npm install --legacy-peer-deps
+          npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Run linting
         run: npm run lint || echo "Linting completed with warnings"
-        continue-on-error: true # Không dừng workflow nếu có warning
+        continue-on-error: true
 
-      - name: Build project
-        run: npm run build
+      - name: Build project with verbose output
+        run: |
+          npm run build
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+          CI: true
 
   deploy-preview:
     runs-on: ubuntu-latest
@@ -48,16 +54,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
-      - name: Clean and install dependencies
-        run: |
-          rm -rf package-lock.json node_modules
-          npm install --legacy-peer-deps
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Build project
         run: npm run build
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+          CI: true
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -80,14 +89,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Build project
         run: npm run build
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+          CI: true
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
