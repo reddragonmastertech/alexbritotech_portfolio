@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
-function TypeWriter({ texts, speed = 100, delay = 1500 }) {
+function TypeWriter({ texts = [], speed = 100, delay = 1500 }) {
   const [displayedText, setDisplayedText] = useState('')
   const [index, setIndex] = useState(0)
   const [charIndex, setCharIndex] = useState(0)

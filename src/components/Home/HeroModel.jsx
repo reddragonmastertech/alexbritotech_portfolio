@@ -91,6 +91,10 @@ function HeroModel() {
           new THREE.Color(0x6366f1), // Indigo
           new THREE.Color(0x60a5fa), // Light Blue
         ]
+        // Đảm bảo colorOptions luôn là mảng
+        if (!Array.isArray(colorOptions) || colorOptions.length === 0) {
+          throw new Error('colorOptions must be a non-empty array')
+        }
         
         // Create particles in a ring
         for (let j = 0; j < numParticles; j++) {
