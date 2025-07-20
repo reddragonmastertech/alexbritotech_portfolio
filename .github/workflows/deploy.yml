@@ -11,9 +11,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   NODE_ENV: production
 
-defaults:
-  run:
-    working-directory: ./GiaSi-Portfolio
+# Remove defaults to avoid path issues
 
 jobs:
   lint-and-test:
@@ -39,15 +37,18 @@ jobs:
       - name: Clean install dependencies
         run: |
           npm ci --legacy-peer-deps --prefer-offline --no-audit
+        working-directory: GiaSi-Portfolio
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Run linting
         run: npm run lint || echo "Linting completed with warnings"
+        working-directory: GiaSi-Portfolio
         continue-on-error: true
 
       - name: Build project with verbose output
         run: npm run build
+        working-directory: GiaSi-Portfolio
         env:
           NODE_OPTIONS: --max_old_space_size=4096
           CI: true
@@ -69,11 +70,13 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --legacy-peer-deps --prefer-offline --no-audit
+        working-directory: GiaSi-Portfolio
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Build project
         run: npm run build
+        working-directory: GiaSi-Portfolio
         env:
           NODE_OPTIONS: --max_old_space_size=4096
           CI: true
@@ -83,9 +86,11 @@ jobs:
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: GiaSi-Portfolio
 
       - name: Deploy to Vercel Preview
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: GiaSi-Portfolio
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -104,11 +109,13 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --legacy-peer-deps --prefer-offline --no-audit
+        working-directory: GiaSi-Portfolio
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Build project
         run: npm run build
+        working-directory: GiaSi-Portfolio
         env:
           NODE_OPTIONS: --max_old_space_size=4096
           CI: true
@@ -118,9 +125,11 @@ jobs:
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: GiaSi-Portfolio
 
       - name: Deploy to Vercel Production
         run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: GiaSi-Portfolio
 
   deployment-success:
     runs-on: ubuntu-latest
