@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "Building Responsive Websites with TailwindCSS",
+    "slug": "building-responsive-websites-tailwindcss",
+    "excerpt": "Learn how to create fully responsive websites quickly and efficiently using TailwindCSS utility classes.",
+    "content": "Full article content goes here...",
+    "date": "May 15, 2025",
+    "readTime": 5,
+    "author": "Gia Si",
+    "category": "Web Development",
+    "coverImage": "https://placehold.co/600x400/0f172a/0ea5e9?text=TailwindCSS",
+    "tags": ["TailwindCSS", "CSS", "Responsive Design"]
+  },
+  {
+    "id": 2,
+    "title": "Introduction to Three.js for Web Developers",
+    "slug": "introduction-to-threejs",
+    "excerpt": "Discover how to incorporate 3D graphics into your web projects using the powerful Three.js library.",
+    "content": "Full article content goes here...",
+    "date": "April 28, 2025",
+    "readTime": 8,
+    "author": "Gia Si",
+    "category": "3D Graphics",
+    "coverImage": "https://placehold.co/600x400/0f172a/0ea5e9?text=Three.js",
+    "tags": ["Three.js", "WebGL", "3D", "JavaScript"]
+  },
+  {
+    "id": 3,
+    "title": "Optimizing React Performance",
+    "slug": "optimizing-react-performance",
+    "excerpt": "Tips and techniques to improve your React application performance and provide a smoother user experience.",
+    "content": "Full article content goes here...",
+    "date": "April 10, 2025",
+    "readTime": 6,
+    "author": "Gia Si",
+    "category": "React",
+    "coverImage": "https://placehold.co/600x400/0f172a/0ea5e9?text=React",
+    "tags": ["React", "Performance", "JavaScript"]
+  },
+  {
+    "id": 4,
+    "title": "Getting Started with GSAP Animations",
+    "slug": "getting-started-with-gsap",
+    "excerpt": "Learn how to create smooth, professional animations using the GSAP library in your web projects.",
+    "content": "Full article content goes here...",
+    "date": "March 22, 2025",
+    "readTime": 7,
+    "author": "Gia Si",
+    "category": "Animations",
+    "coverImage": "https://placehold.co/600x400/0f172a/0ea5e9?text=GSAP",
+    "tags": ["GSAP", "Animations", "JavaScript"]
+  },
+  {
+    "id": 5,
+    "title": "Building a Portfolio with React and Vite",
+    "slug": "building-portfolio-react-vite",
+    "excerpt": "Step-by-step guide to creating a modern developer portfolio using React and Vite build tools.",
+    "content": "Full article content goes here...",
+    "date": "March 5, 2025",
+    "readTime": 10,
+    "author": "Gia Si",
+    "category": "React",
+    "coverImage": "https://placehold.co/600x400/0f172a/0ea5e9?text=Portfolio",
+    "tags": ["React", "Vite", "Portfolio"]
+  },
+  {
+    "id": 6,
+    "title": "Modern CSS Techniques Every Developer Should Know",
+    "slug": "modern-css-techniques",
+    "excerpt": "Explore the latest CSS features and techniques that can improve your web development workflow.",
+    "content": "Full article content goes here...",
+    "date": "February 18, 2025",
+    "readTime": 6,
+    "author": "Gia Si",
+    "category": "CSS",
+    "coverImage": "https://placehold.co/600x400/0f172a/0ea5e9?text=Modern+CSS",
+    "tags": ["CSS", "Web Development"]
+  }
+]

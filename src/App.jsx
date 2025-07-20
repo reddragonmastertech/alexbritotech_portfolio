@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import './App.css'
 
 import { ThemeProvider } from './context/ThemeContext'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import Navbar from './components/Layout/Navbar'
 import Footer from './components/Layout/Footer'
 import ScrollToTop from './components/Layout/ScrollToTop'
@@ -51,27 +52,31 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <Router>
-        <div className="App min-h-screen flex flex-col bg-light-gradient dark:bg-dark-gradient transition-colors duration-300">
-          {loading ? (
-            <Preloader />
-          ) : (
-            <>
-              <Navbar />
-              <Particles3D />
-              
-              <div className="flex-grow">
-                <ScrollToTop />
-                <AnimatedRoutes />
-              </div>
-              
-              <Footer />
-            </>
-          )}
-        </div>
-      </Router>
-    </ThemeProvider>
+    <ErrorBoundary fallbackMessage="Something went wrong with the portfolio. Please refresh the page.">
+      <ThemeProvider>
+        <Router>
+          <div className="App min-h-screen flex flex-col bg-light-gradient dark:bg-dark-gradient transition-colors duration-300">
+            {loading ? (
+              <Preloader />
+            ) : (
+              <>
+                <Navbar />
+                <Particles3D />
+
+                <div className="flex-grow">
+                  <ScrollToTop />
+                  <ErrorBoundary fallbackMessage="There was an error loading the page content.">
+                    <AnimatedRoutes />
+                  </ErrorBoundary>
+                </div>
+
+                <Footer />
+              </>
+            )}
+          </div>
+        </Router>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
