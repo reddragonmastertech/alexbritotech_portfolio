@@ -13,20 +13,22 @@ export default defineConfig({
         if (warning.code === "CIRCULAR_DEPENDENCY") return;
         warn(warning);
       },
-      external: (id) => {
-        // Loại bỏ các module có thể gây lỗi
-        return id.includes("node_modules") && !id.includes(".css");
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          animations: ['framer-motion', 'gsap'],
+        },
       },
     },
-    sourcemap: false, // Tắt sourcemap để tránh lỗi
+    sourcemap: false,
     minify: "terser",
     target: "es2015",
-    // Tăng memory limit
     chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
-    exclude: ["lucide-react"], // Loại bỏ các package có thể gây xung đột
-    include: ["react", "react-dom"],
+    include: ["react", "react-dom", "three"],
+    exclude: ["lucide-react"],
   },
   define: {
     global: "globalThis",
