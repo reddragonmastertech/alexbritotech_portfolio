@@ -11,6 +11,10 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   NODE_ENV: production
 
+defaults:
+  run:
+    working-directory: ./GiaSi-Portfolio
+
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
@@ -24,10 +28,10 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: 'GiaSi-Portfolio/package-lock.json'
 
       - name: Clean install dependencies
-        run: |
-          npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
@@ -36,8 +40,7 @@ jobs:
         continue-on-error: true
 
       - name: Build project with verbose output
-        run: |
-          npm run build
+        run: npm run build
         env:
           NODE_OPTIONS: --max_old_space_size=4096
           CI: true
@@ -56,6 +59,7 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: 'GiaSi-Portfolio/package-lock.json'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -91,6 +95,7 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: 'GiaSi-Portfolio/package-lock.json'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps

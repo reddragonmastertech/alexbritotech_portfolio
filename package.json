@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx vite build",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "preview": "vite preview",
     "clean": "rm -rf dist node_modules/.vite",
-    "build:prod": "npm run clean && npm run build"
+    "build:prod": "npm run clean && npm run build",
+    "install:clean": "npm cache clean --force && npm install --no-optional",
+    "install:force": "rmdir /s /q node_modules 2>nul & del package-lock.json 2>nul & npm install"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
