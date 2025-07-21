@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
 import {
   FaBars,
   FaTimes,
@@ -11,13 +10,12 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import ThemeSwitcher from "./ThemeSwitcher";
-
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +24,21 @@ function Navbar() {
         setScrolled(true);
       } else {
         setScrolled(false);
+      }
+
+      // Determine active section based on scroll position
+      const sections = ["home", "about", "projects", "blog", "resume", "contact"];
+      const sectionElements = sections.map(id => document.getElementById(id));
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sectionElements[i];
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= 100) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
       }
     };
 
@@ -44,6 +57,19 @@ function Navbar() {
     if (isOpen) setIsOpen(false);
   };
 
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for navbar height
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth"
+      });
+    }
+    closeNavbar();
+  };
+
   return (
     <nav
       className={`fixed w-full z-20 transition-all duration-300 ${
@@ -55,40 +81,53 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link to="/" onClick={closeNavbar} className="flex items-center">
+            <button 
+              onClick={() => scrollToSection("home")} 
+              className="flex items-center"
+            >
               <span className="text-2xl font-bold blue-gradient-text">
                 GiaSi Portfolio
               </span>
-            </Link>
+            </button>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <NavLink to="/" active={location.pathname === "/"} label="Home" />
+            <NavLink 
+              sectionId="home" 
+              active={activeSection === "home"} 
+              label="Home" 
+              onClick={() => scrollToSection("home")}
+            />
             <NavLink
-              to="/about"
-              active={location.pathname === "/about"}
+              sectionId="about"
+              active={activeSection === "about"}
               label="About"
+              onClick={() => scrollToSection("about")}
             />
             <NavLink
-              to="/projects"
-              active={location.pathname === "/projects"}
+              sectionId="projects"
+              active={activeSection === "projects"}
               label="Projects"
+              onClick={() => scrollToSection("projects")}
             />
             <NavLink
-              to="/blog"
-              active={location.pathname === "/blog"}
+              sectionId="blog"
+              active={activeSection === "blog"}
               label="Blog"
+              onClick={() => scrollToSection("blog")}
             />
             <NavLink
-              to="/contact"
-              active={location.pathname === "/contact"}
+              sectionId="contact"
+              active={activeSection === "contact"}
               label="Contact"
+              onClick={() => scrollToSection("contact")}
             />
             <NavLink
-              to="/resume"
-              active={location.pathname === "/resume"}
+              sectionId="resume"
+              active={activeSection === "resume"}
               label="Resume"
+              onClick={() => scrollToSection("resume")}
             />
 
             <div className="ml-2">
@@ -137,40 +176,46 @@ function Navbar() {
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <MobileNavLink
-            to="/"
+            sectionId="home"
             icon={<FaHome className="mr-2" />}
             label="Home"
-            onClick={closeNavbar}
+            onClick={() => scrollToSection("home")}
+            active={activeSection === "home"}
           />
           <MobileNavLink
-            to="/about"
+            sectionId="about"
             icon={<FaUser className="mr-2" />}
             label="About"
-            onClick={closeNavbar}
+            onClick={() => scrollToSection("about")}
+            active={activeSection === "about"}
           />
           <MobileNavLink
-            to="/projects"
+            sectionId="projects"
             icon={<FaLaptopCode className="mr-2" />}
             label="Projects"
-            onClick={closeNavbar}
+            onClick={() => scrollToSection("projects")}
+            active={activeSection === "projects"}
           />
           <MobileNavLink
-            to="/blog"
+            sectionId="blog"
             icon={<FaBlog className="mr-2" />}
             label="Blog"
-            onClick={closeNavbar}
+            onClick={() => scrollToSection("blog")}
+            active={activeSection === "blog"}
           />
           <MobileNavLink
-            to="/contact"
+            sectionId="contact"
             icon={<FaEnvelope className="mr-2" />}
             label="Contact"
-            onClick={closeNavbar}
+            onClick={() => scrollToSection("contact")}
+            active={activeSection === "contact"}
           />
           <MobileNavLink
-            to="/resume"
+            sectionId="resume"
             icon={<FaFile className="mr-2" />}
             label="Resume"
-            onClick={closeNavbar}
+            onClick={() => scrollToSection("resume")}
+            active={activeSection === "resume"}
           />
         </div>
 
@@ -191,10 +236,10 @@ function Navbar() {
 }
 
 // Desktop Nav Link with active state
-function NavLink({ to, label, active }) {
+function NavLink({ label, active, onClick }) {
   return (
-    <Link
-      to={to}
+    <button
+      onClick={onClick}
       className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
         active
           ? "text-blue-500 dark:text-blue-400"
@@ -208,27 +253,23 @@ function NavLink({ to, label, active }) {
           layoutId="navbar-underline"
         />
       )}
-    </Link>
+    </button>
   );
 }
 
 // Mobile Nav Link
-function MobileNavLink({ to, icon, label, onClick }) {
-  const location = useLocation();
-  const active = location.pathname === to;
-
+function MobileNavLink({ icon, label, onClick, active }) {
   return (
-    <Link
-      to={to}
+    <button
       onClick={onClick}
-      className={`flex items-center px-3 py-3 rounded-md text-base font-medium ${
+      className={`w-full flex items-center px-3 py-3 rounded-md text-base font-medium ${
         active
           ? "bg-blue-50 text-blue-500 dark:bg-slate-800 dark:text-blue-400"
           : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 hover:text-blue-500 dark:hover:bg-slate-800 dark:hover:text-blue-400"
       }`}
     >
       {icon} {label}
-    </Link>
+    </button>
   );
 }
 

@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaTag } from "react-icons/fa";
-
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 function BlogPostCard({ post, index }) {
   return (
@@ -11,7 +8,15 @@ function BlogPostCard({ post, index }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
     >
-      <Link to={`/blog/${post.slug}`} className="block">
+      <div 
+        className="block cursor-pointer"
+        onClick={() => {
+          // Open blog post in new tab if it has an external URL
+          if (post.url) {
+            window.open(post.url, '_blank');
+          }
+        }}
+      >
         <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
           <img
             src={post.coverImage}
@@ -47,10 +52,10 @@ function BlogPostCard({ post, index }) {
 
         <div className="pt-2 border-t border-slate-200 dark:border-slate-700">
           <span className="text-blue-500 dark:text-blue-400 text-sm font-medium hover:text-blue-600 dark:hover:text-blue-300">
-            Read More →
+            {post.url ? 'Read More →' : 'Coming Soon'}
           </span>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }

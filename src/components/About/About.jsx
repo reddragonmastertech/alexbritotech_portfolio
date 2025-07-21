@@ -108,9 +108,21 @@ function About() {
               </div>
             </div>
 
-            <a href="/resume" className="btn-primary inline-block">
+            <button 
+              onClick={() => {
+                const element = document.getElementById('resume');
+                if (element) {
+                  const offsetTop = element.offsetTop - 80;
+                  window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              className="btn-primary inline-block"
+            >
               View Resume
-            </a>
+            </button>
           </div>
         </div>
 

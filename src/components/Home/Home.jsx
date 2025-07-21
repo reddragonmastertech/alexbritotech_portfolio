@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import TypeWriter from "./TypeWriter";
 import { FaArrowRight, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
 import {
@@ -91,9 +90,21 @@ function Home() {
           </p>
 
           <div className="hero-element flex flex-wrap gap-4">
-            <Link to="/projects" className="btn-primary flex items-center">
+            <button 
+              onClick={() => {
+                const element = document.getElementById('projects');
+                if (element) {
+                  const offsetTop = element.offsetTop - 80;
+                  window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              className="btn-primary flex items-center"
+            >
               View Projects <FaArrowRight className="ml-2" />
-            </Link>
+            </button>
 
             <div className="flex items-center gap-4">
               <a

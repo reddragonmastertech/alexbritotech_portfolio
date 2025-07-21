@@ -12,6 +12,10 @@
   --background-end-rgb: 15, 23, 42;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   transition: background-color 0.3s ease;
@@ -46,6 +50,10 @@ body {
   
   .btn-primary {
     @apply px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors shadow-lg hover:shadow-sky-500/20 duration-300;
+  }
+  
+  .btn-outline {
+    @apply px-4 py-2 border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg transition-all duration-300 font-medium;
   }
   
   .card {
