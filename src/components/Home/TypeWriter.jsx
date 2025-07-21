@@ -54,9 +54,9 @@ function TypeWriter({ texts = [], speed = 100, delay = 1500 }) {
   return (
     <div className="inline-flex items-center">
       <span className="blue-gradient-text">{displayedText}</span>
-      <span 
-        ref={cursorRef} 
-        className="ml-1 w-1 h-8 bg-sky-500"
+      <span
+        ref={cursorRef}
+        className="ml-1 w-1 h-8 bg-sky-500 dark:bg-sky-400"
       ></span>
     </div>
   )

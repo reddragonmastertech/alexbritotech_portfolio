@@ -78,7 +78,7 @@ function Home() {
             </span>
           </h1>
 
-          <div className="hero-element text-2xl md:text-3xl font-semibold text-slate-700 dark:text-slate-300 mb-6 h-14">
+          <div className="hero-element text-2xl md:text-3xl font-semibold text-slate-600 dark:text-slate-200 mb-6 h-14">
             <TypeWriter
               texts={[
                 "Java Developer",
@@ -89,7 +89,7 @@ function Home() {
             />
           </div>
 
-          <p className="hero-element text-slate-700 dark:text-slate-300 mb-8 max-w-lg">
+          <p className="hero-element text-slate-600 dark:text-slate-300 mb-8 max-w-lg">
             I build enterprise applications with Java & Spring Boot.
             Specializing in developing RESTful APIs, microservices, and security
             solutions with Spring Security & JWT in enterprise environments.
@@ -117,7 +117,7 @@ function Home() {
                 href="https://github.com/giasinguyen"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-700 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors p-2 hover:-translate-y-1 transform duration-300"
+                className="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors p-2 hover:-translate-y-1 transform duration-300"
                 aria-label="GitHub"
               >
                 <FaGithub className="h-6 w-6" />
@@ -126,7 +126,7 @@ function Home() {
                 href="https://linkedin.com/in/giasinguyen"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-700 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors p-2 hover:-translate-y-1 transform duration-300"
+                className="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors p-2 hover:-translate-y-1 transform duration-300"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin className="h-6 w-6" />
@@ -136,7 +136,9 @@ function Home() {
 
           {/* Tech stack tags */}
           <div className="hero-element mt-12" ref={techStackRef}>
-            <p className="text-sm text-slate-500 mb-2">Technologies</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
+              Technologies
+            </p>
             <div className="flex flex-wrap gap-3">
               <span
                 className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-red-500 text-sm rounded-full 

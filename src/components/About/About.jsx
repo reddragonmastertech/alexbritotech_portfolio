@@ -48,7 +48,7 @@ function About() {
             <div className="bg-sky-500/20 rounded-lg p-4">
               <div className="overflow-hidden rounded-lg border-2 border-sky-500">
                 <img
-                  src="https://placehold.co/600x400/0f172a/0ea5e9?text=Nguyen+Tran+Gia+Si"
+                  src="/avatar.jpg"
                   alt="Profile"
                   className="w-full h-auto object-cover transition-transform hover:scale-105 duration-500"
                 />
@@ -61,14 +61,14 @@ function About() {
 
           {/* Right: Content */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">Java Backend Developer</h2>
-            <p className="text-slate-700 dark:text-slate-300 mb-6">
+            <h2 className="text-3xl font-bold mb-4 text-slate-800 dark:text-slate-100">Java Backend Developer</h2>
+            <p className="text-slate-600 dark:text-slate-300 mb-6">
               I am a passionate Java backend developer with expertise in Spring
               Boot and enterprise application development. My career in software
               development has been focused on building robust, scalable, and
               secure Java applications that deliver real business value.
             </p>
-            <p className="text-slate-700 dark:text-slate-300 mb-6">
+            <p className="text-slate-600 dark:text-slate-300 mb-6">
               I specialize in Java-based backend development with Spring
               ecosystem, RESTful API design, database design, and implementing
               security best practices with Spring Security and JWT. I also have
@@ -79,13 +79,13 @@ function About() {
             {/* Personal Info */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div>
-                <p>
+                <p className="text-slate-600 dark:text-slate-300">
                   <span className="text-sky-500 dark:text-sky-400 font-medium">
                     Name:
                   </span>{" "}
                   Nguyen Tran Gia Si
                 </p>
-                <p>
+                <p className="text-slate-600 dark:text-slate-300">
                   <span className="text-sky-500 dark:text-sky-400 font-medium">
                     Email:
                   </span>{" "}
@@ -93,17 +93,17 @@ function About() {
                 </p>
               </div>
               <div>
-                <p>
+                <p className="text-slate-600 dark:text-slate-300">
                   <span className="text-sky-500 dark:text-sky-400 font-medium">
                     Location:
                   </span>{" "}
                   Ho Chi Minh, Vietnam
                 </p>
-                <p>
+                <p className="text-slate-600 dark:text-slate-300">
                   <span className="text-sky-500 dark:text-sky-400 font-medium">
                     Experience:
                   </span>{" "}
-                  4+ Years
+                  1+ Years
                 </p>
               </div>
             </div>
@@ -132,12 +132,12 @@ function About() {
             isVisible ? "opacity-100" : "opacity-0 transform translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-center text-slate-800 dark:text-slate-100">
             My <span className="blue-gradient-text">Skills</span>
           </h2>
 
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 flex items-center">
+            <h3 className="text-xl font-bold mb-4 flex items-center text-slate-700 dark:text-slate-200">
               <FaJava className="mr-2 text-red-500" /> Java Ecosystem
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -149,7 +149,7 @@ function About() {
                 <div className="text-red-500 text-4xl mb-4 flex justify-center">
                   <FaJava />
                 </div>
-                <h3 className="text-center font-medium">Java</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">Java</h3>
                 <p className="text-center text-xs text-slate-500 dark:text-slate-400">
                   Core, JDK 8-17
                 </p>
@@ -162,7 +162,7 @@ function About() {
                 <div className="text-green-500 text-4xl mb-4 flex justify-center">
                   <SiSpring />
                 </div>
-                <h3 className="text-center font-medium">Spring</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">Spring</h3>
                 <p className="text-center text-xs text-slate-500 dark:text-slate-400">
                   Framework, MVC, Security
                 </p>
@@ -175,7 +175,7 @@ function About() {
                 <div className="text-green-500 text-4xl mb-4 flex justify-center">
                   <SiSpringboot />
                 </div>
-                <h3 className="text-center font-medium">Spring Boot</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">Spring Boot</h3>
                 <p className="text-center text-xs text-slate-500 dark:text-slate-400">
                   API, Microservices
                 </p>
@@ -188,7 +188,7 @@ function About() {
                 <div className="text-slate-700 dark:text-slate-200 text-4xl mb-4 flex justify-center">
                   <SiHibernate />
                 </div>
-                <h3 className="text-center font-medium">JPA / Hibernate</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">JPA / Hibernate</h3>
                 <p className="text-center text-xs text-slate-500 dark:text-slate-400">
                   ORM, Data Persistence
                 </p>
@@ -201,7 +201,7 @@ function About() {
                 <div className="text-blue-500 text-4xl mb-4 flex justify-center">
                   <FaLock />
                 </div>
-                <h3 className="text-center font-medium">JWT</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">JWT</h3>
                 <p className="text-center text-xs text-slate-500 dark:text-slate-400">
                   Authentication, Security
                 </p>
@@ -210,7 +210,7 @@ function About() {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 flex items-center">
+            <h3 className="text-xl font-bold mb-4 flex items-center text-slate-700 dark:text-slate-200">
               <FaDatabase className="mr-2 text-blue-500" /> Databases
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
@@ -221,7 +221,7 @@ function About() {
                 <div className="text-blue-500 text-4xl mb-4 flex justify-center">
                   <FaDatabase />
                 </div>
-                <h3 className="text-center font-medium">MySQL</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">MySQL</h3>
               </motion.div>
 
               <motion.div
@@ -231,7 +231,7 @@ function About() {
                 <div className="text-blue-700 text-4xl mb-4 flex justify-center">
                   <FaDatabase />
                 </div>
-                <h3 className="text-center font-medium">PostgreSQL</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">PostgreSQL</h3>
               </motion.div>
 
               <motion.div
@@ -241,7 +241,7 @@ function About() {
                 <div className="text-orange-500 text-4xl mb-4 flex justify-center">
                   <FaDatabase />
                 </div>
-                <h3 className="text-center font-medium">Oracle DB</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">Oracle DB</h3>
               </motion.div>
 
               <motion.div
@@ -251,13 +251,13 @@ function About() {
                 <div className="text-green-600 text-4xl mb-4 flex justify-center">
                   <FaDatabase />
                 </div>
-                <h3 className="text-center font-medium">MongoDB</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">MongoDB</h3>
               </motion.div>
             </div>
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4 flex items-center">
+            <h3 className="text-xl font-bold mb-4 flex items-center text-slate-700 dark:text-slate-200">
               <FaReact className="mr-2 text-sky-400" /> Frontend & Other Tools
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -268,7 +268,7 @@ function About() {
                 <div className="text-sky-400 text-4xl mb-4 flex justify-center">
                   <FaReact className="group-hover:animate-spin-slow" />
                 </div>
-                <h3 className="text-center font-medium">React</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">React</h3>
               </motion.div>
 
               <motion.div
@@ -278,7 +278,7 @@ function About() {
                 <div className="text-yellow-400 text-4xl mb-4 flex justify-center">
                   <SiJavascript />
                 </div>
-                <h3 className="text-center font-medium">JavaScript</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">JavaScript</h3>
               </motion.div>
 
               <motion.div
@@ -288,7 +288,7 @@ function About() {
                 <div className="text-sky-400 text-4xl mb-4 flex justify-center">
                   <SiTailwindcss />
                 </div>
-                <h3 className="text-center font-medium">TailwindCSS</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">TailwindCSS</h3>
               </motion.div>
 
               <motion.div
@@ -298,7 +298,7 @@ function About() {
                 <div className="text-green-500 text-4xl mb-4 flex justify-center">
                   <SiNodedotjs />
                 </div>
-                <h3 className="text-center font-medium">Node.js</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">Node.js</h3>
               </motion.div>
 
               <motion.div
@@ -308,7 +308,7 @@ function About() {
                 <div className="text-slate-700 dark:text-slate-300 text-4xl mb-4 flex justify-center">
                   <FaGithub />
                 </div>
-                <h3 className="text-center font-medium">Git/GitHub</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">Git/GitHub</h3>
               </motion.div>
 
               <motion.div
@@ -318,7 +318,7 @@ function About() {
                 <div className="text-blue-500 text-4xl mb-4 flex justify-center">
                   <TbBrandVscode />
                 </div>
-                <h3 className="text-center font-medium">VS Code</h3>
+                <h3 className="text-center font-medium text-slate-700 dark:text-slate-200">VS Code</h3>
               </motion.div>
             </div>
           </div>
@@ -330,7 +330,7 @@ function About() {
             isVisible ? "opacity-100" : "opacity-0 transform translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-center text-slate-800 dark:text-slate-100">
             My <span className="blue-gradient-text">Experience</span>
           </h2>
 
@@ -339,13 +339,13 @@ function About() {
             <div className="mb-12 relative pl-8">
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-sky-500"></div>
               <div className="card">
-                <h3 className="text-xl font-bold mb-1">
+                <h3 className="text-xl font-bold mb-1 text-slate-800 dark:text-slate-100">
                   Senior Java Backend Developer
                 </h3>
                 <p className="text-sky-500 dark:text-sky-400 mb-3">
                   TechInnovations Inc. • 2022 - Present
                 </p>
-                <p className="text-slate-700 dark:text-slate-300">
+                <p className="text-slate-600 dark:text-slate-300">
                   Leading the development of enterprise Java applications with
                   Spring Boot and Microservices architecture. Implementing
                   secure authentication with Spring Security and JWT. Designing
@@ -360,11 +360,11 @@ function About() {
             <div className="mb-12 relative pl-8">
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-sky-500"></div>
               <div className="card">
-                <h3 className="text-xl font-bold mb-1">Java Developer</h3>
+                <h3 className="text-xl font-bold mb-1 text-slate-800 dark:text-slate-100">Java Developer</h3>
                 <p className="text-sky-500 dark:text-sky-400 mb-3">
                   EnterpriseJava Solutions • 2020 - 2022
                 </p>
-                <p className="text-slate-700 dark:text-slate-300">
+                <p className="text-slate-600 dark:text-slate-300">
                   Developed and maintained Java applications using Spring Boot
                   and Hibernate ORM. Implemented MVC architecture and RESTful
                   services for various enterprise clients. Collaborated with
@@ -379,13 +379,13 @@ function About() {
             <div className="relative pl-8">
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-sky-500"></div>
               <div className="card">
-                <h3 className="text-xl font-bold mb-1">
+                <h3 className="text-xl font-bold mb-1 text-slate-800 dark:text-slate-100">
                   Junior Java Developer
                 </h3>
                 <p className="text-sky-500 dark:text-sky-400 mb-3">
                   TechSolutions • 2019 - 2020
                 </p>
-                <p className="text-slate-700 dark:text-slate-300">
+                <p className="text-slate-600 dark:text-slate-300">
                   Assisted in the development of Java applications using Spring
                   Framework. Worked with senior developers to implement features
                   and fix bugs in existing codebases. Gained experience with
@@ -404,7 +404,7 @@ function About() {
             isVisible ? "opacity-100" : "opacity-0 transform translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-center text-slate-800 dark:text-slate-100">
             My <span className="blue-gradient-text">GitHub Contributions</span>
           </h2>
 
