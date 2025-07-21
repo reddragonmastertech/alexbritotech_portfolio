@@ -78,10 +78,10 @@ function Contact() {
                       Email
                     </h3>
                     <a
-                      href="mailto:example@gmail.com"
+                      href="mailto:giasinguyentran@gmail.com"
                       className="text-lg font-medium hover:text-blue-500 dark:hover:text-blue-400 transition"
                     >
-                      example@gmail.com
+                      giasinguyentran@gmail.com
                     </a>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ function Contact() {
                       href="tel:+1234567890"
                       className="text-lg font-medium hover:text-blue-500 dark:hover:text-blue-400 transition"
                     >
-                      +1 (234) 567-890
+                      +(84) 34 899 6487
                     </a>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ function Contact() {
                 <h3 className="text-lg font-medium mb-4">Connect with me</h3>
                 <div className="flex space-x-4">
                   <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/giasinguyen"
                     target="_blank"
                     rel="noreferrer"
                     className="bg-slate-200 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500 transition-colors"
@@ -141,7 +141,7 @@ function Contact() {
                     </svg>
                   </a>
                   <a
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://linkedin.com/in/giasinguyen"
                     target="_blank"
                     rel="noreferrer"
                     className="bg-slate-200 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500 transition-colors"
@@ -159,7 +159,7 @@ function Contact() {
                     </svg>
                   </a>
                   <a
-                    href="https://twitter.com/yourusername"
+                    href="https://twitter.com/giasinguyen"
                     target="_blank"
                     rel="noreferrer"
                     className="bg-slate-200 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500 transition-colors"
@@ -177,7 +177,7 @@ function Contact() {
                     </svg>
                   </a>
                   <a
-                    href="https://instagram.com/yourusername"
+                    href="https://instagram.com/iamgiasi"
                     target="_blank"
                     rel="noreferrer"
                     className="bg-slate-200 dark:bg-slate-700 p-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500 transition-colors"
@@ -226,7 +226,7 @@ function Contact() {
                       <input
                         id="name"
                         type="text"
-                        placeholder="John Doe"
+                        placeholder="Nguyen Tran Gia Si"
                         className={`pl-10 w-full rounded-md border ${
                           errors.name
                             ? "border-red-500 focus:border-red-500 focus:ring-red-500"
@@ -263,7 +263,7 @@ function Contact() {
                       <input
                         id="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder="giasinguyentran@gmail.com"
                         className={`pl-10 w-full rounded-md border ${
                           errors.email
                             ? "border-red-500 focus:border-red-500 focus:ring-red-500"
