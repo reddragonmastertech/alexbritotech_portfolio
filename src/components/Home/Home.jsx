@@ -6,6 +6,9 @@ import {
   SiJavascript,
   SiReact,
   SiTailwindcss,
+  SiTypescript,
+  SiSpring,
+  SiSpringsecurity,
 } from "react-icons/si";
 import HeroModel from "./HeroModel";
 import gsap from "gsap";
@@ -68,8 +71,11 @@ function Home() {
           <p className="hero-element text-sky-500 dark:text-sky-400 font-medium">
             Hello, I'm
           </p>
-          <h1 className="hero-element text-4xl md:text-6xl font-bold text-slate-800 dark:text-slate-100 mb-4 glow-text">
-            Nguyen Tran Gia Si
+          <h1 className="hero-element font-bold mb-4">
+            <span className="text-4xl md:text-6xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 dark:from-sky-400 dark:via-blue-500 dark:to-indigo-600 bg-clip-text text-transparent drop-shadow-sm animate-pulse-slow relative">
+              Nguyen Tran Gia Si
+              <span className="absolute -inset-1 bg-sky-500/10 dark:bg-sky-400/10 blur-xl rounded-lg -z-10"></span>
+            </span>
           </h1>
 
           <div className="hero-element text-2xl md:text-3xl font-semibold text-slate-700 dark:text-slate-300 mb-6 h-14">
@@ -90,14 +96,14 @@ function Home() {
           </p>
 
           <div className="hero-element flex flex-wrap gap-4">
-            <button 
+            <button
               onClick={() => {
-                const element = document.getElementById('projects');
+                const element = document.getElementById("projects");
                 if (element) {
                   const offsetTop = element.offsetTop - 80;
                   window.scrollTo({
                     top: offsetTop,
-                    behavior: 'smooth'
+                    behavior: "smooth",
                   });
                 }
               }}
@@ -145,7 +151,23 @@ function Home() {
                            border border-slate-300 dark:border-slate-700 hover:border-green-500 transition-colors 
                            duration-300 shadow-md"
               >
+                <SiSpring /> Spring
+              </span>
+
+              <span
+                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-green-600 text-sm rounded-full 
+                           border border-slate-300 dark:border-slate-700 hover:border-green-600 transition-colors 
+                           duration-300 shadow-md"
+              >
                 <SiSpringboot /> Spring Boot
+              </span>
+
+              <span
+                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-green-700 text-sm rounded-full 
+                           border border-slate-300 dark:border-slate-700 hover:border-green-700 transition-colors 
+                           duration-300 shadow-md"
+              >
+                <SiSpringsecurity /> Spring Security
               </span>
 
               <span
@@ -165,11 +187,11 @@ function Home() {
               </span>
 
               <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-sky-400 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-sky-400 transition-colors 
+                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-blue-600 text-sm rounded-full 
+                           border border-slate-300 dark:border-slate-700 hover:border-blue-600 transition-colors 
                            duration-300 shadow-md"
               >
-                <SiTailwindcss /> TailwindCSS
+                <SiTypescript /> TypeScript
               </span>
 
               <span
@@ -178,6 +200,14 @@ function Home() {
                            duration-300 shadow-md"
               >
                 <SiJavascript /> JavaScript
+              </span>
+
+              <span
+                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-sky-400 text-sm rounded-full 
+                           border border-slate-300 dark:border-slate-700 hover:border-sky-400 transition-colors 
+                           duration-300 shadow-md"
+              >
+                <SiTailwindcss /> TailwindCSS
               </span>
             </div>
           </div>
