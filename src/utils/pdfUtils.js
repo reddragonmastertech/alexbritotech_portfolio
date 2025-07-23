@@ -25,8 +25,8 @@ export const PDF_DATA = {
   resume: {
     personalInfo: {
       name: "Nguyen Tran Gia Si",
-      email: "giasi@example.com",
-      phone: "+84 123 456 789",
+      email: "giasinguyentran@gmail.com",
+      phone: "+84 34 899 6487",
       location: "Ho Chi Minh City, Vietnam",
       linkedin: "linkedin.com/in/giasinguyen",
       github: "github.com/giasinguyen",
