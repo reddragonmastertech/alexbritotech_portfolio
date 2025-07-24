@@ -1,33 +1,33 @@
 [
   {
     "id": 1,
-    "title": "E-Commerce Platform",
-    "description": "A full-stack e-commerce platform with product catalog, shopping cart, and payment processing capabilities.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=E-Commerce",
-    "tags": ["React", "Node.js", "MongoDB", "Stripe"],
-    "category": "fullstack",
-    "githubUrl": "https://github.com/yourusername/ecommerce",
-    "demoUrl": "https://ecommerce-demo.com"
+    "title": "Portfolio Website",
+    "description": "Showcasing selected works in web development, UI/UX design, and software.",
+    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=Portfolio",
+    "tags": ["React", "TailwindCSS", "Three.js", "GSAP", "Framer Motion"],
+    "category": "frontend",
+    "githubUrl": "https://github.com/giasinguyen/GiaSi-Portfolio",
+    "demoUrl": "https://nguyentrangiasi.id.vn/"
   },
   {
     "id": 2,
-    "title": "Task Management App",
-    "description": "A Kanban-style task management application with drag-and-drop functionality and team collaboration features.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=Task+Manager",
-    "tags": ["React", "Redux", "Firebase", "TailwindCSS"],
-    "category": "frontend",
-    "githubUrl": "https://github.com/yourusername/task-manager",
-    "demoUrl": "https://task-manager-demo.com"
+    "title": "CodeHub Application",
+    "description": "CodeHub is a comprehensive platform designed for developers to share, discover, and collaborate on code snippets. With support for 70+ programming languages, advanced search capabilities, real-time messaging, and a modern UI/UX, CodeHub provides an intuitive and feature-rich environment for all your code sharing needs.",
+    "image": "https://github.com/giasinguyen/CodeHub/raw/main/CodeHub-Frontend/public/CodeHub-Logo-nobg.png",
+    "tags": ["React", "Tailwind", "Vite", "Zustand", "Spring Boot", "JJWT", "Maven", "Spring Maven", "WebSocket (STOMP.js)"],
+    "category": "fullstack",
+    "githubUrl": "https://github.com/giasinguyen/CodeHub",
+    "demoUrl": "https://github.com/giasinguyen/CodeHub"
   },
   {
     "id": 3,
-    "title": "Weather Dashboard",
-    "description": "A weather dashboard that displays current weather conditions and forecasts based on user location.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=Weather+App",
-    "tags": ["JavaScript", "APIs", "CSS", "HTML"],
-    "category": "frontend",
-    "githubUrl": "https://github.com/yourusername/weather-app",
-    "demoUrl": "https://weather-app-demo.com"
+    "title": "NatureGrain Application",
+    "description": "NatureGrain is a comprehensive full-stack e-commerce platform specifically designed for organic food retail. This modern web application provides a seamless shopping experience for customers seeking premium organic products while offering powerful administrative tools for business management.",
+    "image": "https://github.com/giasinguyen/NatureGrain/raw/main/FrontEnd/public/Naturegrain.png",
+    "tags": ["React", "Tailwind", "Vite", "Zustand", "Spring Boot", "JJWT", "Maven", "Spring Maven", "Formik"],
+    "category": "fullstack",
+    "githubUrl": "https://github.com/giasinguyen/NatureGrain",
+    "demoUrl": "https://github.com/giasinguyen/NatureGrain"
   },
   {
     "id": 4,
