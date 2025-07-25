@@ -3,8 +3,8 @@
     "id": 1,
     "title": "Portfolio Website",
     "description": "Showcasing selected works in web development, UI/UX design, and software.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=Portfolio",
-    "tags": ["React", "TailwindCSS", "Three.js", "GSAP", "Framer Motion"],
+    "image": "/logo.png",
+    "tags": ["React", "TailwindCSS", "Three.js", "GSAP", "Framer Motion", "Vite", "@react-three/drei", "React Hook Form", "React Router DOM"],
     "category": "frontend",
     "githubUrl": "https://github.com/giasinguyen/GiaSi-Portfolio",
     "demoUrl": "https://nguyentrangiasi.id.vn/"
