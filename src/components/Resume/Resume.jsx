@@ -103,10 +103,10 @@ function Resume() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-1">Bachelor of Information Technology</h3>
-                    <p className="text-sky-400 font-medium mb-2">Tech University • 2014 - 2018</p>
+                    <h3 className="text-xl font-bold mb-1">Software Engineering</h3>
+                    <p className="text-sky-400 font-medium mb-2">IUH - Industrial University of Ho Chi Minh City • 2022 - 2027</p>
                     <p className="text-slate-300">
-                      Studied computer science with a specialization in web technologies and software development.
+                      Studied information technology with a specialization in web technologies and software development.
                       Completed various projects including a library management system and e-commerce platform.
                     </p>
                   </div>
