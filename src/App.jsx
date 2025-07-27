@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import { ThemeProvider } from './context/ThemeContext'
@@ -15,6 +16,8 @@ import Projects from './components/Projects/Projects'
 import Resume from './components/Resume/ResumeWithPDF'
 import Blog from './components/Blog/Blog'
 import Contact from './components/Contact/Contact'
+import PrivacyPolicy from './components/Legal/PrivacyPolicy'
+import TermsOfService from './components/Legal/TermsOfService'
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,48 +34,60 @@ function App() {
   return (
     <ErrorBoundary fallbackMessage="Something went wrong with the portfolio. Please refresh the page.">
       <ThemeProvider>
-        <div className="App min-h-screen bg-light-gradient dark:bg-dark-gradient transition-colors duration-300">
-          {loading ? (
-            <Preloader />
-          ) : (
-            <>
-              <Navbar />
-              <Particles3D />
+        <Router>
+          <div className="App min-h-screen bg-light-gradient dark:bg-dark-gradient transition-colors duration-300">
+            {loading ? (
+              <Preloader />
+            ) : (
+              <>
+                <Navbar />
+                <Particles3D />
 
-              <main className="relative">
-                <ScrollToTop />
-                <ErrorBoundary fallbackMessage="There was an error loading the page content.">
-                  {/* All sections in one page */}
-                  <section id="home">
-                    <Home />
-                  </section>
-                  
-                  <section id="about">
-                    <About />
-                  </section>
-                  
-                  <section id="projects">
-                    <Projects />
-                  </section>
-                  
-                  <section id="blog">
-                    <Blog />
-                  </section>
-                  
-                  <section id="resume">
-                    <Resume />
-                  </section>
-                  
-                  <section id="contact">
-                    <Contact />
-                  </section>
-                </ErrorBoundary>
-              </main>
+                <main className="relative">
+                  <ScrollToTop />
+                  <ErrorBoundary fallbackMessage="There was an error loading the page content.">
+                    <Routes>
+                      {/* Main Portfolio Page */}
+                      <Route path="/" element={
+                        <>
+                          <section id="home">
+                            <Home />
+                          </section>
 
-              <Footer />
-            </>
-          )}
-        </div>
+                          <section id="about">
+                            <About />
+                          </section>
+
+                          <section id="projects">
+                            <Projects />
+                          </section>
+
+                          <section id="blog">
+                            <Blog />
+                          </section>
+
+                          <section id="resume">
+                            <Resume />
+                          </section>
+
+                          <section id="contact">
+                            <Contact />
+                          </section>
+                        </>
+                      } />
+
+                      {/* Legal Pages */}
+                      <Route path="/privacy" element={<PrivacyPolicy />} />
+                      <Route path="/terms" element={<TermsOfService />} />
+                    </Routes>
+                  </ErrorBoundary>
+                </main>
+
+                <Footer />
+              </>
+            )}
+          </div>
+        </Router>
       </ThemeProvider>
     </ErrorBoundary>
   );

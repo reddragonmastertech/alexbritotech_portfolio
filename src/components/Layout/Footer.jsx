@@ -85,7 +85,7 @@ function Footer() {
                 viewport={{ once: true }}
               >
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-sky-400 to-purple-500 bg-clip-text text-transparent mb-4">
-                  iamgiasi
+                  GIASI PORTFOLIO
                 </h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
                   Passionate Java Backend Developer building robust, scalable

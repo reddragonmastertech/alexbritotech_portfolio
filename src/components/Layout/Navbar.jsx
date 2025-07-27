@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaBars,
   FaTimes,
@@ -13,6 +14,8 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { motion } from "framer-motion";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -57,15 +60,32 @@ function Navbar() {
     if (isOpen) setIsOpen(false);
   };
 
-  // Smooth scroll to section
+  // Navigate to home page and scroll to section
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth"
-      });
+    // If we're not on the home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.offsetTop - 80; // Account for navbar height
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+    } else {
+      // We're already on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offsetTop = element.offsetTop - 80; // Account for navbar height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
     }
     closeNavbar();
   };
@@ -81,8 +101,8 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <button 
-              onClick={() => scrollToSection("home")} 
+            <button
+              onClick={() => scrollToSection("home")}
               className="flex items-center"
             >
               <span className="text-2xl font-bold blue-gradient-text">
