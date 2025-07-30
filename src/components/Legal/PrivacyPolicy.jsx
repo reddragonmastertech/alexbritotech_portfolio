@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Shield, Database, Cookie, Users, Lock, Eye, Settings, Mail, FileText, Clock, CheckCircle } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  ArrowLeft,
+  Shield,
+  Database,
+  Cookie,
+  Users,
+  Lock,
+  Eye,
+  Settings,
+  Mail,
+  FileText,
+  Clock,
+  CheckCircle,
+} from "lucide-react";
 
 const PrivacyPolicy = () => {
   const [activeSection, setActiveSection] = useState(null);
 
   const sections = [
     {
-      id: 'collection',
+      id: "collection",
       icon: Database,
       title: "Information We Collect",
       summary: "Types of data we gather from your interactions",
@@ -15,11 +28,11 @@ const PrivacyPolicy = () => {
         "Usage Data: We automatically collect certain information when you visit our website, including your IP address, browser type, operating system, device information, and pages visited.",
         "Cookies and Tracking: We use cookies and similar tracking technologies to enhance your browsing experience, remember preferences, and analyze website traffic patterns.",
         "Location Data: We may collect general location information based on your IP address to provide localized content and services.",
-        "Communication Records: If you contact us, we may retain records of that communication for customer service purposes."
-      ]
+        "Communication Records: If you contact us, we may retain records of that communication for customer service purposes.",
+      ],
     },
     {
-      id: 'usage',
+      id: "usage",
       icon: Settings,
       title: "How We Use Your Information",
       summary: "The purposes for which we process your data",
@@ -30,11 +43,11 @@ const PrivacyPolicy = () => {
         "To send periodic updates about our services (only with your consent)",
         "To comply with legal obligations and regulatory requirements",
         "To protect our rights, prevent fraud, and maintain website security",
-        "To personalize your experience and provide relevant content recommendations"
-      ]
+        "To personalize your experience and provide relevant content recommendations",
+      ],
     },
     {
-      id: 'sharing',
+      id: "sharing",
       icon: Users,
       title: "Information Sharing & Disclosure",
       summary: "When and how we share your information",
@@ -44,11 +57,11 @@ const PrivacyPolicy = () => {
         "We may disclose information when required by law, court order, or to protect our legal rights and interests.",
         "In the event of a business transfer, your information may be transferred as part of the business assets.",
         "All third-party service providers are bound by strict confidentiality agreements and data protection standards.",
-        "We may share aggregated, non-personally identifiable information for analytical purposes."
-      ]
+        "We may share aggregated, non-personally identifiable information for analytical purposes.",
+      ],
     },
     {
-      id: 'cookies',
+      id: "cookies",
       icon: Cookie,
       title: "Cookies & Tracking Technologies",
       summary: "How we use cookies to enhance your experience",
@@ -58,11 +71,11 @@ const PrivacyPolicy = () => {
         "Preference Cookies: Remember your settings, preferences, and choices for a personalized experience",
         "Marketing Cookies: May be used to show relevant advertisements and measure campaign effectiveness (with consent)",
         "You can control cookies through your browser settings, though some features may not function properly if disabled",
-        "We respect Do Not Track signals and provide clear options for cookie management"
-      ]
+        "We respect Do Not Track signals and provide clear options for cookie management",
+      ],
     },
     {
-      id: 'security',
+      id: "security",
       icon: Lock,
       title: "Data Security & Protection",
       summary: "Measures we take to protect your information",
@@ -73,11 +86,11 @@ const PrivacyPolicy = () => {
         "Data is stored in secure, encrypted databases with regular backups",
         "We have incident response procedures in place to address any potential data breaches",
         "Employee training on data protection and privacy best practices",
-        "While we strive for maximum security, no method of transmission over the internet is 100% secure"
-      ]
+        "While we strive for maximum security, no method of transmission over the internet is 100% secure",
+      ],
     },
     {
-      id: 'rights',
+      id: "rights",
       icon: Shield,
       title: "Your Privacy Rights",
       summary: "Your rights regarding your personal data",
@@ -88,16 +101,32 @@ const PrivacyPolicy = () => {
         "Right to Restrict Processing: Request limitation of processing of your personal data",
         "Right to Data Portability: Request transfer of your data to another service provider",
         "Right to Object: Object to processing of your personal data for direct marketing purposes",
-        "Right to Withdraw Consent: Withdraw consent for processing at any time where consent is the legal basis"
-      ]
-    }
+        "Right to Withdraw Consent: Withdraw consent for processing at any time where consent is the legal basis",
+      ],
+    },
   ];
 
   const dataRetention = [
-    { type: "Contact Information", period: "3 years from last contact", purpose: "Customer service and communication" },
-    { type: "Website Analytics", period: "26 months", purpose: "Performance optimization and user experience improvement" },
-    { type: "Email Communications", period: "7 years", purpose: "Legal compliance and business records" },
-    { type: "Cookie Data", period: "Up to 2 years", purpose: "Website functionality and user preferences" }
+    {
+      type: "Contact Information",
+      period: "3 years from last contact",
+      purpose: "Customer service and communication",
+    },
+    {
+      type: "Website Analytics",
+      period: "26 months",
+      purpose: "Performance optimization and user experience improvement",
+    },
+    {
+      type: "Email Communications",
+      period: "7 years",
+      purpose: "Legal compliance and business records",
+    },
+    {
+      type: "Cookie Data",
+      period: "Up to 2 years",
+      purpose: "Website functionality and user preferences",
+    },
   ];
 
   const goBack = () => {
@@ -128,28 +157,18 @@ const PrivacyPolicy = () => {
               <ArrowLeft className="w-4 h-4" />
               Back to Portfolio
             </button>
-            
+
             <div className="relative">
               <h1 className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-emerald-600 via-cyan-600 to-teal-600 dark:from-emerald-400 dark:via-cyan-400 dark:to-teal-400 bg-clip-text text-transparent">
                 Privacy Policy
               </h1>
               <div className="absolute -inset-8 bg-gradient-to-r from-emerald-600/10 to-cyan-600/10 blur-2xl rounded-full"></div>
             </div>
-            
+
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Your privacy is fundamental to us. This policy explains how we collect, use, protect, and respect your personal information.
+              Your privacy is fundamental to us. This policy explains how we
+              collect, use, protect, and respect your personal information.
             </p>
-            
-            <div className="mt-6 inline-flex items-center gap-2 bg-white/60 dark:bg-slate-800/60 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50">
-              <Clock className="w-4 h-4 text-slate-500 dark:text-slate-400" />
-              <span className="text-sm text-slate-500 dark:text-slate-400">
-                Last updated: {new Date().toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-              </span>
-            </div>
           </div>
 
           {/* Main Content */}
@@ -168,14 +187,18 @@ const PrivacyPolicy = () => {
                       onClick={() => toggleSection(section.id)}
                       className={`w-full text-left p-3 rounded-lg transition-all duration-300 flex items-center gap-3 ${
                         activeSection === section.id
-                          ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
-                          : 'hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400'
+                          ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+                          : "hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400"
                       }`}
                     >
                       <section.icon className="w-4 h-4 flex-shrink-0" />
                       <div>
-                        <div className="font-medium text-sm">{section.title}</div>
-                        <div className="text-xs opacity-75">{section.summary}</div>
+                        <div className="font-medium text-sm">
+                          {section.title}
+                        </div>
+                        <div className="text-xs opacity-75">
+                          {section.summary}
+                        </div>
                       </div>
                     </button>
                   ))}
@@ -190,11 +213,11 @@ const PrivacyPolicy = () => {
                   key={section.id}
                   className={`bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-xl transition-all duration-500 ${
                     activeSection === section.id || activeSection === null
-                      ? 'opacity-100 transform translate-y-0'
-                      : 'opacity-50 transform translate-y-2'
+                      ? "opacity-100 transform translate-y-0"
+                      : "opacity-50 transform translate-y-2"
                   }`}
                 >
-                  <div 
+                  <div
                     className="p-8 cursor-pointer"
                     onClick={() => toggleSection(section.id)}
                   >
@@ -212,14 +235,19 @@ const PrivacyPolicy = () => {
                       </div>
                     </div>
 
-                    <div className={`transition-all duration-500 ${
-                      activeSection === section.id || activeSection === null
-                        ? 'max-h-none opacity-100'
-                        : 'max-h-0 opacity-0 overflow-hidden'
-                    }`}>
+                    <div
+                      className={`transition-all duration-500 ${
+                        activeSection === section.id || activeSection === null
+                          ? "max-h-none opacity-100"
+                          : "max-h-0 opacity-0 overflow-hidden"
+                      }`}
+                    >
                       <div className="space-y-4">
                         {section.content.map((item, itemIndex) => (
-                          <div key={itemIndex} className="flex items-start gap-4">
+                          <div
+                            key={itemIndex}
+                            className="flex items-start gap-4"
+                          >
                             <div className="w-2 h-2 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full mt-3 flex-shrink-0"></div>
                             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                               {item}
@@ -242,22 +270,37 @@ const PrivacyPolicy = () => {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-slate-200 dark:border-slate-700">
-                        <th className="text-left py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">Data Type</th>
-                        <th className="text-left py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">Retention Period</th>
-                        <th className="text-left py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">Purpose</th>
+                        <th className="text-left py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">
+                          Data Type
+                        </th>
+                        <th className="text-left py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">
+                          Retention Period
+                        </th>
+                        <th className="text-left py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">
+                          Purpose
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {dataRetention.map((item, index) => (
-                        <tr key={index} className="border-b border-slate-100 dark:border-slate-700/50 last:border-0">
+                        <tr
+                          key={index}
+                          className="border-b border-slate-100 dark:border-slate-700/50 last:border-0"
+                        >
                           <td className="py-4 px-4">
                             <div className="flex items-center gap-2">
                               <CheckCircle className="w-4 h-4 text-emerald-500" />
-                              <span className="font-medium text-slate-800 dark:text-slate-200">{item.type}</span>
+                              <span className="font-medium text-slate-800 dark:text-slate-200">
+                                {item.type}
+                              </span>
                             </div>
                           </td>
-                          <td className="py-4 px-4 text-slate-600 dark:text-slate-300">{item.period}</td>
-                          <td className="py-4 px-4 text-slate-600 dark:text-slate-300">{item.purpose}</td>
+                          <td className="py-4 px-4 text-slate-600 dark:text-slate-300">
+                            {item.period}
+                          </td>
+                          <td className="py-4 px-4 text-slate-600 dark:text-slate-300">
+                            {item.purpose}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -280,15 +323,25 @@ const PrivacyPolicy = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">Transparency First</h4>
-                        <p className="text-sm text-slate-600 dark:text-slate-300">We believe in clear, honest communication about how we handle your data.</p>
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">
+                          Transparency First
+                        </h4>
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
+                          We believe in clear, honest communication about how we
+                          handle your data.
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">Minimal Data Collection</h4>
-                        <p className="text-sm text-slate-600 dark:text-slate-300">We only collect data that's necessary to provide and improve our services.</p>
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">
+                          Minimal Data Collection
+                        </h4>
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
+                          We only collect data that's necessary to provide and
+                          improve our services.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -296,15 +349,25 @@ const PrivacyPolicy = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">Your Control</h4>
-                        <p className="text-sm text-slate-600 dark:text-slate-300">You have full control over your personal data and can modify or delete it anytime.</p>
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">
+                          Your Control
+                        </h4>
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
+                          You have full control over your personal data and can
+                          modify or delete it anytime.
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">Security Priority</h4>
-                        <p className="text-sm text-slate-600 dark:text-slate-300">We use industry-leading security measures to protect your information.</p>
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-200">
+                          Security Priority
+                        </h4>
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
+                          We use industry-leading security measures to protect
+                          your information.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -323,18 +386,22 @@ const PrivacyPolicy = () => {
                 </div>
                 <div className="space-y-4">
                   <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                    If you have any questions about this Privacy Policy, want to exercise your privacy rights, 
-                    or have concerns about how we handle your personal data, please don't hesitate to reach out.
+                    If you have any questions about this Privacy Policy, want to
+                    exercise your privacy rights, or have concerns about how we
+                    handle your personal data, please don't hesitate to reach
+                    out.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a 
-                      href="mailto:giasinguyen@email.com" 
+                    <a
+                      href="mailto:giasinguyen@email.com"
                       className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium hover:underline transition-colors"
                     >
                       <Mail className="w-4 h-4" />
                       giasinguyen@email.com
                     </a>
-                    <span className="text-slate-400 dark:text-slate-500 hidden sm:block">•</span>
+                    <span className="text-slate-400 dark:text-slate-500 hidden sm:block">
+                      •
+                    </span>
                     <span className="text-slate-600 dark:text-slate-400 text-sm">
                       We typically respond within 24-48 hours
                     </span>
@@ -347,10 +414,15 @@ const PrivacyPolicy = () => {
                 <div className="flex items-start gap-3">
                   <FileText className="w-5 h-5 text-slate-500 dark:text-slate-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">Legal Compliance</h4>
+                    <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                      Legal Compliance
+                    </h4>
                     <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      This Privacy Policy is designed to comply with applicable data protection laws including GDPR, CCPA, and other regional privacy regulations. 
-                      We regularly review and update our practices to ensure ongoing compliance and protection of your privacy rights.
+                      This Privacy Policy is designed to comply with applicable
+                      data protection laws including GDPR, CCPA, and other
+                      regional privacy regulations. We regularly review and
+                      update our practices to ensure ongoing compliance and
+                      protection of your privacy rights.
                     </p>
                   </div>
                 </div>

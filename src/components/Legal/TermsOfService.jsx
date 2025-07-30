@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Shield, Users, AlertTriangle, Handshake, Mail, FileText, Scale, Eye, Clock } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  ArrowLeft,
+  Shield,
+  Users,
+  AlertTriangle,
+  Handshake,
+  Mail,
+  FileText,
+  Scale,
+  Eye,
+  Clock,
+} from "lucide-react";
 
 const TermsOfService = () => {
   const [activeSection, setActiveSection] = useState(null);
 
   const sections = [
     {
-      id: 'acceptance',
+      id: "acceptance",
       icon: Users,
       title: "Acceptance of Terms",
       summary: "By using our services, you agree to these terms",
@@ -14,11 +25,11 @@ const TermsOfService = () => {
         "By accessing and using this portfolio website, you accept and agree to be bound by the terms and provision of this agreement.",
         "If you do not agree to abide by the above, please do not use this service.",
         "These terms apply to all visitors, users, and others who access or use the service.",
-        "Your continued use of the website constitutes acceptance of any updates to these terms."
-      ]
+        "Your continued use of the website constitutes acceptance of any updates to these terms.",
+      ],
     },
     {
-      id: 'license',
+      id: "license",
       icon: Handshake,
       title: "Use License",
       summary: "Limited permission for personal, non-commercial use",
@@ -29,11 +40,11 @@ const TermsOfService = () => {
         "• Use the materials for any commercial purpose or for any public display",
         "• Attempt to reverse engineer any software contained on the website",
         "• Remove any copyright or other proprietary notations from the materials",
-        "• Share or redistribute content without proper attribution"
-      ]
+        "• Share or redistribute content without proper attribution",
+      ],
     },
     {
-      id: 'disclaimer',
+      id: "disclaimer",
       icon: AlertTriangle,
       title: "Disclaimer",
       summary: "Information provided 'as-is' without warranties",
@@ -41,11 +52,11 @@ const TermsOfService = () => {
         "The materials on this website are provided on an 'as is' basis. GiaSi Portfolio makes no warranties, expressed or implied.",
         "We do not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials.",
         "The information on this website is for general information purposes only and should not be relied upon for making critical decisions.",
-        "We reserve the right to update or modify content at any time without prior notice."
-      ]
+        "We reserve the right to update or modify content at any time without prior notice.",
+      ],
     },
     {
-      id: 'limitations',
+      id: "limitations",
       icon: Scale,
       title: "Limitations of Liability",
       summary: "Legal limitations on our responsibility",
@@ -53,11 +64,11 @@ const TermsOfService = () => {
         "In no event shall GiaSi Portfolio or its suppliers be liable for any damages arising out of the use or inability to use the materials on this website.",
         "This includes but is not limited to damages for loss of data or profit, or due to business interruption.",
         "Some jurisdictions do not allow limitations on implied warranties or limitations of liability for consequential damages.",
-        "Our maximum liability shall not exceed the amount paid by you, if any, for accessing this website."
-      ]
+        "Our maximum liability shall not exceed the amount paid by you, if any, for accessing this website.",
+      ],
     },
     {
-      id: 'intellectual',
+      id: "intellectual",
       icon: FileText,
       title: "Intellectual Property Rights",
       summary: "Ownership and protection of content",
@@ -65,11 +76,11 @@ const TermsOfService = () => {
         "All content, features, and functionality on this website are owned by GiaSi Portfolio and are protected by international copyright, trademark, and other intellectual property laws.",
         "This includes but is not limited to text, graphics, logos, images, audio clips, video clips, and software.",
         "You may not reproduce, distribute, or create derivative works without explicit written permission.",
-        "Any unauthorized use may violate copyright, trademark, and other applicable laws."
-      ]
+        "Any unauthorized use may violate copyright, trademark, and other applicable laws.",
+      ],
     },
     {
-      id: 'conduct',
+      id: "conduct",
       icon: Shield,
       title: "User Conduct",
       summary: "Guidelines for appropriate website use",
@@ -77,22 +88,24 @@ const TermsOfService = () => {
         "You agree not to use the website for any unlawful purpose or in any way that could damage, disable, overburden, or impair the website.",
         "You shall not interfere with any other party's use and enjoyment of the website.",
         "Prohibited activities include but are not limited to: harassment, spam, malicious code distribution, or attempts to gain unauthorized access.",
-        "We reserve the right to terminate access for users who violate these conduct guidelines."
-      ]
-    }
+        "We reserve the right to terminate access for users who violate these conduct guidelines.",
+      ],
+    },
   ];
 
   const additionalInfo = [
     {
       icon: Eye,
       title: "Privacy Integration",
-      content: "These terms work in conjunction with our Privacy Policy to ensure comprehensive protection of your rights and our responsibilities."
+      content:
+        "These terms work in conjunction with our Privacy Policy to ensure comprehensive protection of your rights and our responsibilities.",
     },
     {
       icon: Clock,
       title: "Term Updates",
-      content: "We may modify these terms at any time. Significant changes will be highlighted, and continued use constitutes acceptance of modifications."
-    }
+      content:
+        "We may modify these terms at any time. Significant changes will be highlighted, and continued use constitutes acceptance of modifications.",
+    },
   ];
 
   const goBack = () => {
@@ -123,28 +136,19 @@ const TermsOfService = () => {
               <ArrowLeft className="w-4 h-4" />
               Back to Portfolio
             </button>
-            
+
             <div className="relative">
               <h1 className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">
                 Terms of Service
               </h1>
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/10 to-purple-600/10 blur-2xl rounded-full"></div>
             </div>
-            
+
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Please read these terms carefully before using our website. Your use of our service constitutes acceptance of these terms and conditions.
+              Please read these terms carefully before using our website. Your
+              use of our service constitutes acceptance of these terms and
+              conditions.
             </p>
-            
-            <div className="mt-6 inline-flex items-center gap-2 bg-white/60 dark:bg-slate-800/60 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50">
-              <Clock className="w-4 h-4 text-slate-500 dark:text-slate-400" />
-              <span className="text-sm text-slate-500 dark:text-slate-400">
-                Last updated: {new Date().toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-              </span>
-            </div>
           </div>
 
           {/* Main Content */}
@@ -163,14 +167,18 @@ const TermsOfService = () => {
                       onClick={() => toggleSection(section.id)}
                       className={`w-full text-left p-3 rounded-lg transition-all duration-300 flex items-center gap-3 ${
                         activeSection === section.id
-                          ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                          : 'hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400'
+                          ? "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+                          : "hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400"
                       }`}
                     >
                       <section.icon className="w-4 h-4 flex-shrink-0" />
                       <div>
-                        <div className="font-medium text-sm">{section.title}</div>
-                        <div className="text-xs opacity-75">{section.summary}</div>
+                        <div className="font-medium text-sm">
+                          {section.title}
+                        </div>
+                        <div className="text-xs opacity-75">
+                          {section.summary}
+                        </div>
                       </div>
                     </button>
                   ))}
@@ -185,11 +193,11 @@ const TermsOfService = () => {
                   key={section.id}
                   className={`bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-xl transition-all duration-500 ${
                     activeSection === section.id || activeSection === null
-                      ? 'opacity-100 transform translate-y-0'
-                      : 'opacity-50 transform translate-y-2'
+                      ? "opacity-100 transform translate-y-0"
+                      : "opacity-50 transform translate-y-2"
                   }`}
                 >
-                  <div 
+                  <div
                     className="p-8 cursor-pointer"
                     onClick={() => toggleSection(section.id)}
                   >
@@ -207,14 +215,19 @@ const TermsOfService = () => {
                       </div>
                     </div>
 
-                    <div className={`transition-all duration-500 ${
-                      activeSection === section.id || activeSection === null
-                        ? 'max-h-none opacity-100'
-                        : 'max-h-0 opacity-0 overflow-hidden'
-                    }`}>
+                    <div
+                      className={`transition-all duration-500 ${
+                        activeSection === section.id || activeSection === null
+                          ? "max-h-none opacity-100"
+                          : "max-h-0 opacity-0 overflow-hidden"
+                      }`}
+                    >
                       <div className="space-y-4">
                         {section.content.map((item, itemIndex) => (
-                          <div key={itemIndex} className="flex items-start gap-4">
+                          <div
+                            key={itemIndex}
+                            className="flex items-start gap-4"
+                          >
                             <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-3 flex-shrink-0"></div>
                             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                               {item}
@@ -262,15 +275,17 @@ const TermsOfService = () => {
                   </h3>
                 </div>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  If you have any questions about these Terms of Service or need clarification on any point, 
-                  please don't hesitate to contact us at{' '}
-                  <a 
-                    href="mailto:giasinguyen@email.com" 
+                  If you have any questions about these Terms of Service or need
+                  clarification on any point, please don't hesitate to contact
+                  us at{" "}
+                  <a
+                    href="mailto:giasinguyen@email.com"
                     className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium hover:underline transition-colors"
                   >
                     giasinguyen@email.com
                   </a>
-                  . We're here to help and ensure you understand your rights and responsibilities.
+                  . We're here to help and ensure you understand your rights and
+                  responsibilities.
                 </p>
               </div>
             </div>
