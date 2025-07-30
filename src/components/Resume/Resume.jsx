@@ -210,6 +210,10 @@ function Resume() {
                     <div className="space-y-4">
                       <div>
                         <div className="flex justify-between mb-1">
+                          <span className="text-slate-300">JAVA</span>
+                          <span className="text-sky-400">95%</span>
+                        </div>
+                        <div className="flex justify-between mb-1">
                           <span className="text-slate-300">React.js</span>
                           <span className="text-sky-400">95%</span>
                         </div>
@@ -257,7 +261,7 @@ function Resume() {
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-slate-300">Three.js</span>
+                          <span className="text-slate-300">Spring Boot</span>
                           <span className="text-sky-400">75%</span>
                         </div>
                         <div className="w-full bg-slate-700 rounded-full h-2">
