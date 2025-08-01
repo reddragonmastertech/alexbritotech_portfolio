@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-// eslint-disable-next-line no-unused-vars
+import { useState } from "react";
+ 
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -16,12 +16,11 @@ import {
   AlertCircle,
   X,
 } from "lucide-react";
-import { ThemeContext } from "../../context/ThemeContext";
 
 function Contact() {
-  // Use ThemeContext properly 
-  const { darkMode: isDarkMode } = useContext(ThemeContext);
-
+  // Light mode only - no dark mode support
+  const isDarkMode = false;
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -162,24 +161,8 @@ function Contact() {
   ];
 
   return (
-    <main
-      className={`min-h-screen py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${
-        isDarkMode ? "dark" : ""
-      }`}
+    <main className="min-h-screen pt-28"
     >
-      {/* Background Pattern */}
-      <div
-        className={`absolute inset-0 bg-[size:60px_60px] opacity-40 ${
-          isDarkMode ? "bg-grid-slate-700/25" : "bg-grid-slate-100"
-        }`}
-      />
-      <div
-        className={`absolute inset-0 bg-gradient-to-tr via-transparent ${
-          isDarkMode
-            ? "from-blue-500/5 to-indigo-500/5"
-            : "from-blue-500/10 to-indigo-500/10"
-        }`}
-      />
 
       {/* Toast Container */}
       <div className="fixed top-4 right-4 z-50 space-y-2">
@@ -221,7 +204,7 @@ function Contact() {
         </AnimatePresence>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
           className="text-center mb-16"

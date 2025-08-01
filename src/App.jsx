@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
-import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import Navbar from './components/Layout/Navbar'
 import Footer from './components/Layout/Footer'
@@ -13,8 +12,9 @@ import Particles3D from './components/Layout/Particles3D'
 import Home from './components/Home/Home'
 import About from './components/About/About'
 import Projects from './components/Projects/Projects'
-import Resume from './components/Resume/ResumeWithPDF'
+import Resume from './components/Resume/Resume'
 import Blog from './components/Blog/Blog'
+import BlogDetail from './components/Blog/BlogDetail'
 import Contact from './components/Contact/Contact'
 import PrivacyPolicy from './components/Legal/PrivacyPolicy'
 import TermsOfService from './components/Legal/TermsOfService'
@@ -33,21 +33,20 @@ function App() {
 
   return (
     <ErrorBoundary fallbackMessage="Something went wrong with the portfolio. Please refresh the page.">
-      <ThemeProvider>
-        <Router>
-          <div className="App min-h-screen bg-light-gradient dark:bg-dark-gradient transition-colors duration-300">
-            {loading ? (
-              <Preloader />
-            ) : (
-              <>
-                <Navbar />
-                <Particles3D />
+      <Router>
+        <div className="App min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-800">
+          {loading ? (
+            <Preloader />
+          ) : (
+            <>
+              <Navbar />
+              <Particles3D />
 
-                <main className="relative">
-                  <ScrollToTop />
-                  <ErrorBoundary fallbackMessage="There was an error loading the page content.">
-                    <Routes>
-                      {/* Main Portfolio Page */}
+              <main className="relative">
+                <ScrollToTop />
+                <ErrorBoundary fallbackMessage="There was an error loading the page content.">
+                  <Routes>
+                    {/* Main Portfolio Page */}
                       <Route path="/" element={
                         <>
                           <section id="home">
@@ -76,6 +75,9 @@ function App() {
                         </>
                       } />
 
+                      {/* Individual Blog Posts */}
+                      <Route path="/blog/:slug" element={<BlogDetail />} />
+
                       {/* Legal Pages */}
                       <Route path="/privacy" element={<PrivacyPolicy />} />
                       <Route path="/terms" element={<TermsOfService />} />
@@ -88,7 +90,6 @@ function App() {
             )}
           </div>
         </Router>
-      </ThemeProvider>
     </ErrorBoundary>
   );
 }

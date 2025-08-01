@@ -9,10 +9,12 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import { useState, useEffect } from "react";
-
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
+
 function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const year = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -28,246 +30,180 @@ function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== '/') {
+      // Navigate to home page first, then scroll
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+    } else {
+      // We're already on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
   const socialLinks = [
     {
       icon: FaGithub,
       href: "https://github.com/giasinguyen",
       label: "GitHub",
-      color: "hover:text-gray-400",
+      color: "hover:text-gray-700",
     },
     {
       icon: FaLinkedin,
       href: "https://linkedin.com/in/giasinguyen",
       label: "LinkedIn",
-      color: "hover:text-blue-400",
+      color: "hover:text-blue-600",
     },
     {
       icon: FaTwitter,
       href: "https://twitter.com/giasinguyen",
       label: "Twitter",
-      color: "hover:text-sky-400",
+      color: "hover:text-sky-500",
     },
     {
       icon: FaEnvelope,
-      href: "mailto:giasinguyen@email.com",
+      href: "mailto:giasinelove96@gmail.com",
       label: "Email",
-      color: "hover:text-red-400",
+      color: "hover:text-purple-600",
     },
   ];
 
   const quickLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Blog", href: "/blog" },
-    { name: "Resume", href: "/resume" },
-    { name: "Contact", href: "/contact" },
+    { sectionId: "home", label: "Home" },
+    { sectionId: "about", label: "About" },
+    { sectionId: "projects", label: "Projects" },
+    { sectionId: "blog", label: "Blog" },
+    { sectionId: "contact", label: "Contact" },
   ];
 
   return (
-    <>
-      {/* Main Footer */}
-      <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-16 pb-8 mt-auto overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-grid-slate-100/[0.02] [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {/* Brand Section */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-3xl font-bold bg-gradient-to-r from-sky-400 to-purple-500 bg-clip-text text-transparent mb-4">
-                  GIASI PORTFOLIO
-                </h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                  Passionate Java Backend Developer building robust, scalable
-                  applications with modern technologies. Turning ideas into
-                  powerful digital solutions.
-                </p>
-                <div className="flex items-center text-slate-400 text-sm mb-2">
-                  <FaMapMarkerAlt className="mr-2 text-sky-400" />
-                  Ho Chi Minh City, Vietnam
-                </div>
-                <div className="flex items-center text-slate-400 text-sm">
-                  <FaPhone className="mr-2 text-sky-400" />
-                  +(84) 34 899 6487
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-lg font-semibold text-white mb-6">
-                  Quick Links
-                </h4>
-                <ul className="space-y-3">
-                  {quickLinks.map((link, index) => (
-                    <motion.li
-                      key={link.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <a
-                        href={link.href}
-                        className="text-slate-400 hover:text-sky-400 transition-colors duration-300 flex items-center group"
-                      >
-                        <span className="w-0 group-hover:w-4 h-0.5 bg-sky-400 transition-all duration-300 mr-0 group-hover:mr-2"></span>
-                        {link.name}
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-
-            {/* Services/Skills */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-lg font-semibold text-white mb-6">
-                  Services
-                </h4>
-                <ul className="space-y-3 text-slate-400 text-sm">
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-sky-400 rounded-full mr-3"></span>
-                    Java Backend Development
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-sky-400 rounded-full mr-3"></span>
-                    Spring Boot Applications
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-sky-400 rounded-full mr-3"></span>
-                    RESTful API Design
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-sky-400 rounded-full mr-3"></span>
-                    Database Design
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-sky-400 rounded-full mr-3"></span>
-                    Microservices Architecture
-                  </li>
-                </ul>
-              </motion.div>
-            </div>
-
-            {/* Connect Section */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-lg font-semibold text-white mb-6">
-                  Let's Connect
-                </h4>
-                <p className="text-slate-400 text-sm mb-6">
-                  Follow me on social media for updates on my latest projects
-                  and tech insights.
-                </p>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social, index) => {
-                    const IconComponent = social.icon;
-                    return (
-                      <motion.a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-sky-500/25`}
-                        aria-label={social.label}
-                        whileHover={{ y: -3 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <IconComponent className="w-5 h-5" />
-                      </motion.a>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-slate-700 mt-12 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <motion.p
-                className="text-slate-400 text-sm mb-4 md:mb-0"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                &copy; {year} GiaSi Portfolio.
-              </motion.p>
-
-              <motion.div
-                className="flex items-center space-x-4 text-sm text-slate-400"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <a
-                  href="/privacy"
-                  className="hover:text-sky-400 transition-colors duration-300"
-                >
-                  Privacy Policy
-                </a>
-                <span>•</span>
-                <a
-                  href="/terms"
-                  className="hover:text-sky-400 transition-colors duration-300"
-                >
-                  Terms of Service
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* Scroll to Top Button */}
+    <footer className="relative bg-gradient-to-t from-blue-50 to-white border-t border-gray-200">
+      {/* Scroll to top button */}
       {showScrollTop && (
         <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-sky-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 z-50"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transform hover:-translate-y-1"
           aria-label="Scroll to top"
         >
-          <FaArrowUp className="w-5 h-5" />
+          <FaArrowUp className="text-lg" />
         </motion.button>
       )}
-    </>
+
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          {/* Brand Section */}
+          <div className="lg:col-span-1">
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                GiaSi Portfolio
+              </h3>
+              <p className="text-gray-600 mt-3 leading-relaxed">
+                Passionate Full-Stack Developer creating digital experiences that matter. 
+                Let's build something amazing together.
+              </p>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-500 transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-1 ${social.color}`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={social.label}
+                >
+                  <social.icon className="text-lg" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => scrollToSection(link.sectionId)}
+                    className="text-gray-600 hover:text-blue-600 transition-colors duration-300 flex items-center group text-left"
+                  >
+                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">Get In Touch</h4>
+            <div className="space-y-3">
+              <div className="flex items-center text-gray-600">
+                <FaMapMarkerAlt className="text-blue-500 mr-3 flex-shrink-0" />
+                <span>Ho Chi Minh City, Vietnam</span>
+              </div>
+              <div className="flex items-center text-gray-600">
+                <FaPhone className="text-blue-500 mr-3 flex-shrink-0" />
+                <span>+84 123 456 789</span>
+              </div>
+              <div className="flex items-center text-gray-600">
+                <FaEnvelope className="text-blue-500 mr-3 flex-shrink-0" />
+                <a href="mailto:giasinelove96@gmail.com" className="hover:text-blue-600 transition-colors">
+                  giasinelove96@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-200 pt-8">
+          {/* Bottom Section */}
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center text-gray-600 mb-4 md:mb-0">
+              <span>Made with</span>
+              <FaHeart className="text-red-500 mx-2 animate-pulse" />
+              <span>by GiaSi</span>
+            </div>
+
+            <div className="text-center md:text-right">
+              <p className="text-gray-500 text-sm">
+                © {year} GiaSi Portfolio. All rights reserved.
+              </p>
+              <p className="text-gray-400 text-xs mt-1">
+                Built with React & Tailwind CSS
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 

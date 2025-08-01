@@ -1,10 +1,10 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from "react";
 
 /**
  * Custom hook to load and manage blog posts data
  * @returns {Object} { posts, loading, error, categories, filteredPosts }
  */
-export const useBlogPosts = (activeCategory = 'all', searchTerm = '') => {
+const useBlogPosts = (activeCategory = "all", searchTerm = "") => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,12 +14,12 @@ export const useBlogPosts = (activeCategory = 'all', searchTerm = '') => {
       try {
         setLoading(true);
         // Dynamic import for better code splitting
-        const { default: blogData } = await import('../data/blogPosts.json');
+        const { default: blogData } = await import("../data/blogPosts.json");
         setPosts(blogData);
         setError(null);
       } catch (err) {
-        console.error('Error loading blog posts:', err);
-        setError('Failed to load blog posts');
+        console.error("Error loading blog posts:", err);
+        setError("Failed to load blog posts");
         setPosts([]);
       } finally {
         setLoading(false);
@@ -31,8 +31,8 @@ export const useBlogPosts = (activeCategory = 'all', searchTerm = '') => {
 
   // Extract unique categories
   const categories = useMemo(() => {
-    const uniqueCategories = [...new Set(posts.map(post => post.category))];
-    return ['all', ...uniqueCategories];
+    const uniqueCategories = [...new Set(posts.map((post) => post.category))];
+    return ["all", ...uniqueCategories];
   }, [posts]);
 
   // Filter posts based on category and search term
@@ -40,17 +40,18 @@ export const useBlogPosts = (activeCategory = 'all', searchTerm = '') => {
     let filtered = posts;
 
     // Filter by category
-    if (activeCategory !== 'all') {
-      filtered = filtered.filter(post => post.category === activeCategory);
+    if (activeCategory !== "all") {
+      filtered = filtered.filter((post) => post.category === activeCategory);
     }
 
     // Filter by search term
     if (searchTerm.trim()) {
       const searchLower = searchTerm.toLowerCase();
-      filtered = filtered.filter(post =>
-        post.title.toLowerCase().includes(searchLower) ||
-        post.excerpt.toLowerCase().includes(searchLower) ||
-        post.tags.some(tag => tag.toLowerCase().includes(searchLower))
+      filtered = filtered.filter(
+        (post) =>
+          post.title.toLowerCase().includes(searchLower) ||
+          post.excerpt.toLowerCase().includes(searchLower) ||
+          post.tags.some((tag) => tag.toLowerCase().includes(searchLower))
       );
     }
 
@@ -62,9 +63,11 @@ export const useBlogPosts = (activeCategory = 'all', searchTerm = '') => {
     loading,
     error,
     categories,
-    filteredPosts
+    filteredPosts,
   };
 };
+
+export default useBlogPosts;
 
 /**
  * Get blog post by slug
@@ -80,19 +83,19 @@ export const useBlogPost = (slug) => {
     const loadBlogPost = async () => {
       try {
         setLoading(true);
-        const { default: blogData } = await import('../data/blogPosts.json');
-        const foundPost = blogData.find(p => p.slug === slug);
-        
+        const { default: blogData } = await import("../data/blogPosts.json");
+        const foundPost = blogData.find((p) => p.slug === slug);
+
         if (foundPost) {
           setPost(foundPost);
           setError(null);
         } else {
-          setError('Post not found');
+          setError("Post not found");
           setPost(null);
         }
       } catch (err) {
-        console.error('Error loading blog post:', err);
-        setError('Failed to load blog post');
+        console.error("Error loading blog post:", err);
+        setError("Failed to load blog post");
         setPost(null);
       } finally {
         setLoading(false);

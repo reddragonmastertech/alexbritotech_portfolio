@@ -11,7 +11,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import ThemeSwitcher from "./ThemeSwitcher";
-// eslint-disable-next-line no-unused-vars
+ 
 import { motion } from "framer-motion";
 
 function Navbar() {
@@ -31,9 +31,16 @@ function Navbar() {
       }
 
       // Determine active section based on scroll position
-      const sections = ["home", "about", "projects", "blog", "resume", "contact"];
-      const sectionElements = sections.map(id => document.getElementById(id));
-      
+      const sections = [
+        "home",
+        "about",
+        "projects",
+        "blog",
+        "resume",
+        "contact",
+      ];
+      const sectionElements = sections.map((id) => document.getElementById(id));
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sectionElements[i];
         if (section) {
@@ -61,11 +68,42 @@ function Navbar() {
     if (isOpen) setIsOpen(false);
   };
 
+  // Enhanced mobile navigation handler
+  const handleMobileNavClick = (sectionId) => {
+    setIsOpen(false); // Close menu immediately for better UX
+
+    // Small delay to allow menu close animation before scrolling
+    setTimeout(() => {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const offsetTop = element.offsetTop - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: "smooth",
+            });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        }
+      }
+    }, 150);
+  };
+
   // Navigate to home page and scroll to section
   const scrollToSection = (sectionId) => {
     // If we're not on the home page, navigate to home first
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (location.pathname !== "/") {
+      navigate("/");
       // Wait for navigation to complete, then scroll
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -73,7 +111,7 @@ function Navbar() {
           const offsetTop = element.offsetTop - 80; // Account for navbar height
           window.scrollTo({
             top: offsetTop,
-            behavior: "smooth"
+            behavior: "smooth",
           });
         }
       }, 100);
@@ -84,7 +122,7 @@ function Navbar() {
         const offsetTop = element.offsetTop - 80; // Account for navbar height
         window.scrollTo({
           top: offsetTop,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }
@@ -114,10 +152,10 @@ function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <NavLink 
-              sectionId="home" 
-              active={activeSection === "home"} 
-              label="Home" 
+            <NavLink
+              sectionId="home"
+              active={activeSection === "home"}
+              label="Home"
               onClick={() => scrollToSection("home")}
             />
             <NavLink
@@ -187,11 +225,22 @@ function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       {/* Mobile Menu */}
       <motion.div
-        className={`md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-hidden`}
+        className={`md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-hidden shadow-lg relative z-50`}
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         initial={false}
         id="mobile-menu"
       >
@@ -200,42 +249,42 @@ function Navbar() {
             sectionId="home"
             icon={<FaHome className="mr-2" />}
             label="Home"
-            onClick={() => scrollToSection("home")}
+            onClick={() => handleMobileNavClick("home")}
             active={activeSection === "home"}
           />
           <MobileNavLink
             sectionId="about"
             icon={<FaUser className="mr-2" />}
             label="About"
-            onClick={() => scrollToSection("about")}
+            onClick={() => handleMobileNavClick("about")}
             active={activeSection === "about"}
           />
           <MobileNavLink
             sectionId="projects"
             icon={<FaLaptopCode className="mr-2" />}
             label="Projects"
-            onClick={() => scrollToSection("projects")}
+            onClick={() => handleMobileNavClick("projects")}
             active={activeSection === "projects"}
           />
           <MobileNavLink
             sectionId="blog"
             icon={<FaBlog className="mr-2" />}
             label="Blog"
-            onClick={() => scrollToSection("blog")}
+            onClick={() => handleMobileNavClick("blog")}
             active={activeSection === "blog"}
           />
           <MobileNavLink
             sectionId="contact"
             icon={<FaEnvelope className="mr-2" />}
             label="Contact"
-            onClick={() => scrollToSection("contact")}
+            onClick={() => handleMobileNavClick("contact")}
             active={activeSection === "contact"}
           />
           <MobileNavLink
             sectionId="resume"
             icon={<FaFile className="mr-2" />}
             label="Resume"
-            onClick={() => scrollToSection("resume")}
+            onClick={() => handleMobileNavClick("resume")}
             active={activeSection === "resume"}
           />
         </div>
@@ -278,7 +327,7 @@ function NavLink({ label, active, onClick }) {
   );
 }
 
-// Mobile Nav Link
+// Mobile Nav Link with enhanced touch handling
 function MobileNavLink({ icon, label, onClick, active }) {
   return (
     <button
