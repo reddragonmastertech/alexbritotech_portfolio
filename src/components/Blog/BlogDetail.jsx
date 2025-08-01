@@ -97,7 +97,7 @@ function BlogDetail() {
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Post Not Found</h1>
             <p className="text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
             <button
-              onClick={() => navigate('/blog')}
+              onClick={() => navigate('/')}
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
             >
               <FaArrowLeft className="mr-2" />
@@ -123,7 +123,7 @@ function BlogDetail() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Back Button */}
         <motion.button
-          onClick={() => navigate('/blog')}
+          onClick={() => navigate('/')}
           className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-200 mb-8 group"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}

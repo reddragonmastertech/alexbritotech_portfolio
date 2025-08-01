@@ -149,13 +149,12 @@ function Blog() {
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-8 rounded-full" />
 
           <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-4">
-            Khám phá những bài viết về công nghệ, lập trình và kinh nghiệm phát
-            triển từ hành trình của tôi.
+            Explore articles about technology, programming and development experiences from my journey.
           </p>
           <div className="flex items-center justify-center gap-2 text-gray-500">
             <HiSparkles className="text-purple-500" />
             <span className="text-sm font-medium">
-              {posts.length} bài viết được chia sẻ
+              {posts.length} Shared Posts
             </span>
           </div>
         </motion.div>
