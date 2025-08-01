@@ -188,7 +188,7 @@ const TermsOfService = () => {
 
             {/* Content Sections */}
             <div className="lg:col-span-2 space-y-6">
-              {sections.map((section, index) => (
+              {sections.map((section) => (
                 <div
                   key={section.id}
                   className={`bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-xl transition-all duration-500 ${

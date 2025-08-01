@@ -1,5 +1,6 @@
 import { FaCalendarAlt, FaTag, FaClock, FaExternalLinkAlt, FaBookmark, FaHeart, FaShare } from "react-icons/fa";
 import { HiOutlineBookmark, HiOutlineHeart, HiOutlineShare } from "react-icons/hi";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useState } from "react";
 

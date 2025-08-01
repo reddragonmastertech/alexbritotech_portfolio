@@ -4,6 +4,7 @@ import { FaSearch, FaFilter, FaTimes } from "react-icons/fa";
 import { HiViewGrid, HiViewList } from "react-icons/hi";
 import { useBlogPosts } from "../../hooks/useBlogPosts";
 import { CardSkeleton } from "../UI/LoadingSpinner";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 function Blog() {

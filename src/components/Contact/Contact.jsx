@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { useContext } from "react";
 import {
   Mail,
   User,
@@ -16,22 +16,11 @@ import {
   AlertCircle,
   X,
 } from "lucide-react";
-
-// Import ThemeContext if it exists, otherwise create a fallback
-let ThemeContext;
-try {
-  ThemeContext = require("../../Layout/ThemeContext").ThemeContext;
-} catch {
-  // Fallback if ThemeContext doesn't exist
-  ThemeContext = null;
-}
+import { ThemeContext } from "../../context/ThemeContext";
 
 function Contact() {
-  // Use ThemeContext if available, otherwise fallback to checking document class
-  const themeContext = ThemeContext ? useContext(ThemeContext) : null;
-  const isDarkMode =
-    themeContext?.darkMode ??
-    document.documentElement.classList.contains("dark");
+  // Use ThemeContext properly 
+  const { darkMode: isDarkMode } = useContext(ThemeContext);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({

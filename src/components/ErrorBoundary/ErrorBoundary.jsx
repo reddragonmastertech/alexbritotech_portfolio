@@ -66,7 +66,7 @@ class ErrorBoundary extends React.Component {
               </div>
 
               {/* Show error details in development */}
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+              {import.meta.env.DEV && this.state.error && (
                 <details className="mt-6 text-left">
                   <summary className="text-slate-400 cursor-pointer hover:text-slate-300">
                     Error Details (Development Only)

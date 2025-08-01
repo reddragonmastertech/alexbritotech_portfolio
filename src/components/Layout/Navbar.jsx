@@ -11,6 +11,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import ThemeSwitcher from "./ThemeSwitcher";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 function Navbar() {

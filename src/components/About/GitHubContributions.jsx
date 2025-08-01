@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import GitHubCalendar from 'react-github-calendar';
 import { FaGithub, FaStar, FaCodeBranch, FaEye, FaBook, FaExternalLinkAlt, FaCalendarAlt } from 'react-icons/fa';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { ThemeContext } from '../../context/ThemeContext';
 
