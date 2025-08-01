@@ -1,4 +1,5 @@
 # GiaSi Portfolio
+<img width="2530" height="882" alt="GS_Profile" src="https://github.com/user-attachments/assets/8106dff9-f259-468a-ae6b-9bfe18438d36" />
 
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-blue)
