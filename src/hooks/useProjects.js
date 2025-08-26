@@ -1,26 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+
+// Cache for projects data to avoid repeated loading
+let projectsCache = null;
+let cachePromise = null;
 
 /**
- * Custom hook to load and manage projects data
+ * Custom hook to load and manage projects data with caching
  * @returns {Object} { projects, loading, error, filteredProjects }
  */
 export const useProjects = (filter = 'all') => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState(projectsCache || []);
+  const [loading, setLoading] = useState(!projectsCache);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadProjects = async () => {
+      // Return cached data if available
+      if (projectsCache) {
+        setProjects(projectsCache);
+        setLoading(false);
+        return;
+      }
+
+      // Avoid multiple simultaneous requests
+      if (cachePromise) {
+        try {
+          const data = await cachePromise;
+          setProjects(data);
+          setLoading(false);
+        } catch {
+          setError('Failed to load projects');
+          setLoading(false);
+        }
+        return;
+      }
+
       try {
         setLoading(true);
-        // Dynamic import for better code splitting
-        const { default: projectsData } = await import('../data/projects.json');
+        // Create promise to prevent multiple requests
+        cachePromise = import('../data/projects.json').then(module => module.default);
+        const projectsData = await cachePromise;
+        
+        // Cache the data
+        projectsCache = projectsData;
         setProjects(projectsData);
         setError(null);
       } catch (err) {
         console.error('Error loading projects:', err);
         setError('Failed to load projects');
         setProjects([]);
+        cachePromise = null; // Reset promise on error
       } finally {
         setLoading(false);
       }
@@ -29,10 +58,12 @@ export const useProjects = (filter = 'all') => {
     loadProjects();
   }, []);
 
-  // Filter projects based on category
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
+  // Filter projects based on category with memoization
+  const filteredProjects = useMemo(() => {
+    return filter === 'all' 
+      ? projects 
+      : projects.filter(project => project.category === filter);
+  }, [projects, filter]);
 
   return {
     projects,

@@ -17,6 +17,10 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           animations: ['framer-motion', 'gsap'],
+          icons: ['react-icons'],
+          routing: ['react-router-dom'],
+          forms: ['react-hook-form', '@formspree/react', 'emailjs-com'],
+          ui: ['react-syntax-highlighter', 'react-toastify', 'sonner']
         },
       },
     },
@@ -24,9 +28,12 @@ export default defineConfig({
     minify: "terser",
     target: "es2015",
     chunkSizeWarningLimit: 1000,
+    // Optimizations for faster builds
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
   },
   optimizeDeps: {
-    include: ["react", "react-dom"],
+    include: ["react", "react-dom", "framer-motion"],
     exclude: ["lucide-react"],
   },
   define: {
@@ -37,4 +44,10 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  // Performance optimizations
+  server: {
+    hmr: {
+      overlay: false
+    }
+  }
 });

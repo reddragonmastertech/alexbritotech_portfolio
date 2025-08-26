@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { FaGithub, FaExternalLinkAlt, FaRocket, FaFilter } from 'react-icons/fa'
-import ProjectCard from './ProjectCard'
+import { useState, useMemo, useCallback } from 'react'
+import { FaRocket, FaFilter, FaTimes } from 'react-icons/fa'
+import LazyProjectCard from './LazyProjectCard'
 import { useProjects, getProjectCategories } from '../../hooks/useProjects'
 import { CardSkeleton } from '../UI/LoadingSpinner'
 import SEOHead from '../SEO/SEOHead'
@@ -13,31 +13,60 @@ function Projects() {
   // Use custom hook to load projects
   const { projects, loading, error, filteredProjects } = useProjects(filter)
 
-  // Get available categories
-  const categories = getProjectCategories(projects)
+  // Get available categories with memoization
+  const categories = useMemo(() => getProjectCategories(projects), [projects])
 
+  // Filter handler with useCallback to prevent unnecessary re-renders
+  const handleFilterChange = useCallback((newFilter) => {
+    setFilter(newFilter)
+  }, [])
+
+  // Optimized loading skeleton
   if (loading) {
     return (
-      <main className="section-padding pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
+      <main className="section-padding pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 min-h-screen">
         <div className="max-w-7xl mx-auto">
+          {/* Skeleton Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 mb-6 animate-pulse">
-              <div className="w-12 h-12 bg-slate-700 rounded-2xl" />
-              <div className="w-48 h-8 bg-slate-700 rounded-xl" />
+            <motion.div 
+              className="inline-flex items-center gap-3 mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="w-12 h-12 bg-slate-700/50 rounded-2xl animate-pulse" />
+              <div className="w-48 h-8 bg-slate-700/50 rounded-xl animate-pulse" />
+            </motion.div>
+            <div className="space-y-4">
+              <div className="w-96 h-12 bg-slate-700/50 rounded-lg mx-auto animate-pulse" />
+              <div className="w-64 h-6 bg-slate-600/50 rounded-lg mx-auto animate-pulse" />
             </div>
-            <div className="w-96 h-12 bg-slate-700 rounded-lg mx-auto mb-4 animate-pulse" />
-            <div className="w-64 h-6 bg-slate-600 rounded-lg mx-auto animate-pulse" />
           </div>
 
+          {/* Skeleton Filters */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="w-24 h-10 bg-slate-700 rounded-xl animate-pulse" />
+              <motion.div 
+                key={i} 
+                className="w-24 h-10 bg-slate-700/50 rounded-xl animate-pulse"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1, duration: 0.3 }}
+              />
             ))}
           </div>
 
+          {/* Skeleton Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Array.from({ length: 6 }).map((_, i) => (
-              <CardSkeleton key={i} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.3 }}
+              >
+                <CardSkeleton />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -45,19 +74,31 @@ function Projects() {
     )
   }
 
+  // Enhanced error state
   if (error) {
     return (
-      <main className="section-padding pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
+      <main className="section-padding pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 min-h-screen">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <p className="text-red-400 text-lg">{error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="mt-4 btn-primary"
-            >
-              Try Again
-            </button>
-          </div>
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="glass-effect rounded-2xl p-12 max-w-md mx-auto">
+              <div className="w-16 h-16 mx-auto mb-6 bg-red-500/20 rounded-full flex items-center justify-center">
+                <FaTimes className="text-red-400 text-2xl" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-100 mb-4">Oops! Something went wrong</h3>
+              <p className="text-red-400 text-lg mb-6">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                <FaRocket />
+                Try Again
+              </button>
+            </div>
+          </motion.div>
         </div>
       </main>
     )
@@ -163,39 +204,27 @@ function Projects() {
             ))}
           </motion.div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ 
-                  opacity: 0, 
-                  y: 30 
-                }}
-                whileInView={{ 
-                  opacity: 1, 
-                  y: 0 
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1
-                }}
-                viewport={{ once: true }}
-                className="h-full"
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <ProjectCard 
+          {/* Optimized Projects Grid with AnimatePresence */}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={filter}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {filteredProjects.map((project, index) => (
+                <LazyProjectCard 
+                  key={project.id} 
                   project={project} 
-                  className="project-card h-full"
+                  index={index}
                 />
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
-          {/* No Projects Message */}
+          {/* Enhanced No Projects Message */}
           {filteredProjects.length === 0 && (
             <motion.div
               className="text-center py-20"
@@ -203,27 +232,27 @@ function Projects() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="w-32 h-32 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-8">
-                <FaRocket className="text-4xl text-slate-400" />
+              <div className="glass-effect rounded-2xl p-12 max-w-md mx-auto">
+                <FaFilter className="text-4xl text-slate-400 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-slate-100 mb-4">
+                  No Projects Found
+                </h3>
+                <p className="text-slate-400 text-lg mb-8">
+                  No projects match the selected filter. Try selecting a different category.
+                </p>
+                <motion.button
+                  onClick={() => setFilter('all')}
+                  className="btn-primary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Show All Projects
+                </motion.button>
               </div>
-              <h3 className="text-2xl font-bold text-slate-100 mb-4">
-                No Projects Found
-              </h3>
-              <p className="text-slate-400 text-lg mb-8">
-                No projects match the selected filter. Try selecting a different category.
-              </p>
-              <motion.button
-                onClick={() => setFilter('all')}
-                className="btn-primary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Show All Projects
-              </motion.button>
             </motion.div>
           )}
 
-          {/* Call to Action */}
+          {/* Call to Action with Performance Optimization */}
           <motion.div
             className="text-center mt-20 py-16 glass-effect rounded-3xl border border-slate-700/50"
             initial={{ opacity: 0, y: 40 }}
@@ -241,7 +270,7 @@ function Projects() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <FaGithub className="text-white text-2xl" />
+              <FaRocket className="text-white text-2xl" />
             </motion.div>
 
             <motion.h3 
@@ -265,22 +294,27 @@ function Projects() {
               and code snippets that showcase my development journey.
             </motion.p>
 
-            <motion.a
-              href="https://github.com/giasinguyen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-3"
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               viewport={{ once: true }}
             >
-              <FaGithub className="text-lg" />
-              Visit GitHub Profile
-              <FaExternalLinkAlt className="text-sm" />
-            </motion.a>
+              <a
+                href="https://github.com/giasinguyen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex items-center gap-3"
+              >
+                <FaRocket className="text-lg" />
+                Visit GitHub Profile
+              </a>
+              
+              <div className="text-slate-400">
+                Showing {filteredProjects.length} of {projects.length} projects
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </main>

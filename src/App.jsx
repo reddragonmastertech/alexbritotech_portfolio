@@ -10,29 +10,66 @@ import ScrollToTop from './components/Layout/ScrollToTop'
 import Preloader from './components/Layout/Preloader'
 import LoadingSpinner from './components/UI/LoadingSpinner'
 
-// Core components (loaded immediately)
+// Core components (loaded immediately for better LCP)
 import Home from './components/Home/Home'
 import Contact from './components/Contact/Contact'
 
-// Lazy load heavy components to improve initial load time
-const About = lazy(() => import('./components/About/About'))
-const Projects = lazy(() => import('./components/Projects/Projects'))
-const Resume = lazy(() => import('./components/Resume/Resume'))
-const Blog = lazy(() => import('./components/Blog/Blog'))
-const BlogDetail = lazy(() => import('./components/Blog/BlogDetail'))
-const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'))
-const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'))
+// Lazy load heavy components with better splitting
+const About = lazy(() => 
+  import('./components/About/About').then(module => ({ default: module.default }))
+)
+const Projects = lazy(() => 
+  import('./components/Projects/Projects').then(module => ({ default: module.default }))
+)
+const Resume = lazy(() => 
+  import('./components/Resume/Resume').then(module => ({ default: module.default }))
+)
+const Blog = lazy(() => 
+  import('./components/Blog/Blog').then(module => ({ default: module.default }))
+)
+const BlogDetail = lazy(() => 
+  import('./components/Blog/BlogDetail').then(module => ({ default: module.default }))
+)
+const PrivacyPolicy = lazy(() => 
+  import('./components/Legal/PrivacyPolicy').then(module => ({ default: module.default }))
+)
+const TermsOfService = lazy(() => 
+  import('./components/Legal/TermsOfService').then(module => ({ default: module.default }))
+)
+
+// Enhanced loading fallback with better UX
+const LazyFallback = ({ message = 'Loading content...' }) => (
+  <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="text-center">
+      <LoadingSpinner size="lg" />
+      <p className="text-slate-400 mt-4">{message}</p>
+    </div>
+  </div>
+)
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Reduced loading time for faster app startup
+    // Optimized preloader with faster loading
     const timer = setTimeout(() => {
       setLoading(false);
-      // Log performance summary after app loads
-      setTimeout(() => performanceMonitor.logSummary(), 1000);
-    }, 1000); // Reduced from 2000ms to 1000ms
+      // Performance monitoring after load
+      requestIdleCallback(() => {
+        performanceMonitor.logSummary();
+      }, { timeout: 2000 });
+    }, 800); // Reduced from 1000ms to 800ms
+
+    // Preload critical resources
+    const preloadCriticalResources = () => {
+      // Preload projects data
+      import('./data/projects.json').catch(() => {
+        console.log('Projects data preload failed - will load on demand');
+      });
+    };
+
+    // Start preloading after a short delay
+    setTimeout(preloadCriticalResources, 100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -59,25 +96,25 @@ function App() {
                           </section>
 
                           <section id="about">
-                            <Suspense fallback={<LoadingSpinner />}>
+                            <Suspense fallback={<LazyFallback message="Loading about section..." />}>
                               <About />
                             </Suspense>
                           </section>
 
                           <section id="projects">
-                            <Suspense fallback={<LoadingSpinner />}>
+                            <Suspense fallback={<LazyFallback message="Loading projects..." />}>
                               <Projects />
                             </Suspense>
                           </section>
 
                           <section id="blog">
-                            <Suspense fallback={<LoadingSpinner />}>
+                            <Suspense fallback={<LazyFallback message="Loading blog..." />}>
                               <Blog />
                             </Suspense>
                           </section>
 
                           <section id="resume">
-                            <Suspense fallback={<LoadingSpinner />}>
+                            <Suspense fallback={<LazyFallback message="Loading resume..." />}>
                               <Resume />
                             </Suspense>
                           </section>

@@ -1,17 +1,18 @@
  
 import { motion } from 'framer-motion';
+import { memo } from 'react';
 
-const LoadingSpinner = ({ 
+const LoadingSpinner = memo(({ 
   size = 'md', 
   message = 'Loading...', 
   fullScreen = false,
   className = '' 
 }) => {
   const sizeClasses = {
-    sm: 'h-6 w-6',
-    md: 'h-12 w-12',
-    lg: 'h-16 w-16',
-    xl: 'h-24 w-24'
+    sm: 'h-6 w-6 border-2',
+    md: 'h-12 w-12 border-4',
+    lg: 'h-16 w-16 border-4',
+    xl: 'h-24 w-24 border-4'
   };
 
   const containerClasses = fullScreen 
@@ -21,73 +22,90 @@ const LoadingSpinner = ({
   return (
     <div className={`${containerClasses} ${className}`}>
       <div className="text-center">
-        {/* Animated spinner */}
-        <motion.div
-          className={`${sizeClasses[size]} border-4 border-slate-700 border-t-sky-500 rounded-full mx-auto`}
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+        {/* Optimized spinner with reduced GPU usage */}
+        <div
+          className={`${sizeClasses[size]} border-slate-700/50 border-t-blue-400 rounded-full mx-auto animate-spin`}
+          role="status"
+          aria-label="Loading"
+        >
+          <span className="sr-only">Loading</span>
+        </div>
         
-        {/* Loading message */}
+        {/* Loading message with reduced animation */}
         {message && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-4 text-slate-300 text-sm"
-          >
+          <p className="mt-4 text-slate-300 text-sm opacity-75">
             {message}
-          </motion.p>
+          </p>
         )}
       </div>
     </div>
   );
-};
+});
 
-// Skeleton loader for content
-export const SkeletonLoader = ({ lines = 3, className = '' }) => {
+LoadingSpinner.displayName = 'LoadingSpinner';
+
+// Optimized skeleton loader for content
+export const SkeletonLoader = memo(({ lines = 3, className = '' }) => {
   return (
     <div className={`animate-pulse ${className}`}>
       {Array.from({ length: lines }).map((_, index) => (
         <div
           key={index}
-          className={`bg-slate-700 rounded h-4 mb-3 ${
+          className={`bg-slate-700/50 rounded h-4 mb-3 relative overflow-hidden ${
             index === lines - 1 ? 'w-3/4' : 'w-full'
           }`}
-        />
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+        </div>
       ))}
     </div>
   );
-};
+});
 
-// Card skeleton for project/blog cards
-export const CardSkeleton = ({ className = '' }) => {
+SkeletonLoader.displayName = 'SkeletonLoader';
+
+// Enhanced card skeleton with shimmer effect
+export const CardSkeleton = memo(({ className = '' }) => {
   return (
-    <div className={`bg-slate-800 rounded-lg p-6 animate-pulse ${className}`}>
-      {/* Image placeholder */}
-      <div className="bg-slate-700 rounded-lg h-48 mb-4" />
-      
-      {/* Title placeholder */}
-      <div className="bg-slate-700 rounded h-6 mb-3" />
-      
-      {/* Description placeholder */}
-      <div className="space-y-2 mb-4">
-        <div className="bg-slate-700 rounded h-4" />
-        <div className="bg-slate-700 rounded h-4 w-3/4" />
+    <div className={`glass-effect rounded-2xl overflow-hidden border border-slate-700/50 animate-pulse ${className}`}>
+      {/* Image placeholder with shimmer */}
+      <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 h-48 mb-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
       </div>
       
-      {/* Tags placeholder */}
-      <div className="flex gap-2">
-        <div className="bg-slate-700 rounded-full h-6 w-16" />
-        <div className="bg-slate-700 rounded-full h-6 w-20" />
-        <div className="bg-slate-700 rounded-full h-6 w-14" />
+      <div className="p-6">
+        {/* Title placeholder */}
+        <div className="bg-slate-700/50 rounded h-6 mb-3 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+        </div>
+        
+        {/* Description placeholder */}
+        <div className="space-y-2 mb-4">
+          <div className="bg-slate-700/50 rounded h-4 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+          </div>
+          <div className="bg-slate-700/50 rounded h-4 w-3/4 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+          </div>
+        </div>
+        
+        {/* Tags placeholder */}
+        <div className="flex gap-2">
+          <div className="bg-slate-700/50 rounded-full h-6 w-16 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+          </div>
+          <div className="bg-slate-700/50 rounded-full h-6 w-20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+          </div>
+          <div className="bg-slate-700/50 rounded-full h-6 w-14 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-600/20 to-transparent animate-shimmer"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
+});
+
+CardSkeleton.displayName = 'CardSkeleton';
 
 export default LoadingSpinner;
