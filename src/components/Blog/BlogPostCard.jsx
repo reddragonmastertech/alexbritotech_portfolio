@@ -1,4 +1,4 @@
-import { FaCalendarAlt, FaTag, FaClock, FaExternalLinkAlt, FaBookmark, FaHeart, FaShare } from "react-icons/fa";
+import { FaCalendarAlt, FaTag, FaClock, FaExternalLinkAlt, FaBookmark, FaHeart, FaShare, FaArrowRight } from "react-icons/fa";
 import { HiOutlineBookmark, HiOutlineHeart, HiOutlineShare } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -40,106 +40,107 @@ function BlogPostCard({ post, index = 0, viewMode = "grid", className = "" }) {
     }
   };
 
-  // Grid View (Default) - Enhanced for light mode
+  // Grid View (Default) - Dark theme
   if (viewMode === "grid") {
     return (
       <motion.article
-        className={`group bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden border border-gray-200 hover:border-blue-300 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer transform hover:-translate-y-2 ${className}`}
+        className={`group glass-effect rounded-3xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer transform hover:-translate-y-2 ${className}`}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1, duration: 0.6 }}
         whileHover={{ scale: 1.02 }}
         onClick={handleClick}
       >
-        {/* Enhanced Image Section */}
-        <div className="relative overflow-hidden aspect-video bg-gradient-to-br from-blue-100 to-purple-100">
-          {post.image ? (
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-200 to-purple-300">
-              <div className="w-16 h-16 bg-white/50 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                <FaTag className="text-blue-600 text-2xl" />
-              </div>
-            </div>
-          )}
+        {/* Featured Image */}
+        <div className="relative overflow-hidden h-56">
+          <motion.img
+            src={post.image || '/api/placeholder/400/300'}
+            alt={post.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            whileHover={{ scale: 1.1 }}
+          />
+          
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           {/* Category Badge */}
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-blue-700 text-sm font-semibold rounded-full shadow-lg border border-blue-200">
+            <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 text-blue-400 rounded-full text-sm font-medium">
               {post.category}
             </span>
           </div>
 
           {/* Action Buttons */}
           <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button
+            <motion.button
               onClick={handleBookmark}
-              className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg border border-gray-200 hover:bg-blue-50 transition-colors"
+              className={`w-10 h-10 rounded-full backdrop-blur-sm border flex items-center justify-center transition-all duration-300 ${
+                isBookmarked 
+                  ? 'bg-blue-500 border-blue-500 text-white' 
+                  : 'bg-slate-800/50 border-slate-600 text-slate-300 hover:text-blue-400'
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {isBookmarked ? (
-                <FaBookmark className="text-blue-600 text-sm" />
-              ) : (
-                <HiOutlineBookmark className="text-gray-600 text-sm" />
-              )}
-            </button>
-            <button
+              {isBookmarked ? <FaBookmark className="text-sm" /> : <HiOutlineBookmark className="text-sm" />}
+            </motion.button>
+            
+            <motion.button
               onClick={handleShare}
-              className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg border border-gray-200 hover:bg-blue-50 transition-colors"
+              className="w-10 h-10 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-600 text-slate-300 hover:text-green-400 flex items-center justify-center transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <HiOutlineShare className="text-gray-600 text-sm" />
-            </button>
+              <HiOutlineShare className="text-sm" />
+            </motion.button>
           </div>
 
           {/* Read Time */}
-          <div className="absolute bottom-4 right-4">
-            <div className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full flex items-center gap-2 shadow-lg border border-gray-200">
-              <FaClock className="text-gray-500 text-xs" />
-              <span className="text-gray-700 text-sm font-medium">{post.readTime} phút</span>
+          <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="flex items-center gap-2 px-3 py-1 bg-slate-900/50 backdrop-blur-sm rounded-full text-slate-300">
+              <FaClock className="text-xs" />
+              <span className="text-sm">{post.readTime} min</span>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Content Section */}
-        <div className="p-8">
-          {/* Date */}
-          <div className="flex items-center gap-2 mb-4 text-gray-500">
-            <FaCalendarAlt className="text-sm" />
-            <time className="text-sm font-medium">
-              {new Date(post.date).toLocaleDateString("vi-VN", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
+        {/* Content */}
+        <div className="p-6">
+          {/* Meta Information */}
+          <div className="flex items-center gap-4 mb-4 text-sm text-slate-400">
+            <div className="flex items-center gap-2">
+              <FaCalendarAlt className="text-xs" />
+              <span>{post.date}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FaTag className="text-xs" />
+              <span>{post.category}</span>
+            </div>
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+          <h3 className="text-xl font-bold text-slate-100 mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors duration-300">
             {post.title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
+          <p className="text-slate-400 line-clamp-3 mb-4 leading-relaxed">
             {post.excerpt}
           </p>
 
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.slice(0, 3).map((tag, tagIndex) => (
                 <span
                   key={tagIndex}
-                  className="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full border border-blue-200 font-medium"
+                  className="px-2 py-1 bg-violet-500/10 border border-violet-500/30 text-violet-400 rounded text-xs"
                 >
                   #{tag}
                 </span>
               ))}
               {post.tags.length > 3 && (
-                <span className="px-3 py-1 bg-gray-50 text-gray-500 text-sm rounded-full border border-gray-200 font-medium">
+                <span className="px-2 py-1 bg-slate-700 text-slate-400 rounded text-xs">
                   +{post.tags.length - 3}
                 </span>
               )}
@@ -147,149 +148,148 @@ function BlogPostCard({ post, index = 0, viewMode = "grid", className = "" }) {
           )}
 
           {/* Footer */}
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handleLike}
-              className="flex items-center gap-2 text-gray-500 hover:text-red-500 transition-colors group/like"
-            >
-              {isLiked ? (
-                <FaHeart className="text-red-500 text-sm" />
-              ) : (
-                <HiOutlineHeart className="text-sm group-hover/like:text-red-500" />
-              )}
-              <span className="text-sm font-medium">{likeCount}</span>
-            </button>
-
-            <div className="flex items-center gap-2 text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
-              <span className="text-sm">Đọc thêm</span>
-              <FaExternalLinkAlt className="text-xs group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center justify-between pt-4 border-t border-slate-700/50">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleLike}
+                className={`flex items-center gap-2 text-sm transition-colors duration-300 ${
+                  isLiked ? 'text-red-400' : 'text-slate-400 hover:text-red-400'
+                }`}
+              >
+                {isLiked ? <FaHeart className="text-sm" /> : <HiOutlineHeart className="text-sm" />}
+                <span>{likeCount}</span>
+              </button>
+              
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <FaClock className="text-xs" />
+                <span>{post.readTime} min read</span>
+              </div>
             </div>
+
+            <motion.div 
+              className="flex items-center gap-2 text-blue-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              whileHover={{ x: 5 }}
+            >
+              <span>Read More</span>
+              <FaArrowRight className="text-xs" />
+            </motion.div>
           </div>
         </div>
       </motion.article>
     );
   }
 
-  // List View - Enhanced for light mode  
+  // List View - Dark theme
   return (
     <motion.article
-      className={`group bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-blue-300 transition-all duration-500 hover:shadow-xl cursor-pointer ${className}`}
+      className={`group glass-effect rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 cursor-pointer ${className}`}
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
+      whileHover={{ scale: 1.01 }}
       onClick={handleClick}
     >
       <div className="flex flex-col md:flex-row">
-        {/* Image Section */}
-        <div className="relative md:w-80 flex-shrink-0">
-          <div className="aspect-video md:aspect-square overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100">
-            {post.image ? (
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-200 to-purple-300">
-                <div className="w-16 h-16 bg-white/50 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                  <FaTag className="text-blue-600 text-2xl" />
-                </div>
-              </div>
-            )}
-          </div>
-
+        {/* Image */}
+        <div className="relative w-full md:w-80 h-48 md:h-auto overflow-hidden">
+          <motion.img
+            src={post.image || '/api/placeholder/400/300'}
+            alt={post.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          
           {/* Category Badge */}
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-blue-700 text-sm font-semibold rounded-full shadow-lg border border-blue-200">
+            <span className="px-3 py-1 bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 text-blue-400 rounded-full text-sm font-medium">
               {post.category}
             </span>
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="flex-1 p-8">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-2 text-gray-500">
-              <FaCalendarAlt className="text-sm" />
-              <time className="text-sm font-medium">
-                {new Date(post.date).toLocaleDateString("vi-VN", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={handleBookmark}
-                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors"
-              >
-                {isBookmarked ? (
-                  <FaBookmark className="text-blue-600 text-sm" />
-                ) : (
-                  <HiOutlineBookmark className="text-gray-400 text-sm" />
-                )}
-              </button>
-              <button
-                onClick={handleShare}
-                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors"
-              >
-                <HiOutlineShare className="text-gray-400 text-sm" />
-              </button>
-            </div>
-          </div>
-
-          <h3 className="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-blue-600 transition-colors">
-            {post.title}
-          </h3>
-
-          <p className="text-gray-600 leading-relaxed mb-6 line-clamp-2">
-            {post.excerpt}
-          </p>
-
-          {/* Tags */}
-          {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {post.tags.slice(0, 4).map((tag, tagIndex) => (
-                <span
-                  key={tagIndex}
-                  className="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full border border-blue-200 font-medium"
-                >
-                  #{tag}
-                </span>
-              ))}
-              {post.tags.length > 4 && (
-                <span className="px-3 py-1 bg-gray-50 text-gray-500 text-sm rounded-full border border-gray-200 font-medium">
-                  +{post.tags.length - 4}
-                </span>
-              )}
-            </div>
-          )}
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <button
-                onClick={handleLike}
-                className="flex items-center gap-2 text-gray-500 hover:text-red-500 transition-colors group/like"
-              >
-                {isLiked ? (
-                  <FaHeart className="text-red-500 text-sm" />
-                ) : (
-                  <HiOutlineHeart className="text-sm group-hover/like:text-red-500" />
-                )}
-                <span className="text-sm font-medium">{likeCount}</span>
-              </button>
-
-              <div className="flex items-center gap-2 text-gray-500">
-                <FaClock className="text-sm" />
-                <span className="text-sm font-medium">{post.readTime} phút đọc</span>
+        {/* Content */}
+        <div className="flex-1 p-6">
+          <div className="flex flex-col h-full">
+            {/* Meta */}
+            <div className="flex items-center gap-4 mb-3 text-sm text-slate-400">
+              <div className="flex items-center gap-2">
+                <FaCalendarAlt className="text-xs" />
+                <span>{post.date}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaClock className="text-xs" />
+                <span>{post.readTime} min</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
-              <span className="text-sm">Đọc thêm</span>
-              <FaExternalLinkAlt className="text-xs group-hover:translate-x-1 transition-transform" />
+            {/* Title */}
+            <h3 className="text-2xl font-bold text-slate-100 mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors duration-300">
+              {post.title}
+            </h3>
+
+            {/* Excerpt */}
+            <p className="text-slate-400 line-clamp-2 mb-4 leading-relaxed flex-grow">
+              {post.excerpt}
+            </p>
+
+            {/* Tags */}
+            {post.tags && post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.slice(0, 4).map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="px-2 py-1 bg-violet-500/10 border border-violet-500/30 text-violet-400 rounded text-xs"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Footer */}
+            <div className="flex items-center justify-between pt-4 border-t border-slate-700/50">
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={handleLike}
+                  className={`flex items-center gap-2 text-sm transition-colors duration-300 ${
+                    isLiked ? 'text-red-400' : 'text-slate-400 hover:text-red-400'
+                  }`}
+                >
+                  {isLiked ? <FaHeart className="text-sm" /> : <HiOutlineHeart className="text-sm" />}
+                  <span>{likeCount}</span>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  <motion.button
+                    onClick={handleBookmark}
+                    className={`p-2 rounded-lg transition-colors duration-300 ${
+                      isBookmarked 
+                        ? 'text-blue-400' 
+                        : 'text-slate-400 hover:text-blue-400'
+                    }`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {isBookmarked ? <FaBookmark className="text-sm" /> : <HiOutlineBookmark className="text-sm" />}
+                  </motion.button>
+
+                  <motion.button
+                    onClick={handleShare}
+                    className="p-2 rounded-lg text-slate-400 hover:text-green-400 transition-colors duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <HiOutlineShare className="text-sm" />
+                  </motion.button>
+                </div>
+              </div>
+
+              <motion.div 
+                className="flex items-center gap-2 text-blue-400 text-sm font-medium"
+                whileHover={{ x: 5 }}
+              >
+                <span>Read Article</span>
+                <FaArrowRight className="text-xs" />
+              </motion.div>
             </div>
           </div>
         </div>

@@ -43,25 +43,25 @@ function Blog() {
   // Enhanced loading state
   if (loading) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-28">
+      <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 pt-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl animate-pulse" />
-              <div className="w-48 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl animate-pulse" />
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500/20 to-violet-500/20 rounded-2xl animate-pulse glass-effect" />
+              <div className="w-48 h-12 bg-gradient-to-r from-slate-700 to-slate-600 rounded-xl animate-pulse" />
             </div>
-            <div className="w-96 h-6 bg-gray-300 rounded-lg mx-auto mb-4 animate-pulse" />
-            <div className="w-64 h-4 bg-gray-200 rounded-lg mx-auto animate-pulse" />
+            <div className="w-96 h-6 bg-slate-700 rounded-lg mx-auto mb-4 animate-pulse" />
+            <div className="w-64 h-4 bg-slate-600 rounded-lg mx-auto animate-pulse" />
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 mb-12 border border-white/20 shadow-xl">
+          <div className="glass-effect rounded-3xl p-8 mb-12 border border-slate-700/50 shadow-xl">
             <div className="flex flex-col lg:flex-row gap-6">
-              <div className="flex-1 h-14 bg-gray-200 rounded-xl animate-pulse" />
+              <div className="flex-1 h-14 bg-slate-700 rounded-xl animate-pulse" />
               <div className="flex gap-3">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <div
                     key={i}
-                    className="w-24 h-14 bg-gray-200 rounded-xl animate-pulse"
+                    className="w-24 h-14 bg-slate-700 rounded-xl animate-pulse"
                   />
                 ))}
               </div>
@@ -72,13 +72,13 @@ function Blog() {
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={i}
-                className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100"
+                className="glass-effect rounded-3xl p-6 shadow-lg border border-slate-700/50"
               >
-                <div className="w-full h-48 bg-gray-200 rounded-2xl mb-6 animate-pulse" />
+                <div className="w-full h-48 bg-slate-700 rounded-2xl mb-6 animate-pulse" />
                 <div className="space-y-4">
-                  <div className="w-3/4 h-6 bg-gray-200 rounded-lg animate-pulse" />
-                  <div className="w-full h-4 bg-gray-100 rounded animate-pulse" />
-                  <div className="w-2/3 h-4 bg-gray-100 rounded animate-pulse" />
+                  <div className="w-3/4 h-6 bg-slate-700 rounded-lg animate-pulse" />
+                  <div className="w-full h-4 bg-slate-600 rounded animate-pulse" />
+                  <div className="w-2/3 h-4 bg-slate-600 rounded animate-pulse" />
                 </div>
               </div>
             ))}
@@ -91,23 +91,23 @@ function Blog() {
   // Enhanced error state
   if (error) {
     return (
-      <main className="min-h-screen pt-28">
+      <main className="min-h-screen pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/90 backdrop-blur-sm rounded-3xl p-12 text-center shadow-2xl border border-red-100"
+            className="glass-effect rounded-3xl p-12 text-center shadow-2xl border border-red-500/20"
           >
-            <div className="w-24 h-24 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
-              <FaTimes className="text-white text-3xl" />
+            <div className="w-24 h-24 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg glass-effect">
+              <FaTimes className="text-red-400 text-3xl" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-slate-100 mb-4">
               Oops! Something went wrong
             </h2>
-            <p className="text-red-600 text-lg mb-8 leading-relaxed">{error}</p>
+            <p className="text-red-400 text-lg mb-8 leading-relaxed">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="btn-primary"
             >
               Try Again
             </button>
@@ -118,8 +118,14 @@ function Blog() {
   }
 
   return (
-    <main className="min-h-screen pt-28">
-      <div className="max-w-7xl mx-auto px-6">
+    <main className="min-h-screen pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-100 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-violet-600/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Enhanced Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -131,28 +137,28 @@ function Blog() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm border mb-8 bg-white/80 border-white/30"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-8"
           >
-            <FaRocket className="w-6 h-6 text-blue-500" />
-            <span className="text-lg font-semibold text-slate-700">
+            <FaRocket className="w-6 h-6 text-blue-400" />
+            <span className="text-lg font-semibold text-slate-300">
               Blog & Insights
             </span>
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
             My{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="gradient-text">
               Articles
             </span>
           </h1>
 
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-8 rounded-full" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mb-8 rounded-full" />
 
-          <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-4">
+          <p className="text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto mb-4">
             Explore articles about technology, programming and development experiences from my journey.
           </p>
-          <div className="flex items-center justify-center gap-2 text-gray-500">
-            <HiSparkles className="text-purple-500" />
+          <div className="flex items-center justify-center gap-2 text-slate-500">
+            <HiSparkles className="text-violet-400" />
             <span className="text-sm font-medium">
               {posts.length} Shared Posts
             </span>
@@ -164,23 +170,23 @@ function Blog() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 mb-12 border border-white/20 shadow-xl"
+          className="glass-effect rounded-3xl p-8 mb-12 border border-slate-700/50 shadow-xl"
         >
           <div className="flex flex-col lg:flex-row gap-6 items-stretch lg:items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder="Tìm kiếm bài viết..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-700 placeholder-gray-400"
+                className="w-full pl-12 pr-4 py-4 bg-slate-800/50 border border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-400"
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors"
                 >
                   <FaTimes />
                 </button>
@@ -191,172 +197,124 @@ function Blog() {
             <div className="flex flex-wrap gap-3 items-center">
               {/* Categories */}
               <div className="flex gap-2 items-center">
-                <FaTag className="text-gray-500 text-sm" />
+                <FaTag className="text-slate-400 text-sm" />
                 <select
                   value={activeCategory}
                   onChange={(e) => setActiveCategory(e.target.value)}
-                  className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-gray-700 font-medium"
+                  className="px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-slate-100 font-medium"
                 >
                   <option value="all">Tất cả</option>
                   {categories.map((category) => (
                     <option key={category} value={category}>
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                      {category}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Sort */}
+              {/* Sort Options */}
               <div className="flex gap-2 items-center">
-                <FaClock className="text-gray-500 text-sm" />
+                <FaClock className="text-slate-400 text-sm" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-gray-700 font-medium"
+                  className="px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-slate-100 font-medium"
                 >
                   <option value="date">Mới nhất</option>
-                  <option value="title">Tên A-Z</option>
+                  <option value="title">Tiêu đề</option>
                   <option value="readTime">Thời gian đọc</option>
                 </select>
               </div>
 
-              {/* View Mode */}
-              <div className="flex bg-gray-100 rounded-xl p-1">
+              {/* View Mode Toggle */}
+              <div className="flex bg-slate-800/50 rounded-xl p-1 border border-slate-600">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`p-3 rounded-lg transition-all duration-300 ${
                     viewMode === "grid"
-                      ? "bg-white text-blue-600 shadow-md"
-                      : "text-gray-500 hover:text-gray-700"
+                      ? "bg-blue-500 text-white"
+                      : "text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  <HiViewGrid className="text-lg" />
+                  <HiViewGrid className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
                   className={`p-3 rounded-lg transition-all duration-300 ${
                     viewMode === "list"
-                      ? "bg-white text-blue-600 shadow-md"
-                      : "text-gray-500 hover:text-gray-700"
+                      ? "bg-blue-500 text-white"
+                      : "text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  <HiViewList className="text-lg" />
+                  <HiViewList className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Clear Filters */}
               {hasActiveFilters && (
-                <button
+                <motion.button
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
                   onClick={clearFilters}
-                  className="px-4 py-3 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-all duration-300 font-medium border border-red-200"
+                  className="px-4 py-3 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 rounded-xl transition-all duration-300 font-medium"
                 >
-                  <FaTimes className="inline mr-2" />
                   Xóa bộ lọc
-                </button>
+                </motion.button>
               )}
             </div>
           </div>
-
-          {/* Active Filters Display */}
-          {hasActiveFilters && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              className="mt-6 flex flex-wrap gap-2"
-            >
-              {searchTerm && (
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                  Tìm kiếm: "{searchTerm}"
-                </span>
-              )}
-              {activeCategory !== "all" && (
-                <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
-                  Danh mục: {activeCategory}
-                </span>
-              )}
-              {sortBy !== "date" && (
-                <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                  Sắp xếp: {sortBy === "title" ? "Tên A-Z" : "Thời gian đọc"}
-                </span>
-              )}
-            </motion.div>
-          )}
         </motion.div>
 
-        {/* Blog Posts Grid/List */}
-        {sortedPosts.length === 0 ? (
+        {/* Posts Grid */}
+        {sortedPosts.length > 0 ? (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
-            <div className="w-24 h-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
-              <FaSearch className="text-gray-400 text-2xl" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Không tìm thấy bài viết nào
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc để xem thêm kết quả
-            </p>
-            {hasActiveFilters && (
-              <button
-                onClick={clearFilters}
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg"
-              >
-                Xóa tất cả bộ lọc
-              </button>
-            )}
-          </motion.div>
-        ) : (
-          <motion.div
-            layout
-            className={`grid gap-8 ${
+            className={
               viewMode === "grid"
-                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-                : "grid-cols-1"
-            }`}
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                : "space-y-6"
+            }
+            layout
           >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence>
               {sortedPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
-                  layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                    layout: { duration: 0.3 },
-                  }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  layout
                 >
-                  <BlogPostCard
-                    post={post}
-                    viewMode={viewMode}
-                    className="h-full"
-                  />
+                  <BlogPostCard post={post} viewMode={viewMode} />
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
-        )}
-
-        {/* Stats Footer */}
-        {sortedPosts.length > 0 && (
+        ) : (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-16 text-center text-gray-500"
+            className="text-center py-20"
           >
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/50 rounded-full border border-gray-200">
-              <HiSparkles className="text-purple-500" />
-              <span className="font-medium">
-                Hiển thị {sortedPosts.length} trên tổng số {posts.length} bài
-                viết
-              </span>
+            <div className="w-32 h-32 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-8">
+              <FaSearch className="text-4xl text-slate-400" />
             </div>
+            <h3 className="text-2xl font-bold text-slate-100 mb-4">
+              Không tìm thấy bài viết
+            </h3>
+            <p className="text-slate-400 text-lg mb-8">
+              {searchTerm || activeCategory !== "all"
+                ? "Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc của bạn"
+                : "Hiện tại chưa có bài viết nào được đăng tải"}
+            </p>
+            {hasActiveFilters && (
+              <button
+                onClick={clearFilters}
+                className="btn-primary"
+              >
+                Xóa tất cả bộ lọc
+              </button>
+            )}
           </motion.div>
         )}
       </div>

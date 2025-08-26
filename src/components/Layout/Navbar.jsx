@@ -9,10 +9,10 @@ import {
   FaFile,
   FaBlog,
   FaEnvelope,
+  FaCode,
 } from "react-icons/fa";
-import ThemeSwitcher from "./ThemeSwitcher";
- 
 import { motion } from "framer-motion";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -130,24 +130,32 @@ function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed w-full z-20 transition-all duration-300 ${
+    <motion.nav
+      className={`fixed w-full z-30 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm shadow-md border-b border-slate-200 dark:border-slate-800"
+          ? "glass-effect shadow-xl border-b border-slate-700/50 backdrop-blur-xl"
           : "bg-transparent"
       }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <button
+            <motion.button
               onClick={() => scrollToSection("home")}
-              className="flex items-center"
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="text-2xl font-bold blue-gradient-text">
-                GiaSi Portfolio
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl flex items-center justify-center">
+                <FaCode className="text-white text-xl" />
+              </div>
+              <span className="text-2xl font-bold gradient-text">
+                GiaSi Dev
               </span>
-            </button>
+            </motion.button>
           </div>
 
           {/* Desktop Menu */}
@@ -301,45 +309,61 @@ function Navbar() {
           </a>
         </div>
       </motion.div>
-    </nav>
+    </motion.nav>
   );
 }
 
 // Desktop Nav Link with active state
 function NavLink({ label, active, onClick }) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
+      className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
         active
-          ? "text-blue-500 dark:text-blue-400"
-          : "text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400"
+          ? "text-blue-400 bg-blue-500/10"
+          : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50"
       }`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
     >
       {label}
       {active && (
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400"
-          layoutId="navbar-underline"
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full"
+          layoutId="navbar-indicator"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
         />
       )}
-    </button>
+    </motion.button>
   );
 }
 
 // Mobile Nav Link with enhanced touch handling
 function MobileNavLink({ icon, label, onClick, active }) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      className={`w-full flex items-center px-3 py-3 rounded-md text-base font-medium ${
+      className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl text-base font-medium transition-all duration-300 ${
         active
-          ? "bg-blue-50 text-blue-500 dark:bg-slate-800 dark:text-blue-400"
-          : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 hover:text-blue-500 dark:hover:bg-slate-800 dark:hover:text-blue-400"
+          ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+          : "text-slate-300 hover:bg-slate-800/50 hover:text-blue-400"
       }`}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
     >
-      {icon} {label}
-    </button>
+      <span className="text-lg">{icon}</span>
+      <span>{label}</span>
+      {active && (
+        <motion.div
+          className="ml-auto w-2 h-2 bg-blue-400 rounded-full"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
+        />
+      )}
+    </motion.button>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypeWriter from "./TypeWriter";
 import { FaArrowRight, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
 import {
@@ -20,6 +20,23 @@ gsap.registerPlugin(ScrollTrigger);
 function Home() {
   const contentRef = useRef(null);
   const techStackRef = useRef(null);
+  const [show3D, setShow3D] = useState(false);
+
+  // Performance check to decide whether to show 3D model
+  useEffect(() => {
+    const checkPerformance = () => {
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      const isHighPerformance = !connection || connection.effectiveType === '4g';
+      const hasGoodHardware = window.devicePixelRatio <= 2; // Not super high DPI
+      const isDesktop = window.innerWidth > 768;
+      
+      setShow3D(isHighPerformance && hasGoodHardware && isDesktop);
+    };
+
+    checkPerformance();
+    window.addEventListener('resize', checkPerformance);
+    return () => window.removeEventListener('resize', checkPerformance);
+  }, []);
 
   useEffect(() => {
     // Staggered entrance animation for hero section
@@ -61,41 +78,46 @@ function Home() {
   }, []);
 
   return (
-    <main className="section-padding pt-28 min-h-screen">
+    <main className="section-padding pt-32 pb-20 min-h-screen relative">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-violet-600/5"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+
       <div
-        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10"
         ref={contentRef}
       >
         {/* Left column - Text content */}
-        <div className="space-y-6">
-          <p className="hero-element text-sky-500 dark:text-sky-400 font-medium">
-            Hello, I'm
-          </p>
-          <h1 className="hero-element font-bold mb-4">
-            <span className="text-4xl md:text-6xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 dark:from-sky-400 dark:via-blue-500 dark:to-indigo-600 bg-clip-text text-transparent drop-shadow-sm animate-pulse-slow relative">
-              Nguyen Tran Gia Si
-              <span className="absolute -inset-1 bg-sky-500/10 dark:bg-sky-400/10 blur-xl rounded-lg -z-10"></span>
-            </span>
-          </h1>
+        <div className="space-y-8">
+          <div className="hero-element">
+            <p className="text-blue-400 font-medium text-lg mb-2">Hello, I'm</p>
+            <h1 className="font-bold mb-6">
+              <span className="text-5xl md:text-7xl gradient-text drop-shadow-2xl animate-pulse-slow relative block">
+                Nguyen Tran Gia Si
+                <span className="absolute -inset-2 bg-blue-500/5 blur-2xl rounded-2xl -z-10"></span>
+              </span>
+            </h1>
+          </div>
 
-          <div className="hero-element text-2xl md:text-3xl font-semibold text-slate-600 dark:text-slate-200 mb-6 h-14">
+          <div className="hero-element text-2xl md:text-4xl font-semibold text-slate-200 mb-8 h-16">
             <TypeWriter
               texts={[
                 "Java Developer",
-                "Spring Boot Expert",
+                "Spring Boot Expert", 
                 "Backend Engineer",
                 "Full Stack Developer",
               ]}
             />
           </div>
 
-          <p className="hero-element text-slate-600 dark:text-slate-300 mb-8 max-w-lg">
-            I build enterprise applications with Java & Spring Boot.
+          <p className="hero-element text-slate-300 text-lg mb-10 max-w-2xl leading-relaxed">
+            I build enterprise applications with <span className="text-blue-400 font-semibold">Java & Spring Boot</span>.
             Specializing in developing RESTful APIs, microservices, and security
             solutions with Spring Security & JWT in enterprise environments.
           </p>
 
-          <div className="hero-element flex flex-wrap gap-4">
+          <div className="hero-element flex flex-wrap gap-6">
             <button
               onClick={() => {
                 const element = document.getElementById("projects");
@@ -107,123 +129,100 @@ function Home() {
                   });
                 }
               }}
-              className="btn-primary flex items-center"
+              className="btn-primary flex items-center gap-3"
             >
-              View Projects <FaArrowRight className="ml-2" />
+              View Projects <FaArrowRight className="text-lg" />
             </button>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <a
                 href="https://github.com/giasinguyen"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors p-2 hover:-translate-y-1 transform duration-300"
+                className="glass-effect text-slate-300 hover:text-blue-400 transition-all p-4 rounded-xl hover:-translate-y-1 transform duration-300 hover:shadow-lg hover:shadow-blue-500/20"
                 aria-label="GitHub"
               >
-                <FaGithub className="h-6 w-6" />
+                <FaGithub className="h-7 w-7" />
               </a>
               <a
                 href="https://linkedin.com/in/giasinguyen"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors p-2 hover:-translate-y-1 transform duration-300"
+                className="glass-effect text-slate-300 hover:text-blue-400 transition-all p-4 rounded-xl hover:-translate-y-1 transform duration-300 hover:shadow-lg hover:shadow-blue-500/20"
                 aria-label="LinkedIn"
               >
-                <FaLinkedin className="h-6 w-6" />
+                <FaLinkedin className="h-7 w-7" />
               </a>
             </div>
           </div>
 
           {/* Tech stack tags */}
-          <div className="hero-element mt-12" ref={techStackRef}>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
-              Technologies
+          <div className="hero-element mt-16" ref={techStackRef}>
+            <p className="text-slate-400 mb-6 text-lg font-medium">
+              Technologies I work with
             </p>
-            <div className="flex flex-wrap gap-3">
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-red-500 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-red-500 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <FaJava /> Java
+            <div className="flex flex-wrap gap-4">
+              <span className="tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-red-400 text-sm rounded-xl border border-red-500/20 hover:border-red-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/10">
+                <FaJava className="text-lg" /> Java
               </span>
 
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-green-500 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-green-500 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiSpring /> Spring
+              <span className="tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-green-400 text-sm rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+                <SiSpring className="text-lg" /> Spring
               </span>
 
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-green-600 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-green-600 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiSpringboot /> Spring Boot
+              <span className="tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-green-500 text-sm rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+                <SiSpringboot className="text-lg" /> Spring Boot
               </span>
 
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-green-700 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-green-700 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiSpringsecurity /> Spring Security
+              <span className="tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-blue-400 text-sm rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+                <SiReact className="text-lg" /> React
               </span>
 
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-blue-500 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-blue-500 transition-colors 
-                           duration-300 shadow-md"
-              >
-                JPA / Hibernate
+              <span className="tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-blue-500 text-sm rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+                <SiTypescript className="text-lg" /> TypeScript
               </span>
 
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-sky-500 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-sky-500 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiReact /> React
-              </span>
-
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-blue-600 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-blue-600 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiTypescript /> TypeScript
-              </span>
-
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-yellow-400 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-yellow-400 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiJavascript /> JavaScript
-              </span>
-
-              <span
-                className="tech-tag flex items-center gap-1 px-3 py-2 bg-white dark:bg-slate-800 text-sky-400 text-sm rounded-full 
-                           border border-slate-300 dark:border-slate-700 hover:border-sky-400 transition-colors 
-                           duration-300 shadow-md"
-              >
-                <SiTailwindcss /> TailwindCSS
+              <span className="tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-cyan-400 text-sm rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10">
+                <SiTailwindcss className="text-lg" /> TailwindCSS
               </span>
             </div>
           </div>
         </div>
 
         {/* Right column - 3D model/image */}
-        <div className="hero-element hidden lg:block">
-          <HeroModel />
+        <div className="hero-element hidden lg:block relative">
+          {show3D ? (
+            <HeroModel />
+          ) : (
+            <div className="relative w-full h-[500px] flex items-center justify-center">
+              {/* Modern geometric alternative to 3D model */}
+              <div className="relative">
+                {/* Main glowing orb */}
+                <div className="w-80 h-80 bg-gradient-to-br from-blue-500/30 via-violet-500/20 to-cyan-500/30 rounded-full blur-2xl animate-pulse-slow neon-glow"></div>
+                
+                {/* Floating geometric shapes */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative w-64 h-64">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 border-2 border-blue-400/60 rounded-lg rotate-45 animate-bounce-slow"></div>
+                    <div className="absolute bottom-0 right-0 w-12 h-12 bg-gradient-to-br from-violet-500/40 to-cyan-500/40 rounded-full animate-pulse delay-500"></div>
+                    <div className="absolute top-1/4 left-0 w-8 h-8 border border-cyan-400/60 rotate-12 animate-pulse delay-1000"></div>
+                    <div className="absolute bottom-1/4 left-1/4 w-6 h-16 bg-gradient-to-t from-blue-500/30 to-transparent rounded-full animate-bounce-slow delay-700"></div>
+                  </div>
+                </div>
 
-          {/* Decorative circle behind 3D model */}
-          <div className="absolute top-1/2 right-1/4 transform -translate-y-1/2 -z-10">
-            <div className="w-64 h-64 rounded-full border border-blue-500/20 animate-[spin_20s_linear_infinite]"></div>
-            <div className="w-80 h-80 rounded-full border border-purple-500/20 animate-[spin_25s_linear_infinite_reverse] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-            <div className="w-96 h-96 rounded-full border border-indigo-500/10 animate-[spin_30s_linear_infinite] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                {/* Orbiting rings */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-96 h-96 border border-blue-400/20 rounded-full animate-[spin_15s_linear_infinite]"></div>
+                  <div className="absolute w-80 h-80 border border-violet-400/20 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
+                  <div className="absolute w-64 h-64 border border-cyan-400/20 rounded-full animate-[spin_25s_linear_infinite]"></div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Background grid pattern */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <div className="w-full h-full bg-gradient-to-br from-transparent via-blue-500/5 to-transparent"></div>
           </div>
         </div>
       </div>

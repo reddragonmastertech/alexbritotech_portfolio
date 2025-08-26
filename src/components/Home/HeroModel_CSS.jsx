@@ -1,6 +1,18 @@
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 function HeroModel() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <div className="relative w-[500px] h-[500px] flex items-center justify-center">

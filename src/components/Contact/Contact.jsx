@@ -1,26 +1,25 @@
 import { useState } from "react";
- 
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Mail,
-  User,
-  Send,
-  Phone,
-  MapPin,
-  Github,
-  Linkedin,
-  Twitter,
-  Instagram,
-  MessageCircle,
-  CheckCircle,
-  AlertCircle,
-  X,
-} from "lucide-react";
+  FaEnvelope,
+  FaUser,
+  FaPaperPlane,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaComments,
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimes,
+  FaRocket,
+  FaCode,
+  FaHeart
+} from "react-icons/fa";
 
 function Contact() {
-  // Light mode only - no dark mode support
-  const isDarkMode = false;
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -48,16 +47,12 @@ function Contact() {
 
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
     }
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
-    ) {
-      newErrors.email = "Invalid email address";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.subject.trim()) {
@@ -67,11 +62,10 @@ function Contact() {
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
+      newErrors.message = "Message must be at least 10 characters long";
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
   };
 
   const handleInputChange = (e) => {
@@ -80,30 +74,32 @@ function Contact() {
 
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validateForm()) return;
+    
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      addToast("error", "Please fix the errors in the form");
+      return;
+    }
 
     setIsSubmitting(true);
-
+    
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      addToast(
-        "success",
-        "Message sent successfully! I'll get back to you soon."
-      );
-
-      // Reset form
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      addToast("success", "Message sent successfully! I'll get back to you soon.");
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch {
-      addToast("error", "Failed to send message. Please try again later.");
+      setErrors({});
+    } catch (err) {
+      addToast("error", "Failed to send message. Please try again.");
+      console.error("Contact form error:", err);
     } finally {
       setIsSubmitting(false);
     }
@@ -111,523 +107,375 @@ function Contact() {
 
   const contactInfo = [
     {
-      icon: Mail,
+      icon: FaEnvelope,
       label: "Email",
-      value: "giasinguyentran@gmail.com",
-      href: "mailto:giasinguyentran@gmail.com",
-      color: "from-blue-500 to-cyan-500",
+      value: "giasinew@gmail.com",
+      href: "mailto:giasinew@gmail.com",
+      color: "text-red-400",
+      bgColor: "bg-red-500/10",
+      borderColor: "border-red-500/30"
     },
     {
-      icon: Phone,
+      icon: FaPhone,
       label: "Phone",
-      value: "+(84) 34 899 6487",
-      href: "tel:+84348996487",
-      color: "from-emerald-500 to-teal-500",
+      value: "+84 123 456 789",
+      href: "tel:+84123456789",
+      color: "text-green-400",
+      bgColor: "bg-green-500/10",
+      borderColor: "border-green-500/30"
     },
     {
-      icon: MapPin,
+      icon: FaMapMarkerAlt,
       label: "Location",
       value: "Ho Chi Minh City, Vietnam",
-      href: null,
-      color: "from-purple-500 to-pink-500",
-    },
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500/30"
+    }
   ];
 
   const socialLinks = [
     {
-      icon: Github,
-      href: "https://github.com/giasinguyen",
+      icon: FaGithub,
       label: "GitHub",
-      color: "hover:bg-gray-600",
+      href: "https://github.com/giasinguyen",
+      color: "hover:text-gray-400",
+      bgColor: "hover:bg-gray-500/10"
     },
     {
-      icon: Linkedin,
-      href: "https://linkedin.com/in/giasinguyen",
+      icon: FaLinkedin,
       label: "LinkedIn",
-      color: "hover:bg-blue-600",
+      href: "https://linkedin.com/in/giasinguyen",
+      color: "hover:text-blue-400",
+      bgColor: "hover:bg-blue-500/10"
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com/giasinguyen",
+      icon: FaTwitter,
       label: "Twitter",
-      color: "hover:bg-sky-500",
+      href: "https://twitter.com/giasinguyen",
+      color: "hover:text-sky-400",
+      bgColor: "hover:bg-sky-500/10"
     },
     {
-      icon: Instagram,
-      href: "https://instagram.com/iamgiasi",
+      icon: FaInstagram,
       label: "Instagram",
-      color: "hover:bg-pink-600",
-    },
+      href: "https://instagram.com/giasinguyen",
+      color: "hover:text-pink-400",
+      bgColor: "hover:bg-pink-500/10"
+    }
   ];
 
   return (
-    <main className="min-h-screen pt-28"
-    >
-
-      {/* Toast Container */}
-      <div className="fixed top-4 right-4 z-50 space-y-2">
-        <AnimatePresence>
-          {toasts.map((toast) => (
-            <motion.div
-              key={toast.id}
-              initial={{ opacity: 0, x: 100, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: 100, scale: 0.8 }}
-              className={`flex items-center gap-3 p-4 rounded-xl backdrop-blur-sm shadow-lg border ${
-                toast.type === "success"
-                  ? `${
-                      isDarkMode
-                        ? "bg-emerald-500/20 border-emerald-500/30 text-emerald-400"
-                        : "bg-emerald-500/10 border-emerald-500/20 text-emerald-600"
-                    }`
-                  : `${
-                      isDarkMode
-                        ? "bg-red-500/20 border-red-500/30 text-red-400"
-                        : "bg-red-500/10 border-red-500/20 text-red-600"
-                    }`
-              }`}
-            >
-              {toast.type === "success" ? (
-                <CheckCircle className="w-5 h-5" />
-              ) : (
-                <AlertCircle className="w-5 h-5" />
-              )}
-              <span className="text-sm font-medium">{toast.message}</span>
-              <button
-                onClick={() => removeToast(toast.id)}
-                className="text-current/60 hover:text-current transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+    <main className="min-h-screen pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-100 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-violet-600/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Header Section */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className={`inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm border mb-8 ${
-              isDarkMode
-                ? "bg-slate-800/90 border-slate-600/50"
-                : "bg-white/80 border-white/30"
-            }`}
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-8"
           >
-            <MessageCircle className="w-6 h-6 text-blue-500" />
-            <span
-              className={`text-lg font-semibold ${
-                isDarkMode ? "text-slate-100" : "text-slate-700"
-              }`}
-            >
+            <FaRocket className="w-6 h-6 text-blue-400" />
+            <span className="text-lg font-semibold text-slate-300">
               Let's Connect
             </span>
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
             Get In{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="gradient-text">
               Touch
             </span>
           </h1>
 
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-8 rounded-full" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mb-8 rounded-full" />
 
-          <p
-            className={`text-xl max-w-3xl mx-auto leading-relaxed ${
-              isDarkMode ? "text-slate-200" : "text-slate-600"
-            }`}
-          >
-            Have a project in mind or just want to say hello? I'm always open to
-            discussing new projects, creative ideas, or opportunities to bring
-            your vision to life.
+          <p className="text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto">
+            Have a project in mind or just want to chat about technology? 
+            I'd love to hear from you. Let's create something amazing together!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Contact Info */}
-          <motion.div
-            className="lg:col-span-2 space-y-8"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div
-              className={`backdrop-blur-xl rounded-2xl p-8 shadow-xl border ${
-                isDarkMode
-                  ? "bg-slate-800/95 border-slate-600/50"
-                  : "bg-white/90 border-white/30"
-              }`}
-            >
-              <h2
-                className={`text-3xl font-bold mb-8 ${
-                  isDarkMode ? "text-white" : "text-slate-800"
-                }`}
-              >
-                Contact Information
-              </h2>
-
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={info.label}
-                    className="group flex items-start gap-4"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  >
-                    <div
-                      className={`p-4 rounded-xl bg-gradient-to-r ${info.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <info.icon className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3
-                        className={`text-sm font-semibold uppercase tracking-wider mb-1 ${
-                          isDarkMode ? "text-slate-400" : "text-slate-500"
-                        }`}
-                      >
-                        {info.label}
-                      </h3>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className={`text-lg font-semibold transition-colors duration-200 ${
-                            isDarkMode
-                              ? "text-slate-100 hover:text-blue-400"
-                              : "text-slate-700 hover:text-blue-600"
-                          }`}
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p
-                          className={`text-lg font-semibold ${
-                            isDarkMode ? "text-slate-100" : "text-slate-700"
-                          }`}
-                        >
-                          {info.value}
-                        </p>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Social Links */}
-              <div
-                className={`mt-12 pt-8 border-t ${
-                  isDarkMode ? "border-slate-600/60" : "border-slate-200/60"
-                }`}
-              >
-                <h3
-                  className={`text-xl font-semibold mb-6 ${
-                    isDarkMode ? "text-white" : "text-slate-800"
-                  }`}
-                >
-                  Connect with me
-                </h3>
-                <div className="flex gap-4">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`p-3 rounded-xl transition-all duration-300 ${
-                        social.color
-                      } hover:text-white hover:scale-110 hover:shadow-lg ${
-                        isDarkMode
-                          ? "bg-slate-700/90 text-slate-200"
-                          : "bg-slate-100 text-slate-600"
-                      }`}
-                      aria-label={social.label}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                      whileHover={{ y: -2 }}
-                    >
-                      <social.icon className="w-6 h-6" />
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="space-y-8"
           >
-            <div
-              className={`backdrop-blur-xl rounded-2xl p-8 shadow-xl border ${
-                isDarkMode
-                  ? "bg-slate-800/95 border-slate-600/50"
-                  : "bg-white/90 border-white/30"
-              }`}
-            >
-              <h2
-                className={`text-3xl font-bold mb-8 ${
-                  isDarkMode ? "text-white" : "text-slate-800"
-                }`}
-              >
-                Send Me a Message
-              </h2>
+            <div className="card">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-violet-500 rounded-xl flex items-center justify-center">
+                  <FaComments className="text-white text-xl" />
+                </div>
+                <h2 className="text-3xl font-bold text-slate-100">Send Message</h2>
+              </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name Field */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                  >
-                    <label
-                      htmlFor="name"
-                      className={`block text-sm font-semibold mb-2 ${
-                        isDarkMode ? "text-slate-300" : "text-slate-700"
-                      }`}
-                    >
-                      Your Name
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-slate-300 font-medium">
+                      Your Name *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <User
-                          className={`w-5 h-5 ${
-                            isDarkMode ? "text-slate-500" : "text-slate-400"
-                          }`}
-                        />
-                      </div>
+                      <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
                       <input
+                        type="text"
                         id="name"
                         name="name"
-                        type="text"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Enter your name"
-                        className={`w-full pl-12 pr-4 py-3 rounded-xl border-2 transition-all duration-200 backdrop-blur-sm ${
-                          isDarkMode
-                            ? "bg-slate-700/70 text-white placeholder-slate-400"
-                            : "bg-white/70 text-slate-900 placeholder-slate-500"
-                        } ${
-                          errors.name
-                            ? `${
-                                isDarkMode ? "border-red-500" : "border-red-400"
-                              } focus:border-red-500 focus:ring-4 focus:ring-red-500/20`
-                            : `${
-                                isDarkMode
-                                  ? "border-slate-500"
-                                  : "border-slate-200"
-                              } focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20`
+                        placeholder="Enter your full name"
+                        className={`w-full pl-12 pr-4 py-4 bg-slate-800/50 border rounded-xl transition-all duration-300 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 ${
+                          errors.name 
+                            ? 'border-red-500 focus:ring-red-500/50' 
+                            : 'border-slate-600 focus:ring-blue-500/50 focus:border-blue-500'
                         }`}
                       />
                     </div>
                     {errors.name && (
-                      <motion.p
-                        className="mt-2 text-sm text-red-500 flex items-center gap-1"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                      >
-                        <AlertCircle className="w-4 h-4" />
+                      <p className="text-red-400 text-sm flex items-center gap-2">
+                        <FaExclamationTriangle className="text-xs" />
                         {errors.name}
-                      </motion.p>
+                      </p>
                     )}
-                  </motion.div>
+                  </div>
 
                   {/* Email Field */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                  >
-                    <label
-                      htmlFor="email"
-                      className={`block text-sm font-semibold mb-2 ${
-                        isDarkMode ? "text-slate-300" : "text-slate-700"
-                      }`}
-                    >
-                      Your Email
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-slate-300 font-medium">
+                      Email Address *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Mail
-                          className={`w-5 h-5 ${
-                            isDarkMode ? "text-slate-500" : "text-slate-400"
-                          }`}
-                        />
-                      </div>
+                      <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
                       <input
+                        type="email"
                         id="email"
                         name="email"
-                        type="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="Enter your email"
-                        className={`w-full pl-12 pr-4 py-3 rounded-xl border-2 transition-all duration-200 backdrop-blur-sm ${
-                          isDarkMode
-                            ? "bg-slate-700/70 text-white placeholder-slate-400"
-                            : "bg-white/70 text-slate-900 placeholder-slate-500"
-                        } ${
-                          errors.email
-                            ? `${
-                                isDarkMode ? "border-red-500" : "border-red-400"
-                              } focus:border-red-500 focus:ring-4 focus:ring-red-500/20`
-                            : `${
-                                isDarkMode
-                                  ? "border-slate-500"
-                                  : "border-slate-200"
-                              } focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20`
+                        placeholder="your.email@example.com"
+                        className={`w-full pl-12 pr-4 py-4 bg-slate-800/50 border rounded-xl transition-all duration-300 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 ${
+                          errors.email 
+                            ? 'border-red-500 focus:ring-red-500/50' 
+                            : 'border-slate-600 focus:ring-blue-500/50 focus:border-blue-500'
                         }`}
                       />
                     </div>
                     {errors.email && (
-                      <motion.p
-                        className="mt-2 text-sm text-red-500 flex items-center gap-1"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                      >
-                        <AlertCircle className="w-4 h-4" />
+                      <p className="text-red-400 text-sm flex items-center gap-2">
+                        <FaExclamationTriangle className="text-xs" />
                         {errors.email}
-                      </motion.p>
+                      </p>
                     )}
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Subject Field */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                >
-                  <label
-                    htmlFor="subject"
-                    className={`block text-sm font-semibold mb-2 ${
-                      isDarkMode ? "text-slate-300" : "text-slate-700"
-                    }`}
-                  >
-                    Subject
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="text-slate-300 font-medium">
+                    Subject *
                   </label>
                   <input
+                    type="text"
                     id="subject"
                     name="subject"
-                    type="text"
                     value={formData.subject}
                     onChange={handleInputChange}
                     placeholder="What's this about?"
-                    className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 backdrop-blur-sm ${
-                      isDarkMode
-                        ? "bg-slate-700/70 text-white placeholder-slate-400"
-                        : "bg-white/70 text-slate-900 placeholder-slate-500"
-                    } ${
-                      errors.subject
-                        ? `${
-                            isDarkMode ? "border-red-500" : "border-red-400"
-                          } focus:border-red-500 focus:ring-4 focus:ring-red-500/20`
-                        : `${
-                            isDarkMode ? "border-slate-500" : "border-slate-200"
-                          } focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20`
+                    className={`w-full px-4 py-4 bg-slate-800/50 border rounded-xl transition-all duration-300 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 ${
+                      errors.subject 
+                        ? 'border-red-500 focus:ring-red-500/50' 
+                        : 'border-slate-600 focus:ring-blue-500/50 focus:border-blue-500'
                     }`}
                   />
                   {errors.subject && (
-                    <motion.p
-                      className="mt-2 text-sm text-red-500 flex items-center gap-1"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                    >
-                      <AlertCircle className="w-4 h-4" />
+                    <p className="text-red-400 text-sm flex items-center gap-2">
+                      <FaExclamationTriangle className="text-xs" />
                       {errors.subject}
-                    </motion.p>
+                    </p>
                   )}
-                </motion.div>
+                </div>
 
                 {/* Message Field */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                >
-                  <label
-                    htmlFor="message"
-                    className={`block text-sm font-semibold mb-2 ${
-                      isDarkMode ? "text-slate-300" : "text-slate-700"
-                    }`}
-                  >
-                    Your Message
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-slate-300 font-medium">
+                    Message *
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    rows={6}
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Tell me about your project or just say hello..."
-                    className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 backdrop-blur-sm resize-none ${
-                      isDarkMode
-                        ? "bg-slate-700/70 text-white placeholder-slate-400"
-                        : "bg-white/70 text-slate-900 placeholder-slate-500"
-                    } ${
-                      errors.message
-                        ? `${
-                            isDarkMode ? "border-red-500" : "border-red-400"
-                          } focus:border-red-500 focus:ring-4 focus:ring-red-500/20`
-                        : `${
-                            isDarkMode ? "border-slate-500" : "border-slate-200"
-                          } focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20`
+                    rows="6"
+                    className={`w-full px-4 py-4 bg-slate-800/50 border rounded-xl transition-all duration-300 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 resize-none ${
+                      errors.message 
+                        ? 'border-red-500 focus:ring-red-500/50' 
+                        : 'border-slate-600 focus:ring-blue-500/50 focus:border-blue-500'
                     }`}
                   />
                   {errors.message && (
-                    <motion.p
-                      className="mt-2 text-sm text-red-500 flex items-center gap-1"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                    >
-                      <AlertCircle className="w-4 h-4" />
+                    <p className="text-red-400 text-sm flex items-center gap-2">
+                      <FaExclamationTriangle className="text-xs" />
                       {errors.message}
-                    </motion.p>
+                    </p>
                   )}
-                </motion.div>
+                </div>
 
                 {/* Submit Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.9 }}
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full btn-primary flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
-                  <motion.button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full px-8 py-4 rounded-xl font-semibold text-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
-                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        Send Message
-                      </>
-                    )}
-                  </motion.button>
-                </motion.div>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <FaPaperPlane className="text-lg" />
+                      Send Message
+                    </>
+                  )}
+                </motion.button>
               </form>
             </div>
           </motion.div>
+
+          {/* Contact Info & Social */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-8"
+          >
+            {/* Contact Information */}
+            <div className="card">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                  <FaCode className="text-white text-xl" />
+                </div>
+                <h2 className="text-3xl font-bold text-slate-100">Get in Touch</h2>
+              </div>
+
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => {
+                  const Icon = info.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      className={`flex items-center gap-4 p-4 ${info.bgColor} border ${info.borderColor} rounded-2xl transition-all duration-300 hover:scale-105`}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <div className={`w-12 h-12 ${info.bgColor} border ${info.borderColor} rounded-xl flex items-center justify-center`}>
+                        <Icon className={`text-xl ${info.color}`} />
+                      </div>
+                      <div>
+                        <p className="text-slate-400 text-sm">{info.label}</p>
+                        {info.href ? (
+                          <a 
+                            href={info.href}
+                            className={`text-slate-100 font-semibold ${info.color} transition-colors`}
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <p className="text-slate-100 font-semibold">{info.value}</p>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="card">
+              <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
+                <FaHeart className="text-red-400" />
+                Follow Me
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-3 p-4 glass-effect border border-slate-700/50 rounded-2xl text-slate-400 transition-all duration-300 ${social.color} ${social.bgColor} hover:scale-105 hover:shadow-lg`}
+                      whileHover={{ y: -2 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <Icon className="text-2xl" />
+                      <span className="font-medium">{social.label}</span>
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
+
+           
+          </motion.div>
         </div>
+      </div>
+
+      {/* Toast Notifications */}
+      <div className="fixed top-20 right-6 z-50 space-y-4">
+        <AnimatePresence>
+          {toasts.map((toast) => (
+            <motion.div
+              key={toast.id}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 100 }}
+              className={`flex items-center gap-3 px-6 py-4 rounded-2xl shadow-lg max-w-md glass-effect border ${
+                toast.type === "success"
+                  ? "border-green-500/30 bg-green-500/10"
+                  : "border-red-500/30 bg-red-500/10"
+              }`}
+            >
+              {toast.type === "success" ? (
+                <FaCheckCircle className="text-green-400 text-xl flex-shrink-0" />
+              ) : (
+                <FaExclamationTriangle className="text-red-400 text-xl flex-shrink-0" />
+              )}
+              <p className={`${toast.type === "success" ? "text-green-100" : "text-red-100"} font-medium`}>
+                {toast.message}
+              </p>
+              <button
+                onClick={() => removeToast(toast.id)}
+                className={`${toast.type === "success" ? "text-green-400 hover:text-green-300" : "text-red-400 hover:text-red-300"} transition-colors`}
+              >
+                <FaTimes />
+              </button>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </main>
   );

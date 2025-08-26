@@ -268,7 +268,7 @@ const Footer = () => {
         whileTap={{ scale: 0.9 }}
         transition={{ 
           duration: 0.3,
-          ease: "backOut"
+          ease: "back.out(1.7)"
         }}
         viewport={{ once: true }}
         aria-label="Scroll to top"

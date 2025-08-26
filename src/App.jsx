@@ -1,32 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import performanceMonitor from './utils/performanceMonitor'
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import Navbar from './components/Layout/Navbar'
 import Footer from './components/Layout/Footer'
 import ScrollToTop from './components/Layout/ScrollToTop'
 import Preloader from './components/Layout/Preloader'
-import Particles3D from './components/Layout/Particles3D'
+import LoadingSpinner from './components/UI/LoadingSpinner'
 
+// Core components (loaded immediately)
 import Home from './components/Home/Home'
-import About from './components/About/About'
-import Projects from './components/Projects/Projects'
-import Resume from './components/Resume/Resume'
-import Blog from './components/Blog/Blog'
-import BlogDetail from './components/Blog/BlogDetail'
 import Contact from './components/Contact/Contact'
-import PrivacyPolicy from './components/Legal/PrivacyPolicy'
-import TermsOfService from './components/Legal/TermsOfService'
+
+// Lazy load heavy components to improve initial load time
+const About = lazy(() => import('./components/About/About'))
+const Projects = lazy(() => import('./components/Projects/Projects'))
+const Resume = lazy(() => import('./components/Resume/Resume'))
+const Blog = lazy(() => import('./components/Blog/Blog'))
+const BlogDetail = lazy(() => import('./components/Blog/BlogDetail'))
+const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'))
+const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'))
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate assets loading
+    // Reduced loading time for faster app startup
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+      // Log performance summary after app loads
+      setTimeout(() => performanceMonitor.logSummary(), 1000);
+    }, 1000); // Reduced from 2000ms to 1000ms
 
     return () => clearTimeout(timer);
   }, []);
@@ -34,13 +40,12 @@ function App() {
   return (
     <ErrorBoundary fallbackMessage="Something went wrong with the portfolio. Please refresh the page.">
       <Router>
-        <div className="App min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-800">
+        <div className="App min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-100">
           {loading ? (
             <Preloader />
           ) : (
             <>
               <Navbar />
-              <Particles3D />
 
               <main className="relative">
                 <ScrollToTop />
@@ -54,19 +59,27 @@ function App() {
                           </section>
 
                           <section id="about">
-                            <About />
+                            <Suspense fallback={<LoadingSpinner />}>
+                              <About />
+                            </Suspense>
                           </section>
 
                           <section id="projects">
-                            <Projects />
+                            <Suspense fallback={<LoadingSpinner />}>
+                              <Projects />
+                            </Suspense>
                           </section>
 
                           <section id="blog">
-                            <Blog />
+                            <Suspense fallback={<LoadingSpinner />}>
+                              <Blog />
+                            </Suspense>
                           </section>
 
                           <section id="resume">
-                            <Resume />
+                            <Suspense fallback={<LoadingSpinner />}>
+                              <Resume />
+                            </Suspense>
                           </section>
 
                           <section id="contact">
@@ -76,11 +89,23 @@ function App() {
                       } />
 
                       {/* Individual Blog Posts */}
-                      <Route path="/blog/:slug" element={<BlogDetail />} />
+                      <Route path="/blog/:slug" element={
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <BlogDetail />
+                        </Suspense>
+                      } />
 
                       {/* Legal Pages */}
-                      <Route path="/privacy" element={<PrivacyPolicy />} />
-                      <Route path="/terms" element={<TermsOfService />} />
+                      <Route path="/privacy" element={
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <PrivacyPolicy />
+                        </Suspense>
+                      } />
+                      <Route path="/terms" element={
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <TermsOfService />
+                        </Suspense>
+                      } />
                     </Routes>
                   </ErrorBoundary>
                 </main>

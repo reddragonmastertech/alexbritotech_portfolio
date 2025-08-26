@@ -16,7 +16,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
           animations: ['framer-motion', 'gsap'],
         },
       },
@@ -27,7 +26,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "three"],
+    include: ["react", "react-dom"],
     exclude: ["lucide-react"],
   },
   define: {
