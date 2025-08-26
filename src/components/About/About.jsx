@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { 
   FaServer, 
   FaReact, 
@@ -19,19 +19,33 @@ import {
   SiDocker
 } from "react-icons/si";
 
+// Lazy load GitHubContributions component
+const GitHubContributions = lazy(() => import('./GitHubContributions'));
+
 function About() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    // Use passive listener for better performance
+    const handleResize = () => {
+      // Debounce resize events
+      clearTimeout(window.resizeTimeout);
+      window.resizeTimeout = setTimeout(checkMobile, 100);
+    };
+    
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(window.resizeTimeout);
+    };
   }, []);
-  const skills = [
+
+  // Memoize static data for better performance
+  const skills = useMemo(() => [
     { icon: <FaJava />, name: "Java", level: 95, color: "from-red-500 to-orange-500" },
     { icon: <SiSpringboot />, name: "Spring Boot", level: 90, color: "from-green-500 to-emerald-500" },
     { icon: <SiSpring />, name: "Spring", level: 88, color: "from-green-400 to-green-600" },
@@ -40,12 +54,12 @@ function About() {
     { icon: <SiJavascript />, name: "JavaScript", level: 88, color: "from-yellow-400 to-yellow-600" },
     { icon: <FaDatabase />, name: "SQL/NoSQL", level: 80, color: "from-purple-500 to-pink-500" },
     { icon: <SiDocker />, name: "Docker", level: 75, color: "from-blue-500 to-blue-600" }
-  ];
+  ], []);
 
-  const experiences = [
+  const experiences = useMemo(() => [
     {
       icon: <FaRocket />,
-      title: "Full-Stack Development",
+      title: "Full-Stack Development", 
       description: "Building end-to-end applications with modern tech stack"
     },
     {
@@ -63,7 +77,7 @@ function About() {
       title: "Continuous Learning",
       description: "Always exploring new technologies and best practices"
     }
-  ];
+  ], []);
 
   return (
     <section className="section-padding py-20 relative overflow-hidden">

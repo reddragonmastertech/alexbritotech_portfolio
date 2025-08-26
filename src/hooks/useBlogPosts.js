@@ -29,10 +29,26 @@ const useBlogPosts = (activeCategory = "all", searchTerm = "") => {
     loadBlogPosts();
   }, []);
 
-  // Extract unique categories
+  // Extract unique categories with counts
   const categories = useMemo(() => {
-    const uniqueCategories = [...new Set(posts.map((post) => post.category))];
-    return ["all", ...uniqueCategories];
+    const categoriesMap = posts.reduce((acc, post) => {
+      acc[post.category] = (acc[post.category] || 0) + 1;
+      return acc;
+    }, {});
+
+    const categoryObjects = [
+      { value: 'all', label: 'All Posts', count: posts.length }
+    ];
+
+    Object.entries(categoriesMap).forEach(([category, count]) => {
+      categoryObjects.push({
+        value: category,
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+        count
+      });
+    });
+
+    return categoryObjects;
   }, [posts]);
 
   // Filter posts based on category and search term

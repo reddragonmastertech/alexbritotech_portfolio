@@ -1,8 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { motion } from 'framer-motion';
 
-function Preloader() {
+const Preloader = memo(function Preloader() {
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    // Detect mobile for optimized animations
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    
     // Prevent scroll during loading
     document.body.style.overflow = 'hidden';
     
@@ -16,30 +25,32 @@ function Preloader() {
       className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: isMobile ? 0.3 : 0.5 }}
     >
-      {/* Background effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+      {/* Simplified background effects for mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+      )}
 
       <div className="relative z-10 text-center">
-        {/* Logo */}
+        {/* Logo with mobile-optimized animations */}
         <motion.div
           className="mb-8"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut" }}
         >
           <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <span className="text-white text-2xl font-bold">GS</span>
           </div>
           <motion.h2
             className="text-2xl font-bold gradient-text"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: isMobile ? 0.2 : 0.3, duration: isMobile ? 0.4 : 0.6 }}
           >
             GiaSi Dev
           </motion.h2>
@@ -97,6 +108,6 @@ function Preloader() {
       </div>
     </motion.div>
   );
-}
+});
 
 export default Preloader;

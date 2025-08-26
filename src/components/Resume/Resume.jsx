@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { FaDownload, FaEye, FaFilePdf, FaSpinner, FaGraduationCap, FaBriefcase, FaCertificate, FaAward } from 'react-icons/fa'
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
@@ -8,25 +8,27 @@ function Resume() {
   const [showPDF, setShowPDF] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleViewPDF = () => {
+  // Use useCallback to prevent unnecessary re-renders
+  const handleViewPDF = useCallback(() => {
     setIsLoading(true)
+    // Reduced loading time for better UX
     setTimeout(() => {
       setIsLoading(false)
       setShowPDF(true)
-    }, 1000)
-  }
+    }, 500)
+  }, [])
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = useCallback(() => {
     const link = document.createElement('a')
     link.href = '/documents/GiaSi_Resume.pdf'
     link.download = 'GiaSi_Nguyen_Resume.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
-  }
+  }, [])
 
-  // Experience data
-  const experiences = [
+  // Memoize static data for performance
+  const experiences = useMemo(() => [
     {
       title: "Senior Full Stack Developer",
       company: "TechCorp Solutions",
@@ -49,10 +51,10 @@ function Resume() {
         "Collaborated with cross-functional teams to deliver projects on time"
       ]
     }
-  ]
+  ], []);
 
-  // Education data
-  const education = [
+  // Education data - also memoized
+  const education = useMemo(() => [
     {
       degree: "Bachelor of Computer Science",
       institution: "University of Technology",
@@ -60,10 +62,10 @@ function Resume() {
       location: "Ho Chi Minh City, Vietnam",
       gpa: "3.8/4.0"
     }
-  ]
+  ], []);
 
-  // Certifications
-  const certifications = [
+  // Certifications - memoized
+  const certifications = useMemo(() => [
     {
       name: "AWS Certified Solutions Architect",
       issuer: "Amazon Web Services",
@@ -79,7 +81,7 @@ function Resume() {
       issuer: "MongoDB Inc.",
       year: "2021"
     }
-  ]
+  ], []);
 
   return (
     <>

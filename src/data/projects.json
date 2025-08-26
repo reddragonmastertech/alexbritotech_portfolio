@@ -28,35 +28,5 @@
     "category": "fullstack",
     "githubUrl": "https://github.com/giasinguyen/NatureGrain",
     "demoUrl": "https://github.com/giasinguyen/NatureGrain"
-  },
-  {
-    "id": 4,
-    "title": "REST API Server",
-    "description": "A robust REST API server built with Node.js and Express, featuring authentication and database integration.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=REST+API",
-    "tags": ["Node.js", "Express", "MongoDB", "JWT"],
-    "category": "backend",
-    "githubUrl": "https://github.com/yourusername/rest-api",
-    "demoUrl": "https://api-demo.com"
-  },
-  {
-    "id": 5,
-    "title": "Real-time Chat Application",
-    "description": "A real-time chat application with Socket.io, featuring private messaging and group chat functionality.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=Chat+App",
-    "tags": ["React", "Socket.io", "Node.js", "MongoDB"],
-    "category": "fullstack",
-    "githubUrl": "https://github.com/yourusername/chat-app",
-    "demoUrl": "https://chat-app-demo.com"
-  },
-  {
-    "id": 6,
-    "title": "Portfolio Website",
-    "description": "A modern portfolio website built with React and Three.js for showcasing projects and skills.",
-    "image": "https://placehold.co/600x400/0f172a/0ea5e9?text=Portfolio",
-    "tags": ["React", "TailwindCSS", "Three.js", "Vite"],
-    "category": "frontend",
-    "githubUrl": "https://github.com/yourusername/portfolio",
-    "demoUrl": "https://portfolio-demo.com"
   }
 ]

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaEnvelope,
@@ -30,19 +30,19 @@ function Contact() {
   const [errors, setErrors] = useState({});
   const [toasts, setToasts] = useState([]);
 
-  const addToast = (type, message) => {
+  const addToast = useCallback((type, message) => {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, type, message }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     }, 5000);
-  };
+  }, []);
 
-  const removeToast = (id) => {
+  const removeToast = useCallback((id) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
-  };
+  }, []);
 
-  const validateForm = () => {
+  const validateForm = useCallback(() => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
@@ -66,9 +66,9 @@ function Contact() {
     }
 
     return newErrors;
-  };
+  }, [formData]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
@@ -76,9 +76,9 @@ function Contact() {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
-  };
+  }, [errors]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     
     const newErrors = validateForm();
@@ -103,9 +103,9 @@ function Contact() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [validateForm, addToast]);
 
-  const contactInfo = [
+  const contactInfo = useMemo(() => [
     {
       icon: FaEnvelope,
       label: "Email",
@@ -132,7 +132,7 @@ function Contact() {
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/30"
     }
-  ];
+  ], []);
 
   const socialLinks = [
     {
@@ -481,4 +481,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default memo(Contact);

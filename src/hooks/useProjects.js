@@ -74,12 +74,27 @@ export const useProjects = (filter = 'all') => {
 };
 
 /**
- * Get unique categories from projects
+ * Get unique categories from projects with counts
  * @param {Array} projects - Array of project objects
- * @returns {Array} Array of unique categories
+ * @returns {Array} Array of category objects with value, label, and count
  */
 export const getProjectCategories = (projects) => {
-  const categories = ['all'];
-  const uniqueCategories = [...new Set(projects.map(project => project.category))];
-  return [...categories, ...uniqueCategories];
+  const categoriesMap = projects.reduce((acc, project) => {
+    acc[project.category] = (acc[project.category] || 0) + 1;
+    return acc;
+  }, {});
+
+  const categoryObjects = [
+    { value: 'all', label: 'All Projects', count: projects.length }
+  ];
+
+  Object.entries(categoriesMap).forEach(([category, count]) => {
+    categoryObjects.push({
+      value: category,
+      label: category.charAt(0).toUpperCase() + category.slice(1),
+      count
+    });
+  });
+
+  return categoryObjects;
 };

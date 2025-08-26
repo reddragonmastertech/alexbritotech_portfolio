@@ -141,6 +141,33 @@ body {
       scroll-behavior: auto !important;
     }
   }
+
+  /* Mobile menu enhancements */
+  @media (max-width: 768px) {
+    .mobile-menu-backdrop {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    
+    /* Better touch targets for mobile */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Prevent zoom on input focus (iOS Safari) */
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+
+  /* Smooth mobile animations */
+  @media (prefers-color-scheme: dark) {
+    .mobile-menu {
+      background: rgba(15, 23, 42, 0.95);
+      border-color: rgba(51, 65, 85, 0.5);
+    }
+  }
 }
 
 /* Preloader animation */
