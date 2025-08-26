@@ -60,9 +60,10 @@ export const useProjects = (filter = 'all') => {
 
   // Filter projects based on category with memoization
   const filteredProjects = useMemo(() => {
+    if (!Array.isArray(projects)) return [];
     return filter === 'all' 
       ? projects 
-      : projects.filter(project => project.category === filter);
+      : projects.filter(project => project && project.category === filter);
   }, [projects, filter]);
 
   return {
@@ -79,8 +80,14 @@ export const useProjects = (filter = 'all') => {
  * @returns {Array} Array of category objects with value, label, and count
  */
 export const getProjectCategories = (projects) => {
+  if (!Array.isArray(projects) || projects.length === 0) {
+    return [{ value: 'all', label: 'All Projects', count: 0 }];
+  }
+
   const categoriesMap = projects.reduce((acc, project) => {
-    acc[project.category] = (acc[project.category] || 0) + 1;
+    if (project && project.category) {
+      acc[project.category] = (acc[project.category] || 0) + 1;
+    }
     return acc;
   }, {});
 

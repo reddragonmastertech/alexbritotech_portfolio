@@ -31,8 +31,14 @@ const useBlogPosts = (activeCategory = "all", searchTerm = "") => {
 
   // Extract unique categories with counts
   const categories = useMemo(() => {
+    if (!Array.isArray(posts) || posts.length === 0) {
+      return [{ value: 'all', label: 'All Posts', count: 0 }];
+    }
+
     const categoriesMap = posts.reduce((acc, post) => {
-      acc[post.category] = (acc[post.category] || 0) + 1;
+      if (post && post.category) {
+        acc[post.category] = (acc[post.category] || 0) + 1;
+      }
       return acc;
     }, {});
 
@@ -53,21 +59,24 @@ const useBlogPosts = (activeCategory = "all", searchTerm = "") => {
 
   // Filter posts based on category and search term
   const filteredPosts = useMemo(() => {
+    if (!Array.isArray(posts)) return [];
+    
     let filtered = posts;
 
     // Filter by category
     if (activeCategory !== "all") {
-      filtered = filtered.filter((post) => post.category === activeCategory);
+      filtered = filtered.filter((post) => post && post.category === activeCategory);
     }
 
     // Filter by search term
-    if (searchTerm.trim()) {
+    if (searchTerm && searchTerm.trim()) {
       const searchLower = searchTerm.toLowerCase();
       filtered = filtered.filter(
         (post) =>
-          post.title.toLowerCase().includes(searchLower) ||
-          post.excerpt.toLowerCase().includes(searchLower) ||
-          post.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+          post &&
+          (post.title?.toLowerCase().includes(searchLower) ||
+          post.excerpt?.toLowerCase().includes(searchLower) ||
+          (Array.isArray(post.tags) && post.tags.some((tag) => tag && tag.toLowerCase().includes(searchLower))))
       );
     }
 

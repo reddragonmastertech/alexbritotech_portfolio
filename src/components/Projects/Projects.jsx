@@ -13,14 +13,14 @@ function Projects() {
   const [showFilters, setShowFilters] = useState(false)
 
   // Use custom hook to load projects
-  const { projects, loading, error, filteredProjects } = useProjects(filter)
+  const { projects = [], loading, error, filteredProjects = [] } = useProjects(filter)
 
   // Get available categories with memoization
-  const categories = useMemo(() => getProjectCategories(projects), [projects])
+  const categories = useMemo(() => getProjectCategories(Array.isArray(projects) ? projects : []), [projects])
 
   // Limit projects display - show only when expanded
   const displayedProjects = useMemo(() => {
-    if (!showAll) return [] // Hide all projects by default
+    if (!showAll || !Array.isArray(filteredProjects)) return [] // Hide all projects by default
     return filteredProjects
   }, [filteredProjects, showAll])
 
@@ -168,7 +168,7 @@ function Projects() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex flex-wrap justify-center gap-3">
-                  {categories.map((category) => (
+                  {Array.isArray(categories) && categories.map((category) => (
                     <motion.button
                       key={category.value}
                       onClick={() => handleFilterChange(category.value)}
@@ -202,7 +202,7 @@ function Projects() {
           >
             <p className="text-slate-400 text-sm">
               {showAll ? 'Showing all' : 'Showing'} {displayedProjects.length} of {filteredProjects.length} projects
-              {filter !== 'all' && ` in "${categories.find(cat => cat.value === filter)?.label}" category`}
+              {filter !== 'all' && ` in "${Array.isArray(categories) ? categories.find(cat => cat.value === filter)?.label || filter : filter}" category`}
             </p>
           </motion.div>
 

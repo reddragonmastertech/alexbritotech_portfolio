@@ -139,7 +139,7 @@ function BlogPostCard({ post, index = 0, viewMode = "grid", className = "" }) {
                   #{tag}
                 </span>
               ))}
-              {post.tags.length > 3 && (
+              {post.tags && post.tags.length > 3 && (
                 <span className="px-2 py-1 bg-slate-700 text-slate-400 rounded text-xs">
                   +{post.tags.length - 3}
                 </span>

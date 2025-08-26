@@ -178,7 +178,7 @@ const LazyProjectCard = memo(({ project, index = 0 }) => {
           
           {project.tags?.length > 4 && (
             <span className="px-3 py-1 text-xs font-medium bg-slate-700/30 text-slate-400 rounded-full">
-              +{project.tags.length - 4} more
+              +{(project.tags?.length || 0) - 4} more
             </span>
           )}
         </motion.div>

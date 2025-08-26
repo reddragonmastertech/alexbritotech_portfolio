@@ -13,14 +13,14 @@ function Blog() {
   const [showAll, setShowAll] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
-  const { loading, error, categories, filteredPosts } = useBlogPosts(
+  const { loading, error, categories = [], filteredPosts = [] } = useBlogPosts(
     activeCategory,
     searchTerm
   );
 
   // Enhanced sorting with memoization and performance optimization
   const sortedPosts = useMemo(() => {
-    if (!filteredPosts?.length) return [];
+    if (!Array.isArray(filteredPosts) || !filteredPosts.length) return [];
     
     return [...filteredPosts].sort((a, b) => {
       switch (sortBy) {
@@ -37,7 +37,7 @@ function Blog() {
 
   // Limit posts display - show only when expanded
   const displayedPosts = useMemo(() => {
-    if (!showAll) return []; // Hide all posts by default
+    if (!showAll || !Array.isArray(sortedPosts)) return []; // Hide all posts by default
     return sortedPosts;
   }, [sortedPosts, showAll]);
 
@@ -218,7 +218,7 @@ function Blog() {
                     Categories
                   </h3>
                   <div className="flex flex-wrap justify-center gap-3">
-                    {categories.map((category) => (
+                    {Array.isArray(categories) && categories.map((category) => (
                       <button
                         key={category.value}
                         onClick={() => handleCategoryChange(category.value)}
@@ -335,7 +335,7 @@ function Blog() {
         >
           <p className="text-slate-400 text-sm">
             {showAll ? `Showing all ${displayedPosts.length}` : 'Articles hidden'} of {sortedPosts.length} articles
-            {activeCategory !== 'all' && ` in "${categories.find(cat => cat.value === activeCategory)?.label}" category`}
+            {activeCategory !== 'all' && ` in "${Array.isArray(categories) ? categories.find(cat => cat.value === activeCategory)?.label || activeCategory : activeCategory}" category`}
             {searchTerm && ` matching "${searchTerm}"`}
           </p>
         </motion.div>
