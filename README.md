@@ -12,9 +12,6 @@ Modern personal portfolio website built with React 19, Vite 6, TailwindCSS 4, an
 ## 🔗 Live Demo
 
 **Production Site**: [https://nguyentrangiasi.id.vn](https://nguyentrangiasi.id.vn)
-
-![GiaSi Dev Portfolio Screenshot](https://placehold.co/800x400/0f172a/0ea5e9?text=GiaSi+Dev+Portfolio)
-
 ## 🌟 Features
 
 - ✅ **Modern Design**: Clean, professional dark theme with glass morphism effects
