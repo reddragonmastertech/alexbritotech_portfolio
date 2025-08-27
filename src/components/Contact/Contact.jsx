@@ -108,17 +108,8 @@ function Contact() {
     <>
       <SEOHead config={SEO_CONFIGS.contact} />
       
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white relative overflow-hidden pt-20">
-        {/* Background decoration */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-        </div>
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#374151_1px,transparent_1px),linear-gradient(to_bottom,#374151_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-10"></div>
-
-        <div className="relative z-10 container mx-auto px-6 py-16">
+      <section className="pt-20">
+        <div className="container mx-auto px-6 py-16">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -392,7 +383,7 @@ function Contact() {
             </motion.div>
           ))}
         </AnimatePresence>
-      </main>
+      </section>
     </>
   );
 }

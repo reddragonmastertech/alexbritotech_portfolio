@@ -7,7 +7,6 @@ import {
   FaUser,
   FaLaptopCode,
   FaFile,
-  FaCode,
   FaEnvelope,
   FaCogs,
 } from "react-icons/fa";
@@ -176,8 +175,12 @@ function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl flex items-center justify-center">
-                <FaCode className="text-white text-xl" />
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl flex items-center justify-center p-1">
+                <img 
+                  src="/logo-bg.png" 
+                  alt="GiaSi Dev Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-2xl font-bold gradient-text">
                 GiaSi Dev
@@ -299,7 +302,11 @@ function Navbar() {
         <div className="px-6 py-4 border-b border-slate-700/50 bg-slate-800/30">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-violet-500 rounded-lg flex items-center justify-center">
-              <FaCode className="text-white text-sm" />
+              <img 
+                src="/logo-bg.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <h3 className="font-bold text-slate-100 text-sm">Navigation</h3>
@@ -365,7 +372,7 @@ function Navbar() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <FaCode className="text-xs" />
+            <FaCogs className="text-xs" />
             GitHub Profile
           </motion.a>
         </div>

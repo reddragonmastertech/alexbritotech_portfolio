@@ -120,18 +120,9 @@ function Home() {
   }, [animationsEnabled]);
 
   return (
-    <main className="section-padding pt-32 pb-20 min-h-screen relative">
-      {/* Background Effects - simplified on mobile */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-violet-600/5"></div>
-      {!isMobile && (
-        <>
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
-        </>
-      )}
-
+    <section className="section-padding pt-32 pb-20">
       <div
-        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10"
+        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
         ref={contentRef}
       >
         {/* Left column - Text content */}
@@ -277,7 +268,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }
 

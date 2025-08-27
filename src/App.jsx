@@ -66,8 +66,28 @@ function App() {
   return (
     <ErrorBoundary fallbackMessage="Something went wrong. Please refresh the page.">
       <Router>
-        <div className="App min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-100">
-          {loading ? (
+        <div className="App min-h-screen relative">
+          {/* Global Background */}
+          <div className="fixed inset-0 bg-gradient-to-br from-gray-950 via-slate-950 to-black">
+            {/* Seamless Background decoration */}
+            <div className="absolute inset-0 w-full h-full">
+              {/* Primary gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-purple-950/20 to-gray-950/40"></div>
+              
+              {/* Animated blur circles - darker and more subtle */}
+              <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-br from-blue-600/8 to-cyan-600/5 rounded-full blur-3xl animate-pulse-slow"></div>
+              <div className="absolute -top-20 right-0 w-80 h-80 bg-gradient-to-br from-purple-600/6 to-pink-600/4 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+              <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-emerald-600/4 to-teal-600/3 rounded-full blur-3xl animate-pulse-slow delay-2000"></div>
+              <div className="absolute -bottom-20 -right-20 w-88 h-88 bg-gradient-to-br from-violet-600/5 to-indigo-600/4 rounded-full blur-3xl animate-pulse-slow delay-3000"></div>
+              <div className="absolute top-1/2 -left-10 w-64 h-64 bg-gradient-to-br from-teal-600/3 to-blue-600/2 rounded-full blur-3xl animate-pulse-slow delay-4000"></div>
+              
+              {/* Subtle texture overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/3 to-transparent"></div>
+            </div>
+          </div>
+
+          {/* Content with relative positioning */}
+          <div className="relative z-10 text-slate-100">{loading ? (
             isMobile ? <MobilePreloader /> : <Preloader />
           ) : (
             <>
@@ -139,6 +159,7 @@ function App() {
               <Footer />
             </>
           )}
+          </div>
         </div>
       </Router>
     </ErrorBoundary>

@@ -94,14 +94,8 @@ function Resume() {
   return (
     <>
       <SEOHead {...SEO_CONFIGS.resume} />
-      <main className="section-padding pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-100 min-h-screen relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="section-padding pt-28">
+        <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16">
             <motion.div
@@ -416,7 +410,7 @@ function Resume() {
             </motion.button>
           </motion.div>
         </div>
-      </main>
+      </section>
     </>
   )
 }
