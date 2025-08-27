@@ -2,31 +2,66 @@
   {
     "id": 1,
     "title": "Portfolio Website",
-    "description": "Showcasing selected works in web development, UI/UX design, and software.",
+    "description": "Showcasing selected works in web development, UI/UX design, and software engineering. Built with React 19, TailwindCSS 4, integrating Three.js and Framer Motion for 3D backgrounds and smooth animations. Optimized for SEO, responsive design, dark/light mode.",
     "image": "/logo.png",
-    "tags": ["React", "TailwindCSS", "Three.js", "GSAP", "Framer Motion", "Vite", "@react-three/drei", "React Hook Form", "React Router DOM"],
+    "tags": ["React 19", "TailwindCSS 4", "Three.js", "Framer Motion", "Vite", "Vercel", "GitHub Actions"],
     "category": "frontend",
     "githubUrl": "https://github.com/giasinguyen/GiaSi-Portfolio",
-    "demoUrl": "https://nguyentrangiasi.id.vn/"
+    "demoUrl": "https://nguyentrangiasi.id.vn/",
+    "period": "April 2025 - July 2025",
+    "role": "Front-end Developer",
+    "teamSize": 1
   },
   {
     "id": 2,
-    "title": "CodeHub Application",
-    "description": "CodeHub is a comprehensive platform designed for developers to share, discover, and collaborate on code snippets. With support for 70+ programming languages, advanced search capabilities, real-time messaging, and a modern UI/UX, CodeHub provides an intuitive and feature-rich environment for all your code sharing needs.",
+    "title": "CodeHub - Code Sharing Platform",
+    "description": "A modern platform for developers to share, discover, and collaborate on code snippets. Features secure authentication, multi-language support (70+), real-time collaboration, and notification system. Built with Spring Boot backend and React frontend.",
     "image": "https://github.com/giasinguyen/CodeHub/raw/main/CodeHub-Frontend/public/CodeHub-Logo-nobg.png",
-    "tags": ["React", "Tailwind", "Vite", "Zustand", "Spring Boot", "JJWT", "Maven", "Spring Maven", "WebSocket (STOMP.js)"],
+    "tags": ["Spring Boot", "React", "JWT", "WebSocket", "STOMP.js", "MariaDB", "Cloudinary", "Monaco Editor"],
     "category": "fullstack",
     "githubUrl": "https://github.com/giasinguyen/CodeHub",
-    "demoUrl": "https://github.com/giasinguyen/CodeHub"
+    "demoUrl": "https://github.com/giasinguyen/CodeHub",
+    "period": "June 2025 - July 2025",
+    "role": "Fullstack Developer",
+    "teamSize": 1
   },
   {
     "id": 3,
-    "title": "NatureGrain Application",
-    "description": "NatureGrain is a comprehensive full-stack e-commerce platform specifically designed for organic food retail. This modern web application provides a seamless shopping experience for customers seeking premium organic products while offering powerful administrative tools for business management.",
+    "title": "NatureGrain - E-commerce Platform",
+    "description": "Premium Organic Food E-commerce Platform with comprehensive features including product browsing, shopping cart, JWT-secured authentication, admin dashboard for customers, orders, inventory, and analytics. Integrated with Cloudinary for image management.",
     "image": "https://github.com/giasinguyen/NatureGrain/raw/main/FrontEnd/public/Naturegrain.png",
-    "tags": ["React", "Tailwind", "Vite", "Zustand", "Spring Boot", "JJWT", "Maven", "Spring Maven", "Formik"],
+    "tags": ["Spring Boot", "React", "JWT", "Spring Security", "MySQL", "Cloudinary", "Chart.js"],
     "category": "fullstack",
     "githubUrl": "https://github.com/giasinguyen/NatureGrain",
-    "demoUrl": "https://github.com/giasinguyen/NatureGrain"
+    "demoUrl": "https://github.com/giasinguyen/NatureGrain",
+    "period": "May 2025 - June 2025",
+    "role": "Fullstack Developer",
+    "teamSize": 1
+  },
+  {
+    "id": 4,
+    "title": "SoleStore - Footwear E-commerce",
+    "description": "Modern online footwear platform with React.js + Node.js/Express + MongoDB. Features include product filtering/search, shopping cart, checkout, wishlist, order history. Delivered responsive, user-friendly shopping experience and efficient admin system.",
+    "image": "/logo.png",
+    "tags": ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Tailwind CSS", "Framer Motion"],
+    "category": "fullstack",
+    "githubUrl": "https://github.com/giasinguyen/SoleStore-App",
+    "demoUrl": "https://github.com/giasinguyen/SoleStore-App",
+    "period": "March 2025 - April 2025",
+    "role": "Team Leader & Fullstack Developer", 
+    "teamSize": 2
+  },
+  {
+    "id": 5,
+    "title": "HuongBien - Restaurant Management",
+    "description": "Desktop-based system for optimizing restaurant operations and enhancing customer experience. Features table reservations, customer profiles & loyalty, billing & invoices, employee management, revenue & customer analytics.",
+    "image": "/logo.png",
+    "tags": ["Java", "JavaFX", "SQL Server", "OpenCV", "IntelliJ IDEA"],
+    "category": "backend",
+    "githubUrl": "https://github.com/giasinguyen/HuongBien",
+    "demoUrl": "https://github.com/giasinguyen/HuongBien",
+    "period": "October 2024 - December 2024",
+    "role": "Team Leader",
+    "teamSize": 4
   }
 ]

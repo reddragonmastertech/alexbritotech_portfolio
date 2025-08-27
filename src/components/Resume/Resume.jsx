@@ -20,8 +20,8 @@ function Resume() {
 
   const handleDownloadPDF = useCallback(() => {
     const link = document.createElement('a')
-    link.href = '/documents/NguyenTranGiaSi_Intern_Backend_Developer.pdf'
-    link.download = 'NguyenTranGiaSi_Intern_Backend_Developer.pdf'
+    link.href = '/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf'
+    link.download = 'NguyenTranGiaSi_Intern_JAVA_Backend.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -86,6 +86,34 @@ function Resume() {
       issuer: "Practical Implementation",
       year: "2025",
       details: "MySQL, MariaDB, MongoDB, and Neo4J through CodeHub and NatureGrain projects"
+    }
+  ], []);
+
+  // Awards & Scholarships - memoized with actual achievements
+  const awards = useMemo(() => [
+    {
+      title: "Academic Excellence Scholarship",
+      issuer: "Industrial University of Ho Chi Minh City",
+      year: "2024",
+      type: "Full Scholarship (100%)",
+      achievement: "GPA 3.75/4.0",
+      description: "Awarded full tuition scholarship for outstanding academic performance"
+    },
+    {
+      title: "Academic Excellence Scholarship", 
+      issuer: "Industrial University of Ho Chi Minh City",
+      year: "2023",
+      type: "Partial Scholarship (50%)",
+      achievement: "GPA 3.62/4.0",
+      description: "Recognized for consistent high academic achievement"
+    },
+    {
+      title: "Academic Excellence Scholarship",
+      issuer: "Industrial University of Ho Chi Minh City", 
+      year: "2022",
+      type: "Partial Scholarship (70%)",
+      achievement: "GPA 3.50/4.0",
+      description: "First-year excellence recognition in Software Engineering program"
     }
   ], []);
 
@@ -201,7 +229,7 @@ function Resume() {
                   </div>
                   <div className="bg-slate-800/50 rounded-xl p-4">
                     <iframe
-                      src="/documents/GiaSi_Resume.pdf"
+                      src="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
                       className="w-full h-[600px] rounded-lg"
                       title="Resume PDF"
                     />
@@ -269,8 +297,8 @@ function Resume() {
             </div>
           </div>
 
-          {/* Education & Certifications */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Education, Certifications & Awards */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
             {/* Education */}
             <div>
               <div className="text-center mb-8">
@@ -362,6 +390,75 @@ function Resume() {
                         {cert.details}
                       </p>
                     )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Awards & Scholarships */}
+            <div>
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
+                  <FaAward className="w-5 h-5 text-amber-400" />
+                  <span className="text-lg font-semibold text-slate-300">
+                    Awards & Scholarships
+                  </span>
+                </div>
+                <h2 className="text-2xl font-bold gradient-text">
+                  Academic Excellence Recognition
+                </h2>
+              </div>
+
+              <div className="space-y-4">
+                {awards.map((award, index) => (
+                  <motion.div
+                    key={index}
+                    className="glass-effect rounded-xl p-6 border border-slate-700/50 relative overflow-hidden"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {/* Award background gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-yellow-500/5 rounded-xl"></div>
+                    
+                    <div className="relative">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-lg flex items-center justify-center">
+                            <FaAward className="text-white text-lg" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-slate-100 text-lg">
+                              {award.title}
+                            </h3>
+                            <p className="text-amber-400 text-sm font-medium">
+                              {award.type}
+                            </p>
+                          </div>
+                        </div>
+                        <span className="text-slate-400 text-sm font-medium bg-slate-800/50 px-3 py-1 rounded-full">
+                          {award.year}
+                        </span>
+                      </div>
+                      
+                      <div className="mb-3">
+                        <p className="text-slate-300 text-sm mb-1">
+                          <span className="font-medium">Institution:</span> {award.issuer}
+                        </p>
+                        <p className="text-emerald-400 text-sm font-medium">
+                          <span className="text-slate-300">Achievement:</span> {award.achievement}
+                        </p>
+                      </div>
+                      
+                      <p className="text-slate-400 text-sm leading-relaxed">
+                        {award.description}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>

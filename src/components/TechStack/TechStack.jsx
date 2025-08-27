@@ -18,7 +18,8 @@ import {
   SiVercel,
   SiGithub,
   SiJavascript,
-  SiTypescript
+  SiTypescript,
+  SiNeo4J
 } from 'react-icons/si'
 import { FaDatabase, FaTools, FaCloud, FaRocket, FaJava, FaCube, FaBox, FaCode, FaBrain } from 'react-icons/fa'
 
@@ -37,6 +38,7 @@ function TechStack() {
         { name: "Spring Boot", icon: SiSpringboot, level: "Advanced", color: "#6DB33F" },
         { name: "Spring Security", icon: SiSpringboot, level: "Advanced", color: "#6DB33F" },
         { name: "Spring Data JPA", icon: SiSpringboot, level: "Advanced", color: "#6DB33F" },
+        { name: "WebSocket", icon: FaCode, level: "Intermediate", color: "#FF6B6B" },
         { name: "Maven", icon: FaBox, level: "Proficient", color: "#C71A36" }
       ]
     },
@@ -64,7 +66,8 @@ function TechStack() {
       technologies: [
         { name: "MySQL", icon: SiMysql, level: "Advanced", color: "#4479A1" },
         { name: "MariaDB", icon: SiMariadb, level: "Advanced", color: "#003545" },
-        { name: "MongoDB", icon: SiMongodb, level: "Intermediate", color: "#47A248" }
+        { name: "MongoDB", icon: SiMongodb, level: "Intermediate", color: "#47A248" },
+        { name: "Neo4J", icon: SiNeo4J, level: "Beginner", color: "#008CC1" }
       ]
     },
     {

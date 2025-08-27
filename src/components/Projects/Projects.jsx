@@ -187,20 +187,32 @@ function Projects() {
             )}
           </AnimatePresence>
 
-          {/* Projects Count */}
+          {/* Compact Projects Info */}
           <motion.div 
             className="text-center mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            <p className="text-slate-400 text-sm">
-              {showAll ? 'Showing all' : 'Showing'} {displayedProjects.length} of {filteredProjects.length} projects
-              {filter !== 'all' && ` in "${Array.isArray(categories) ? categories.find(cat => cat.value === filter)?.label || filter : filter}" category`}
-            </p>
+            <div className="inline-flex items-center gap-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl px-6 py-3">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <span className="text-slate-300 text-sm font-medium">
+                  {filteredProjects.length} Projects Available
+                </span>
+              </div>
+              {filter !== 'all' && (
+                <>
+                  <div className="w-px h-4 bg-slate-600"></div>
+                  <span className="text-blue-400 text-sm">
+                    {Array.isArray(categories) ? categories.find(cat => cat.value === filter)?.label || filter : filter}
+                  </span>
+                </>
+              )}
+            </div>
           </motion.div>
 
-          {/* Show/Hide Projects Button */}
+          {/* Compact Show/Hide Projects Button */}
           {filteredProjects.length > 0 && (
             <motion.div 
               className="text-center mb-8"
@@ -210,44 +222,37 @@ function Projects() {
             >
               <button
                 onClick={toggleShowAll}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 border-2 border-transparent hover:border-white/20 text-white px-10 py-5 rounded-2xl font-bold transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 transform hover:-translate-y-2 hover:scale-105 shadow-xl"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 transform hover:-translate-y-1 hover:scale-105"
               >
                 {showAll ? (
                   <>
-                    <FaChevronUp className="text-lg animate-bounce" />
+                    <FaChevronUp className="text-sm" />
                     Hide Projects
                   </>
                 ) : (
                   <>
-                    <FaChevronDown className="text-lg animate-bounce" />
-                    Show Projects ({filteredProjects.length} projects)
+                    <FaChevronDown className="text-sm" />
+                    View All Projects
                   </>
                 )}
               </button>
-              
-              <p className="text-slate-400 text-sm mt-4">
-                {showAll ? 
-                  'Click to hide projects list' : 
-                  `${filteredProjects.length} projects available to view`
-                }
-              </p>
             </motion.div>
           )}
 
-          {/* Projects Grid */}
+          {/* Compact Projects Preview */}
           {!showAll ? (
             <motion.div 
-              className="text-center py-20"
+              className="text-center py-16"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <div className="glass-effect rounded-2xl p-12 max-w-lg mx-auto">
-                <div className="w-20 h-20 bg-slate-700/50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <FaRocket className="w-10 h-10 text-slate-500" />
+              <div className="glass-effect rounded-xl p-8 max-w-md mx-auto">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500/20 to-violet-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <FaRocket className="w-8 h-8 text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-300 mb-4">Projects Hidden</h3>
-                <p className="text-slate-400 mb-6">
-                  Click "Show Projects" button above to view all available projects.
+                <h3 className="text-xl font-semibold text-slate-300 mb-2">Ready to Explore?</h3>
+                <p className="text-slate-400 text-sm">
+                  Click above to discover my latest projects
                 </p>
               </div>
             </motion.div>
