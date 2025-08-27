@@ -175,7 +175,7 @@ function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl flex items-center justify-center p-1">
+              <div className="w-10 h-10 rounded-b-lg flex items-center justify-center p-1">
                 <img 
                   src="/logo-bg.png" 
                   alt="GiaSi Dev Logo" 
@@ -183,7 +183,7 @@ function Navbar() {
                 />
               </div>
               <span className="text-2xl font-bold gradient-text">
-                GiaSi Dev
+                giasinguyen
               </span>
             </motion.button>
           </div>

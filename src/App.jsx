@@ -19,8 +19,6 @@ const Projects = lazy(() => import('./components/Projects/Projects'))
 const Resume = lazy(() => import('./components/Resume/Resume'))
 const TechStack = lazy(() => import('./components/TechStack/TechStack'))
 const Contact = lazy(() => import('./components/Contact/Contact'))
-const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'))
-const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'))
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -139,19 +137,6 @@ function App() {
                           </Suspense>
                         </MobileSafeSection>
                       </>
-                    } />
-
-                    {/* Legal Pages */}
-                    <Route path="/privacy" element={
-                      <Suspense fallback={<FastFallback message="Loading privacy policy..." />}>
-                        <PrivacyPolicy />
-                      </Suspense>
-                    } />
-
-                    <Route path="/terms" element={
-                      <Suspense fallback={<FastFallback message="Loading terms..." />}>
-                        <TermsOfService />
-                      </Suspense>
                     } />
                   </Routes>
                 </ErrorBoundary>

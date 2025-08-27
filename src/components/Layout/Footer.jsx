@@ -31,7 +31,7 @@ const Footer = () => {
     {
       name: 'Email',
       icon: FaEnvelope,
-      url: 'mailto:contact@giasinguyen.dev',
+      url: 'mailto:giasinguyentran@gmail.com',
       color: 'hover:text-red-400'
     }
   ]
@@ -39,6 +39,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Tech Stack', href: '#tech-stack' },
     { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' }
   ]
@@ -46,27 +47,28 @@ const Footer = () => {
   const contactInfo = [
     {
       icon: FaEnvelope,
-      text: 'contact@giasinguyen.dev',
-      href: 'mailto:contact@giasinguyen.dev'
+      text: 'giasinguyentran@gmail.com',
+      href: 'mailto:giasinguyentran@gmail.com'
     },
     {
       icon: FaPhone,
-      text: '+84 123 456 789',
-      href: 'tel:+84123456789'
+      text: '(+84) 34 899 6487',
+      href: 'tel:+84348996487'
     },
     {
       icon: FaMapMarkerAlt,
-      text: 'Ho Chi Minh City, Vietnam',
-      href: 'https://maps.google.com/?q=Ho+Chi+Minh+City'
+      text: 'Go Vap District, Ho Chi Minh City',
+      href: 'https://maps.google.com/?q=Go+Vap+District+Ho+Chi+Minh+City'
     }
   ]
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-slate-100 relative overflow-hidden">
-      {/* Background Effects */}
+    <footer className="bg-gradient-to-br from-gray-950 via-slate-950 to-black text-slate-100 relative overflow-hidden">
+      {/* Background Effects - darker and more subtle */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-violet-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/3 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-violet-600/3 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 relative z-10">
@@ -236,21 +238,6 @@ const Footer = () => {
               </motion.span>
               in Vietnam
             </p>
-
-            <div className="flex gap-6 text-sm">
-              <a
-                href="/privacy-policy"
-                className="text-slate-400 hover:text-slate-200 transition-colors duration-300"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms-of-service"
-                className="text-slate-400 hover:text-slate-200 transition-colors duration-300"
-              >
-                Terms of Service
-              </a>
-            </div>
           </div>
         </motion.div>
       </div>

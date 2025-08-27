@@ -169,7 +169,7 @@ function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full px-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-200"
-                        placeholder="John Doe"
+                        placeholder="Nguyen Tran Gia Si"
                         required
                       />
                     </div>
@@ -183,7 +183,7 @@ function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full px-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-200"
-                        placeholder="john@example.com"
+                        placeholder="giasinguyentran@gmail.com"
                         required
                       />
                     </div>
