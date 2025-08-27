@@ -187,31 +187,6 @@ function Projects() {
             )}
           </AnimatePresence>
 
-          {/* Compact Projects Info */}
-          <motion.div 
-            className="text-center mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl px-6 py-3">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                <span className="text-slate-300 text-sm font-medium">
-                  {filteredProjects.length} Projects Available
-                </span>
-              </div>
-              {filter !== 'all' && (
-                <>
-                  <div className="w-px h-4 bg-slate-600"></div>
-                  <span className="text-blue-400 text-sm">
-                    {Array.isArray(categories) ? categories.find(cat => cat.value === filter)?.label || filter : filter}
-                  </span>
-                </>
-              )}
-            </div>
-          </motion.div>
-
           {/* Compact Show/Hide Projects Button */}
           {filteredProjects.length > 0 && (
             <motion.div 
