@@ -1,5 +1,5 @@
-# GiaSi Portfolio
-<img width="2530" height="882" alt="GS_Profile" src="https://github.com/user-attachments/assets/8106dff9-f259-468a-ae6b-9bfe18438d36" />
+# GiaSi Dev Portfolio
+<img width="2530" height="882" alt="GS_Profile" src="./public/portfolio.PNG" />
 
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-blue)
@@ -13,7 +13,7 @@ Modern personal portfolio website built with React 19, Vite 6, TailwindCSS 4, an
 
 **Production Site**: [https://nguyentrangiasi.id.vn](https://nguyentrangiasi.id.vn)
 
-![GiaSi Portfolio Screenshot](https://placehold.co/800x400/0f172a/0ea5e9?text=GiaSi+Portfolio)
+![GiaSi Dev Portfolio Screenshot](https://placehold.co/800x400/0f172a/0ea5e9?text=GiaSi+Dev+Portfolio)
 
 ## 🌟 Features
 
@@ -46,8 +46,8 @@ Modern personal portfolio website built with React 19, Vite 6, TailwindCSS 4, an
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/giasinguyen/giasi-portfolio.git
-   cd giasi-portfolio
+   git clone https://github.com/giasinguyen/giasi-dev-portfolio.git
+   cd giasi-dev-portfolio
    ```
 
 2. Install dependencies:
@@ -110,7 +110,7 @@ vercel --prod
 ## 📋 Project Structure
 
 ```
-giasi-portfolio/
+giasi-dev-portfolio/
 ├── public/                    # Static assets
 │   ├── documents/            # Resume PDF and documents
 │   ├── avatar.jpg           # Profile avatar image
