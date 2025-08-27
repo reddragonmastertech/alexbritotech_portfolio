@@ -7,10 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 function Resume() {
   const [showPDF, setShowPDF] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [pdfError, setPdfError] = useState(false)
 
   // Use useCallback to prevent unnecessary re-renders
   const handleViewPDF = useCallback(() => {
     setIsLoading(true)
+    setPdfError(false)
     // Reduced loading time for better UX
     setTimeout(() => {
       setIsLoading(false)
@@ -164,43 +166,6 @@ function Resume() {
               my professional experience, skills, and achievements.
             </motion.p>
 
-            {/* Action Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <motion.button
-                onClick={handleViewPDF}
-                disabled={isLoading}
-                className="btn-primary inline-flex items-center gap-3 px-8 py-4 text-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {isLoading ? (
-                  <>
-                    <FaSpinner className="animate-spin" />
-                    Loading...
-                  </>
-                ) : (
-                  <>
-                    <FaEye />
-                    View Resume
-                  </>
-                )}
-              </motion.button>
-
-              <motion.button
-                onClick={handleDownloadPDF}
-                className="btn-secondary inline-flex items-center gap-3 px-8 py-4 text-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaDownload />
-                Download PDF
-              </motion.button>
-            </motion.div>
           </div>
 
           {/* PDF Viewer */}
@@ -215,12 +180,17 @@ function Resume() {
               >
                 <div className="glass-effect rounded-2xl p-8 border border-slate-700/50">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-2xl font-bold text-slate-100">
-                      Resume Preview
-                    </h3>
+                    <div>
+                      <h3 className="text-2xl font-bold text-slate-100">
+                        Resume Preview
+                      </h3>
+                      <p className="text-slate-400 text-sm mt-1">
+                        NguyenTranGiaSi_Intern_JAVA_Backend.pdf
+                      </p>
+                    </div>
                     <motion.button
                       onClick={() => setShowPDF(false)}
-                      className="text-slate-400 hover:text-slate-200 text-2xl"
+                      className="text-slate-400 hover:text-slate-200 text-2xl p-2 hover:bg-slate-700/50 rounded-lg transition-all duration-300"
                       whileHover={{ rotate: 90 }}
                       transition={{ duration: 0.2 }}
                     >
@@ -229,10 +199,38 @@ function Resume() {
                   </div>
                   <div className="bg-slate-800/50 rounded-xl p-4">
                     <iframe
-                      src="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
-                      className="w-full h-[600px] rounded-lg"
+                      src="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH"
+                      className="w-full h-[600px] rounded-lg border border-slate-700/30"
                       title="Resume PDF"
+                      loading="lazy"
+                      onError={() => setPdfError(true)}
+                      onLoad={() => setPdfError(false)}
                     />
+                    
+                    {/* Fallback for browsers that don't support PDF viewing */}
+                    <div className={`text-center mt-4 p-4 bg-slate-700/30 rounded-lg ${pdfError ? 'bg-red-900/20 border border-red-500/30' : ''}`}>
+                      <p className="text-slate-400 text-sm mb-3">
+                        {pdfError ? 'PDF failed to load, but you can still access it!' : "Can't see the PDF? No problem!"}
+                      </p>
+                      <div className="flex gap-4 justify-center">
+                        <a
+                          href="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-300"
+                        >
+                          <FaEye className="text-sm" />
+                          View in Browser
+                        </a>
+                        <button
+                          onClick={handleDownloadPDF}
+                          className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-300"
+                        >
+                          <FaDownload className="text-sm" />
+                          Download PDF
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -300,7 +298,7 @@ function Resume() {
           {/* Education, Certifications & Awards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
             {/* Education */}
-            <div>
+            <div className="min-h-[600px] flex flex-col">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
                   <FaGraduationCap className="w-5 h-5 text-emerald-400" />
@@ -313,7 +311,8 @@ function Resume() {
                 </h2>
               </div>
 
-              {education.map((edu, index) => (
+              <div className="flex-1">
+                {education.map((edu, index) => (
                 <motion.div
                   key={index}
                   className="glass-effect rounded-2xl p-6 border border-slate-700/50"
@@ -346,10 +345,11 @@ function Resume() {
                   )}
                 </motion.div>
               ))}
+              </div>
             </div>
 
             {/* Certifications */}
-            <div>
+            <div className="min-h-[600px] flex flex-col">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
                   <FaCertificate className="w-5 h-5 text-yellow-400" />
@@ -362,8 +362,9 @@ function Resume() {
                 </h2>
               </div>
 
-              <div className="space-y-4">
-                {certifications.map((cert, index) => (
+              <div className="flex-1">
+                <div className="space-y-4">
+                  {certifications.map((cert, index) => (
                   <motion.div
                     key={index}
                     className="glass-effect rounded-xl p-6 border border-slate-700/50"
@@ -392,11 +393,12 @@ function Resume() {
                     )}
                   </motion.div>
                 ))}
+                </div>
               </div>
             </div>
 
             {/* Awards & Scholarships */}
-            <div>
+            <div className="min-h-[600px] flex flex-col">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
                   <FaAward className="w-5 h-5 text-amber-400" />
@@ -405,7 +407,7 @@ function Resume() {
                   </span>
                 </div>
                 <h2 className="text-2xl font-bold gradient-text">
-                  Academic Excellence Recognition
+                  Awards & Recognition
                 </h2>
               </div>
 
