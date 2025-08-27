@@ -130,7 +130,7 @@ function Home() {
           <div className="hero-element">
             <p className="text-blue-400 font-medium text-lg mb-2">Hello, I'm</p>
             <h1 className="font-bold mb-6">
-              <span className={`text-4xl sm:text-5xl md:text-7xl gradient-text drop-shadow-2xl relative block ${isMobile ? 'leading-tight' : 'whitespace-nowrap'} ${!isMobile ? 'animate-pulse-slow' : ''}`}>
+              <span className={`text-4xl sm:text-5xl md:text-7xl gradient-text drop-shadow-2xl relative block ${isMobile ? 'leading-relaxed' : 'leading-normal whitespace-nowrap'} ${!isMobile ? 'animate-pulse-slow' : ''} py-2`}>
                 <span className="inline-block gradient-text">Nguyen Tran</span>{' '}
                 <span className="inline-block gradient-text">Gia Si</span>
                 {!isMobile && <span className="absolute -inset-2 bg-blue-500/5 blur-2xl rounded-2xl -z-10"></span>}
