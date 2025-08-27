@@ -44,16 +44,59 @@ function About() {
     };
   }, []);
 
-  // Memoize static data for better performance
-  const skills = useMemo(() => [
-    { icon: <FaJava />, name: "Java", level: 95, color: "from-red-500 to-orange-500" },
-    { icon: <SiSpringboot />, name: "Spring Boot", level: 90, color: "from-green-500 to-emerald-500" },
-    { icon: <SiSpring />, name: "Spring", level: 88, color: "from-green-400 to-green-600" },
-    { icon: <FaReact />, name: "React", level: 85, color: "from-blue-400 to-cyan-400" },
-    { icon: <SiTypescript />, name: "TypeScript", level: 82, color: "from-blue-600 to-blue-400" },
-    { icon: <SiJavascript />, name: "JavaScript", level: 88, color: "from-yellow-400 to-yellow-600" },
-    { icon: <FaDatabase />, name: "SQL/NoSQL", level: 80, color: "from-purple-500 to-pink-500" },
-    { icon: <SiDocker />, name: "Docker", level: 75, color: "from-blue-500 to-blue-600" }
+  // Professional Highlights - Key achievements and competencies for recruiters
+  const professionalHighlights = useMemo(() => [
+    {
+      category: "Project Excellence",
+      icon: <FaRocket />,
+      achievements: [
+        { 
+          title: "CodeHub Platform", 
+          description: "Full-stack web application with Spring Boot & React",
+          impact: "End-to-end development"
+        },
+        { 
+          title: "NatureGrain E-commerce", 
+          description: "E-commerce solution with secure payment integration",
+          impact: "Production deployment"
+        }
+      ],
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      category: "Technical Excellence", 
+      icon: <FaCode />,
+      achievements: [
+        { 
+          title: "Modern Stack Mastery", 
+          description: "Java Spring Boot, React 19, MySQL expertise",
+          impact: "Industry-standard skills"
+        },
+        { 
+          title: "DevOps Integration", 
+          description: "Docker containerization & deployment automation",
+          impact: "Production-ready"
+        }
+      ],
+      color: "from-blue-500 to-purple-500"
+    },
+    {
+      category: "Academic Achievement",
+      icon: <FaGraduationCap />,
+      achievements: [
+        { 
+          title: "Information Technology", 
+          description: "Industrial University of Ho Chi Minh City",
+          impact: "Strong foundation"
+        },
+        { 
+          title: "Continuous Learning", 
+          description: "Self-driven skill development & technology adoption",
+          impact: "Growth mindset"
+        }
+      ],
+      color: "from-purple-500 to-pink-500"
+    }
   ], []);
 
   const experiences = useMemo(() => [
@@ -206,7 +249,7 @@ function About() {
           </motion.div>
         </div>
 
-        {/* Skills Section */}
+        {/* Professional Highlights Section */}
         <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -224,62 +267,61 @@ function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Technical Skills
+            Professional Highlights
           </motion.h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skills.map((skill, index) => {
-              // Alternating animation from left and right
-              const isEven = index % 2 === 0;
-              const isLargeScreen = !isMobile && window.innerWidth >= 1024;
-              
-              return (
-                <motion.div
-                  key={index}
-                  className="card group"
-                  initial={{ 
-                    opacity: 0, 
-                    x: isLargeScreen ? (isEven ? -30 : 30) : 0,
-                    y: isMobile ? 20 : 0
-                  }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  transition={{ 
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: [0.25, 0.1, 0.25, 1]
-                  }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -8,
-                    transition: { duration: 0.2 }
-                  }}
-                  viewport={{ once: true, margin: "-50px" }}
-                >
-                <div className="text-center">
-                  <div className={`text-3xl mb-4 bg-gradient-to-r ${skill.color} bg-clip-text text-transparent flex justify-center`}>
-                    {skill.icon}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {professionalHighlights.map((highlight, highlightIndex) => (
+              <motion.div
+                key={highlightIndex}
+                className="card group"
+                initial={{ 
+                  opacity: 0, 
+                  y: 30
+                }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.6,
+                  delay: highlightIndex * 0.2,
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
+                <div className="text-center mb-6">
+                  <div className={`text-3xl mb-3 bg-gradient-to-r ${highlight.color} bg-clip-text text-transparent flex justify-center`}>
+                    {highlight.icon}
                   </div>
-                  <h4 className="font-semibold text-slate-100 mb-3">{skill.name}</h4>
-                  
-                  {/* Skill Bar */}
-                  <div className="w-full bg-slate-700 rounded-full h-2 mb-2">
+                  <h4 className="font-bold text-slate-100 text-lg">{highlight.category}</h4>
+                </div>
+                
+                <div className="space-y-4">
+                  {highlight.achievements.map((achievement, achievementIndex) => (
                     <motion.div
-                      className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
+                      key={achievementIndex}
+                      className="bg-slate-800/30 p-4 rounded-lg border border-slate-700/30 hover:bg-slate-700/30 transition-colors"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       transition={{ 
-                        duration: 1.2, 
-                        delay: index * 0.1 + 0.3,
-                        ease: [0.25, 0.1, 0.25, 1]
+                        duration: 0.4, 
+                        delay: highlightIndex * 0.2 + achievementIndex * 0.1 
                       }}
                       viewport={{ once: true }}
-                    />
-                  </div>
-                  <span className="text-slate-400 text-sm">{skill.level}%</span>
+                    >
+                      <div className="mb-2">
+                        <h5 className="font-semibold text-slate-100 text-sm">{achievement.title}</h5>
+                        <span className="text-xs text-emerald-400 font-medium">{achievement.impact}</span>
+                      </div>
+                      <p className="text-slate-400 text-xs leading-relaxed">{achievement.description}</p>
+                    </motion.div>
+                  ))}
                 </div>
-                </motion.div>
-              );
-            })}
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 

@@ -7,9 +7,9 @@ import {
   FaUser,
   FaLaptopCode,
   FaFile,
-  FaBlog,
-  FaEnvelope,
   FaCode,
+  FaEnvelope,
+  FaCogs,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ThemeSwitcher from "./ThemeSwitcher";
@@ -35,7 +35,7 @@ function Navbar() {
         "home",
         "about",
         "projects",
-        "blog",
+        "tech-stack",
         "resume",
         "contact",
       ];
@@ -206,10 +206,10 @@ function Navbar() {
               onClick={() => scrollToSection("projects")}
             />
             <NavLink
-              sectionId="blog"
-              active={activeSection === "blog"}
-              label="Blog"
-              onClick={() => scrollToSection("blog")}
+              sectionId="tech-stack"
+              active={activeSection === "tech-stack"}
+              label="Tech Stack"
+              onClick={() => scrollToSection("tech-stack")}
             />
             <NavLink
               sectionId="contact"
@@ -332,11 +332,11 @@ function Navbar() {
             active={activeSection === "projects"}
           />
           <MobileNavLink
-            sectionId="blog"
-            icon={<FaBlog />}
-            label="Blog"
-            onClick={() => handleMobileNavClick("blog")}
-            active={activeSection === "blog"}
+            sectionId="tech-stack"
+            icon={<FaCogs />}
+            label="Tech Stack"
+            onClick={() => handleMobileNavClick("tech-stack")}
+            active={activeSection === "tech-stack"}
           />
           <MobileNavLink
             sectionId="resume"

@@ -21,11 +21,11 @@ export const SEO_CONFIGS = {
     url: "https://nguyentrangiasi.id.vn/projects"
   },
   
-  blog: {
-    title: "Blog - GiaSi Portfolio | Web Development Insights",
-    description: "Read GiaSi's blog posts about web development, programming tutorials, and insights on Java, React, Spring Boot, and modern web technologies.",
-    keywords: "blog, web development, programming tutorials, java, react, spring boot, javascript, coding tips",
-    url: "https://nguyentrangiasi.id.vn/blog"
+  techStack: {
+    title: "Tech Stack - GiaSi Portfolio | Technologies & Tools",
+    description: "Explore GiaSi's comprehensive technology stack including Java, Spring Boot, React, databases, cloud tools and development frameworks used in modern projects.",
+    keywords: "tech stack, technologies, java, spring boot, react, mysql, mongodb, docker, git, development tools, programming languages",
+    url: "https://nguyentrangiasi.id.vn/tech-stack"
   },
   
   resume: {

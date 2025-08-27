@@ -20,68 +20,76 @@ function Resume() {
 
   const handleDownloadPDF = useCallback(() => {
     const link = document.createElement('a')
-    link.href = '/documents/GiaSi_Resume.pdf'
-    link.download = 'GiaSi_Nguyen_Resume.pdf'
+    link.href = '/documents/NguyenTranGiaSi_Intern_Backend_Developer.pdf'
+    link.download = 'NguyenTranGiaSi_Intern_Backend_Developer.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
   }, [])
 
-  // Memoize static data for performance
+  // Memoize static data for performance - Updated with real resume content
   const experiences = useMemo(() => [
     {
-      title: "Senior Full Stack Developer",
-      company: "TechCorp Solutions",
-      period: "2022 - Present",
+      title: "Fullstack Developer",
+      company: "Personal Projects",
+      period: "April 2025 - Present",
       location: "Ho Chi Minh City, Vietnam",
       achievements: [
-        "Led development of 5+ enterprise applications using React and Node.js",
-        "Improved system performance by 40% through code optimization",
-        "Mentored junior developers and established coding best practices"
+        "Developed Portfolio website showcasing web development skills using React 19 and TailwindCSS 4",
+        "Built CodeHub platform for developers to share and collaborate on code snippets with real-time features",
+        "Created NatureGrain e-commerce platform for organic food retail with complete admin dashboard",
+        "Implemented modern technologies including Spring Boot, JWT security, and cloud services integration"
       ]
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Innovation Co.",
-      period: "2020 - 2022",
+      title: "Backend Developer (CodeHub Project)",
+      company: "Personal Development",
+      period: "June 2025 - July 2025",
       location: "Ho Chi Minh City, Vietnam",
       achievements: [
-        "Developed responsive web applications for 20+ clients",
-        "Implemented CI/CD pipelines reducing deployment time by 60%",
-        "Collaborated with cross-functional teams to deliver projects on time"
+        "Built full-stack platform using Spring Boot (Java 23) and Spring Security with JWT authentication",
+        "Implemented RESTful APIs and WebSocket for real-time collaboration features",
+        "Integrated MariaDB/MySQL database with comprehensive data modeling",
+        "Added multi-language snippet support (70+) and notification system with Cloudinary integration"
       ]
     }
   ], []);
 
-  // Education data - also memoized
+  // Education data - also memoized with real information
   const education = useMemo(() => [
     {
-      degree: "Bachelor of Computer Science",
-      institution: "University of Technology",
-      period: "2015 - 2019",
+      degree: "Bachelor of Software Engineering",
+      institution: "IUH - Industrial University of Ho Chi Minh City",
+      period: "August 2022 - Present",
       location: "Ho Chi Minh City, Vietnam",
-      gpa: "3.8/4.0"
+      gpa: "3.44/4.0",
+      details: "Final-year Software Engineering student with solid experience in Java and Spring Boot. Passionate about backend development, database design, and building scalable applications."
     }
   ], []);
 
-  // Certifications - memoized
+  // Certifications - memoized with real project-based accomplishments
   const certifications = useMemo(() => [
     {
-      name: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
-      year: "2023"
+      name: "Java Backend Development",
+      issuer: "Self-Study & Practice",
+      year: "2024-2025",
+      details: "Spring Boot, Spring Security, Spring Data JPA expertise demonstrated through multiple projects"
     },
     {
-      name: "Google Cloud Professional Developer",
-      issuer: "Google Cloud",
-      year: "2022"
+      name: "Full Stack Web Development",
+      issuer: "Project-Based Learning",
+      year: "2025",
+      details: "React 19, TailwindCSS 4, Modern JavaScript, RESTful APIs development"
     },
     {
-      name: "MongoDB Certified Developer",
-      issuer: "MongoDB Inc.",
-      year: "2021"
+      name: "Database Design & Management",
+      issuer: "Practical Implementation",
+      year: "2025",
+      details: "MySQL, MariaDB, MongoDB, and Neo4J through CodeHub and NatureGrain projects"
     }
   ], []);
+
+
 
   return (
     <>
@@ -306,9 +314,14 @@ function Resume() {
                     <span>{edu.period}</span>
                     <span>{edu.location}</span>
                   </div>
-                  <p className="text-slate-300 font-semibold">
+                  <p className="text-slate-300 font-semibold mb-3">
                     GPA: {edu.gpa}
                   </p>
+                  {edu.details && (
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      {edu.details}
+                    </p>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -347,9 +360,14 @@ function Resume() {
                         {cert.name}
                       </h3>
                     </div>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 text-sm mb-2">
                       {cert.issuer} • {cert.year}
                     </p>
+                    {cert.details && (
+                      <p className="text-slate-300 text-sm leading-relaxed">
+                        {cert.details}
+                      </p>
+                    )}
                   </motion.div>
                 ))}
               </div>

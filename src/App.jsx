@@ -17,9 +17,8 @@ import Home from './components/Home/Home'
 const About = lazy(() => import('./components/About/About'))
 const Projects = lazy(() => import('./components/Projects/Projects'))
 const Resume = lazy(() => import('./components/Resume/Resume'))
-const Blog = lazy(() => import('./components/Blog/Blog'))
+const TechStack = lazy(() => import('./components/TechStack/TechStack'))
 const Contact = lazy(() => import('./components/Contact/Contact'))
-const BlogDetail = lazy(() => import('./components/Blog/BlogDetail'))
 const PrivacyPolicy = lazy(() => import('./components/Legal/PrivacyPolicy'))
 const TermsOfService = lazy(() => import('./components/Legal/TermsOfService'))
 
@@ -99,10 +98,10 @@ function App() {
                           </Suspense>
                         </MobileSafeSection>
 
-                        {/* Blog section */}
-                        <MobileSafeSection id="blog" fallback={<FastFallback message="Loading articles..." />}>
-                          <Suspense fallback={<FastFallback message="Loading articles..." />}>
-                            <Blog />
+                        {/* Tech Stack section */}
+                        <MobileSafeSection id="tech-stack" fallback={<FastFallback message="Loading tech stack..." />}>
+                          <Suspense fallback={<FastFallback message="Loading tech stack..." />}>
+                            <TechStack />
                           </Suspense>
                         </MobileSafeSection>
 
@@ -120,13 +119,6 @@ function App() {
                           </Suspense>
                         </MobileSafeSection>
                       </>
-                    } />
-
-                    {/* Individual Blog Posts */}
-                    <Route path="/blog/:slug" element={
-                      <Suspense fallback={<FastFallback message="Loading article..." />}>
-                        <BlogDetail />
-                      </Suspense>
                     } />
 
                     {/* Legal Pages */}
