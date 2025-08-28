@@ -128,12 +128,12 @@ function Home() {
         {/* Left column - Text content */}
         <div className="space-y-8">
           <div className="hero-element">
-            <p className="text-blue-400 font-medium text-lg mb-2">Hello, I'm</p>
+            <p className="text-slate-300 font-medium text-lg mb-2">Hello, I'm</p>
             <h1 className="font-bold mb-6">
-              <span className={`text-4xl sm:text-5xl md:text-7xl gradient-text drop-shadow-2xl relative block ${isMobile ? 'leading-relaxed' : 'leading-normal whitespace-nowrap'} ${!isMobile ? 'animate-pulse-slow' : ''} py-2`}>
+              <span className={`text-4xl sm:text-5xl md:text-7xl gradient-text drop-shadow-2xl relative block ${isMobile ? 'leading-relaxed' : 'leading-normal whitespace-nowrap'} ${!isMobile ? 'animate-pulse-slow' : ''} py-2 font-extrabold`}>
                 <span className="inline-block gradient-text">Nguyen Tran</span>{' '}
                 <span className="inline-block gradient-text">Gia Si</span>
-                {!isMobile && <span className="absolute -inset-2 bg-blue-500/5 blur-2xl rounded-2xl -z-10"></span>}
+                {!isMobile && <span className="absolute -inset-2 bg-white/3 blur-2xl rounded-2xl -z-10"></span>}
               </span>
             </h1>
           </div>

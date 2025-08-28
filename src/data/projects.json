@@ -55,7 +55,7 @@
     "id": 5,
     "title": "HuongBien - Restaurant Management",
     "description": "Desktop-based system for optimizing restaurant operations and enhancing customer experience. Features table reservations, customer profiles & loyalty, billing & invoices, employee management, revenue & customer analytics.",
-    "image": "https://github.com/giasinguyen/HuongBien/blob/main/HuongBienRestaurant/src/main/resources/com/huongbien/img/readme/login-ui.png",
+    "image": "https://github.com/giasinguyen/huongbien-restaurant-system/blob/main/HuongBienRestaurant/src/main/resources/com/huongbien/img/readme/login-ui.png?raw=true",
     "tags": ["Java", "JavaFX", "SQL Server", "OpenCV", "IntelliJ IDEA"],
     "category": "backend",
     "githubUrl": "https://github.com/giasinguyen/HuongBien",
