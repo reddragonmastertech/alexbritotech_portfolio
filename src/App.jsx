@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
-import Navbar from './components/Layout/Navbar'
-import Footer from './components/Layout/Footer'
-import ScrollToTop from './components/Layout/ScrollToTop'
-import Preloader from './components/Layout/Preloader'
-import MobilePreloader from './components/Layout/MobilePreloader'
-import MobileSafeSection from './components/Layout/MobileSafeSection'
+import Navbar from './components/Layout/Navigation/Navbar'
+import Footer from './components/Layout/Navigation/Footer'
+import ScrollToTop from './components/Layout/Utilities/ScrollToTop'
+import Preloader from './components/Layout/Utilities/Preloader'
+import MobilePreloader from './components/Layout/Mobile/MobilePreloader'
+import MobileSafeSection from './components/Layout/Mobile/MobileSafeSection'
 
 // Only Home loaded immediately for faster initial render
 import Home from './components/Home/Home'

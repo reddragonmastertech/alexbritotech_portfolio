@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useIntersectionObserver } from '../../hooks/useMobile';
+import { useIntersectionObserver } from '../../../hooks/useMobile';
 
 const MobileSafeSection = memo(({ 
   children, 

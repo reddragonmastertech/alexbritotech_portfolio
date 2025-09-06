@@ -11,7 +11,7 @@ import {
   FaCogs,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeSwitcher from "../Utilities/ThemeSwitcher";
 
 function Navbar() {
   const navigate = useNavigate();

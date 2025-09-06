@@ -6,7 +6,7 @@ import {
   FaArrowLeft,
   FaArrowRight,
 } from "react-icons/fa";
-import { checkPDFExists } from "../../utils/pdfUtils";
+import { checkPDFExists } from "../../../utils/pdfUtils";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
