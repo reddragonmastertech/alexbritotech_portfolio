@@ -96,7 +96,7 @@ const Preloader = memo(function Preloader() {
               className="h-full bg-gradient-to-r from-blue-500 to-violet-500 rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 2, ease: "easeInOut" }}
+              transition={{ duration: 3, ease: "easeInOut" }}
             />
           </motion.div>
 
