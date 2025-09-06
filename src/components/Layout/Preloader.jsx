@@ -1,22 +1,20 @@
-import { useEffect, useState, memo } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState, memo } from "react";
+import { motion } from "framer-motion";
 
 const Preloader = memo(function Preloader() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detect mobile for optimized animations
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    
-    // Prevent scroll during loading
-    document.body.style.overflow = 'hidden';
-    
+
+    document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, []);
 
@@ -27,7 +25,6 @@ const Preloader = memo(function Preloader() {
       exit={{ opacity: 0 }}
       transition={{ duration: isMobile ? 0.3 : 0.5 }}
     >
-      {/* Simplified background effects for mobile */}
       {!isMobile && (
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse"></div>
@@ -43,16 +40,23 @@ const Preloader = memo(function Preloader() {
           animate={{ scale: 1 }}
           transition={{ duration: isMobile ? 0.4 : 0.6, ease: "easeOut" }}
         >
-          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <span className="text-white text-2xl font-bold">GS</span>
+          <div className="w-50 h-50 rounded-b-lg flex items-center justify-center pl-10">
+            <img
+              src="/logo-bg.png"
+              alt="GiaSi Dev Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <motion.h2
             className="text-2xl font-bold gradient-text"
             initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: isMobile ? 0.2 : 0.3, duration: isMobile ? 0.4 : 0.6 }}
+            transition={{
+              delay: isMobile ? 0.2 : 0.3,
+              duration: isMobile ? 0.4 : 0.6,
+            }}
           >
-            GiaSi Dev
+            Nguyen Tran Gia Si
           </motion.h2>
         </motion.div>
 
