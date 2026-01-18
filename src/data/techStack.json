@@ -1,0 +1,111 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "Backend Development",
+      "icon": "code",
+      "color": "text-orange-400",
+      "bgColor": "bg-orange-500/10",
+      "borderColor": "border-orange-500/20",
+      "technologies": [
+        { "name": "Java", "icon": "java", "level": "Expert", "color": "#ED8B00" },
+        { "name": "Spring Boot", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
+        { "name": "Spring Security", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
+        { "name": "Spring Data JPA", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
+        { "name": "WebSocket", "icon": "code", "level": "Intermediate", "color": "#FF6B6B" },
+        { "name": "Maven", "icon": "box", "level": "Proficient", "color": "#C71A36" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Frontend Development",
+      "icon": "rocket",
+      "color": "text-amber-400",
+      "bgColor": "bg-amber-500/10",
+      "borderColor": "border-amber-500/20",
+      "technologies": [
+        { "name": "React.js", "icon": "react", "level": "Advanced", "color": "#61DAFB" },
+        { "name": "TailwindCSS", "icon": "tailwindcss", "level": "Expert", "color": "#06B6D4" },
+        { "name": "Three.js", "icon": "cube", "level": "Intermediate", "color": "#000000" },
+        { "name": "Framer Motion", "icon": "framer", "level": "Advanced", "color": "#0055FF" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Database Systems",
+      "icon": "database",
+      "color": "text-green-400",
+      "bgColor": "bg-green-500/10",
+      "borderColor": "border-green-500/20",
+      "technologies": [
+        { "name": "MySQL", "icon": "mysql", "level": "Advanced", "color": "#4479A1" },
+        { "name": "MariaDB", "icon": "mariadb", "level": "Advanced", "color": "#003545" },
+        { "name": "MongoDB", "icon": "mongodb", "level": "Intermediate", "color": "#47A248" },
+        { "name": "Neo4J", "icon": "neo4j", "level": "Beginner", "color": "#008CC1" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Development Tools",
+      "icon": "tools",
+      "color": "text-purple-400",
+      "bgColor": "bg-purple-500/10",
+      "borderColor": "border-purple-500/20",
+      "technologies": [
+        { "name": "IntelliJ IDEA", "icon": "intellij", "level": "Expert", "color": "#000000" },
+        { "name": "VS Code", "icon": "code", "level": "Advanced", "color": "#007ACC" },
+        { "name": "Git", "icon": "git", "level": "Advanced", "color": "#F05032" },
+        { "name": "Postman", "icon": "postman", "level": "Proficient", "color": "#FF6C37" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Cloud & Deployment",
+      "icon": "cloud",
+      "color": "text-cyan-400",
+      "bgColor": "bg-cyan-500/10",
+      "borderColor": "border-cyan-500/20",
+      "technologies": [
+        { "name": "Docker", "icon": "docker", "level": "Intermediate", "color": "#2496ED" },
+        { "name": "Vercel", "icon": "vercel", "level": "Advanced", "color": "#000000" },
+        { "name": "Cloudinary", "icon": "cloudinary", "level": "Proficient", "color": "#3448C5" },
+        { "name": "GitHub", "icon": "github", "level": "Advanced", "color": "#181717" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "AI & Automation",
+      "icon": "brain",
+      "color": "text-amber-300",
+      "bgColor": "bg-amber-500/10",
+      "borderColor": "border-amber-500/20",
+      "technologies": [
+        { "name": "ChatGPT", "icon": "brain", "level": "Advanced", "color": "#10A37F" },
+        { "name": "Claude AI", "icon": "brain", "level": "Proficient", "color": "#CC785C" }
+      ]
+    }
+  ],
+  "projectHighlights": [
+    {
+      "id": 1,
+      "name": "CodeHub Platform",
+      "description": "Full-stack collaboration platform with real-time features",
+      "techUsed": ["Java 23", "Spring Boot", "React", "WebSocket", "MariaDB"],
+      "highlight": "Real-time code collaboration with 70+ language support"
+    },
+    {
+      "id": 2,
+      "name": "NatureGrain E-commerce",
+      "description": "Complete e-commerce solution with admin dashboard",
+      "techUsed": ["Spring Security", "React", "MySQL", "Cloudinary"],
+      "highlight": "JWT authentication with comprehensive admin panel"
+    },
+    {
+      "id": 3,
+      "name": "Portfolio Website",
+      "description": "Modern responsive portfolio with 3D animations",
+      "techUsed": ["React 19", "Three.js", "TailwindCSS 4", "Framer Motion"],
+      "highlight": "Performance-optimized with engaging user experience"
+    }
+  ]
+}

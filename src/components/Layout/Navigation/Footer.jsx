@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react'
 import { FaGithub, FaLinkedin, FaHeart, FaEnvelope } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import navigationData from '../../../data/navigation.json'
+import socialLinksData from '../../../data/socialLinks.json'
+import profileData from '../../../data/profile.json'
+
+// Icon mapping
+const socialIconMap = {
+  github: FaGithub,
+  linkedin: FaLinkedin,
+  email: FaEnvelope
+}
 
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState(2024)
@@ -11,28 +21,23 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: 'GitHub',
+      name: socialLinksData.github.name,
       icon: FaGithub,
-      url: 'https://github.com/giasinguyen'
+      url: socialLinksData.github.url
     },
     {
-      name: 'LinkedIn',
+      name: socialLinksData.linkedin.name,
       icon: FaLinkedin,
-      url: 'https://linkedin.com/in/giasinguyen'
+      url: socialLinksData.linkedin.url
     },
     {
-      name: 'Email',
+      name: socialLinksData.email.name,
       icon: FaEnvelope,
-      url: 'mailto:giasinguyentran@gmail.com'
+      url: socialLinksData.email.url
     }
   ]
 
-  const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Tech Stack', href: '#tech-stack' },
-    { name: 'Contact', href: '#contact' }
-  ]
+  const quickLinks = navigationData.quickLinks
 
   return (
     <footer className="relative">
@@ -54,7 +59,7 @@ const Footer = () => {
             whileHover={{ scale: 1.02 }}
           >
             <span className="text-2xl font-bold text-neutral-100 tracking-tight">
-              Nguyen Tran Gia Si
+              {profileData.personal.fullName}
             </span>
             <span className="text-amber-500 text-2xl">.</span>
           </motion.a>

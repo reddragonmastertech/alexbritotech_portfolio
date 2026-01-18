@@ -22,120 +22,58 @@ import {
   SiNeo4J
 } from 'react-icons/si'
 import { FaDatabase, FaTools, FaCloud, FaRocket, FaJava, FaCube, FaBox, FaCode, FaBrain } from 'react-icons/fa'
+import techStackData from '../../data/techStack.json'
+
+// Icon mapping for category icons
+const categoryIconMap = {
+  code: FaCode,
+  rocket: FaRocket,
+  database: FaDatabase,
+  tools: FaTools,
+  cloud: FaCloud,
+  brain: FaBrain
+}
+
+// Icon mapping for technology icons
+const techIconMap = {
+  java: FaJava,
+  springboot: SiSpringboot,
+  react: SiReact,
+  tailwindcss: SiTailwindcss,
+  cube: FaCube,
+  framer: SiFramer,
+  mysql: SiMysql,
+  mariadb: SiMariadb,
+  mongodb: SiMongodb,
+  neo4j: SiNeo4J,
+  intellij: SiIntellijidea,
+  code: FaCode,
+  git: SiGit,
+  postman: SiPostman,
+  docker: SiDocker,
+  vercel: SiVercel,
+  cloudinary: SiCloudinary,
+  github: SiGithub,
+  brain: FaBrain,
+  box: FaBox
+}
 
 function TechStack() {
-  // Tech Stack data organized by categories
-  const techCategories = useMemo(() => [
-    {
-      id: 1,
-      title: "Backend Development",
-      icon: FaCode,
-      color: "text-orange-400",
-      bgColor: "bg-orange-500/10",
-      borderColor: "border-orange-500/20",
-      technologies: [
-        { name: "Java", icon: FaJava, level: "Expert", color: "#ED8B00" },
-        { name: "Spring Boot", icon: SiSpringboot, level: "Advanced", color: "#6DB33F" },
-        { name: "Spring Security", icon: SiSpringboot, level: "Advanced", color: "#6DB33F" },
-        { name: "Spring Data JPA", icon: SiSpringboot, level: "Advanced", color: "#6DB33F" },
-        { name: "WebSocket", icon: FaCode, level: "Intermediate", color: "#FF6B6B" },
-        { name: "Maven", icon: FaBox, level: "Proficient", color: "#C71A36" }
-      ]
-    },
-    {
-      id: 2,
-      title: "Frontend Development",
-      icon: FaRocket,
-      color: "text-amber-400",
-      bgColor: "bg-amber-500/10",
-      borderColor: "border-amber-500/20",
-      technologies: [
-        { name: "React.js", icon: SiReact, level: "Advanced", color: "#61DAFB" },
-        { name: "TailwindCSS", icon: SiTailwindcss, level: "Expert", color: "#06B6D4" },
-        { name: "Three.js", icon: FaCube, level: "Intermediate", color: "#000000" },
-        { name: "Framer Motion", icon: SiFramer, level: "Advanced", color: "#0055FF" }
-      ]
-    },
-    {
-      id: 3,
-      title: "Database Systems",
-      icon: FaDatabase,
-      color: "text-green-400",
-      bgColor: "bg-green-500/10",
-      borderColor: "border-green-500/20",
-      technologies: [
-        { name: "MySQL", icon: SiMysql, level: "Advanced", color: "#4479A1" },
-        { name: "MariaDB", icon: SiMariadb, level: "Advanced", color: "#003545" },
-        { name: "MongoDB", icon: SiMongodb, level: "Intermediate", color: "#47A248" },
-        { name: "Neo4J", icon: SiNeo4J, level: "Beginner", color: "#008CC1" }
-      ]
-    },
-    {
-      id: 4,
-      title: "Development Tools",
-      icon: FaTools,
-      color: "text-purple-400",
-      bgColor: "bg-purple-500/10",
-      borderColor: "border-purple-500/20",
-      technologies: [
-        { name: "IntelliJ IDEA", icon: SiIntellijidea, level: "Expert", color: "#000000" },
-        { name: "VS Code", icon: FaCode, level: "Advanced", color: "#007ACC" },
-        { name: "Git", icon: SiGit, level: "Advanced", color: "#F05032" },
-        { name: "Postman", icon: SiPostman, level: "Proficient", color: "#FF6C37" }
-      ]
-    },
-    {
-      id: 5,
-      title: "Cloud & Deployment",
-      icon: FaCloud,
-      color: "text-cyan-400",
-      bgColor: "bg-cyan-500/10",
-      borderColor: "border-cyan-500/20",
-      technologies: [
-        { name: "Docker", icon: SiDocker, level: "Intermediate", color: "#2496ED" },
-        { name: "Vercel", icon: SiVercel, level: "Advanced", color: "#000000" },
-        { name: "Cloudinary", icon: SiCloudinary, level: "Proficient", color: "#3448C5" },
-        { name: "GitHub", icon: SiGithub, level: "Advanced", color: "#181717" }
-      ]
-    },
-    {
-      id: 6,
-      title: "AI & Automation",
-      icon: FaBrain,
-      color: "text-amber-300",
-      bgColor: "bg-amber-500/10", 
-      borderColor: "border-amber-500/20",
-      technologies: [
-        { name: "ChatGPT", icon: FaBrain, level: "Advanced", color: "#10A37F" },
-        { name: "Claude AI", icon: FaBrain, level: "Proficient", color: "#CC785C" }
-      ]
-    }
-  ], [])
-
-  // Project highlights using tech stack
-  const projectHighlights = useMemo(() => [
-    {
-      id: 1,
-      name: "CodeHub Platform",
-      description: "Full-stack collaboration platform with real-time features",
-      techUsed: ["Java 23", "Spring Boot", "React", "WebSocket", "MariaDB"],
-      highlight: "Real-time code collaboration with 70+ language support"
-    },
-    {
-      id: 2,
-      name: "NatureGrain E-commerce",
-      description: "Complete e-commerce solution with admin dashboard",
-      techUsed: ["Spring Security", "React", "MySQL", "Cloudinary"],
-      highlight: "JWT authentication with comprehensive admin panel"
-    },
-    {
-      id: 3,
-      name: "Portfolio Website",
-      description: "Modern responsive portfolio with 3D animations",
-      techUsed: ["React 19", "Three.js", "TailwindCSS 4", "Framer Motion"],
-      highlight: "Performance-optimized with engaging user experience"
-    }
-  ], [])
+  // Tech Stack data organized by categories from JSON
+  const techCategories = useMemo(() => 
+    techStackData.categories.map(category => ({
+      ...category,
+      icon: categoryIconMap[category.icon] || FaCode,
+      technologies: category.technologies.map(tech => ({
+        ...tech,
+        icon: techIconMap[tech.icon] || FaCode
+      }))
+    })), []
+  )
+  
+  // Project highlights from JSON
+  const projectHighlights = useMemo(() => techStackData.projectHighlights, [])
+  
 
   const getLevelColor = (level) => {
     switch (level) {

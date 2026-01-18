@@ -8,6 +8,9 @@ import {
   SiTypescript,
   SiSpring,
 } from "react-icons/si";
+import profileData from "../../data/profile.json";
+import homeData from "../../data/home.json";
+import socialLinksData from "../../data/socialLinks.json";
 
 // Lazy load heavy dependencies only when needed
 let HeroModel = null;
@@ -138,7 +141,7 @@ function Home() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
               <span className="text-neutral-300 text-sm font-medium">
-                Available for opportunities
+                {homeData.hero.statusBadge.message}
               </span>
             </div>
           </div>
@@ -147,9 +150,9 @@ function Home() {
           <div className="hero-element space-y-6">
             {/* Code-style greeting */}
             <div className="inline-flex items-center gap-2 font-mono text-neutral-400">
-              <span className="text-amber-500">&lt;</span>
-              <span>Hello World</span>
-              <span className="text-amber-500">/&gt;</span>
+              <span className="text-amber-500">{homeData.hero.greeting.prefix}</span>
+              <span>{homeData.hero.greeting.text}</span>
+              <span className="text-amber-500">{homeData.hero.greeting.suffix}</span>
             </div>
 
             {/* Name Display - Code Format */}
@@ -175,7 +178,7 @@ function Home() {
                     ={" "}
                   </span>
                   <span className="text-green-400 text-xl md:text-2xl lg:text-3xl font-semibold">
-                    "Nguyen Tran Gia Si"
+                    "{profileData.personal.fullName}"
                   </span>
                   <span className="text-neutral-500">;</span>
                 </div>
@@ -192,7 +195,7 @@ function Home() {
                   </span>
                   <span className="text-3xl md:text-4xl lg:text-5xl font-black">
                     <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">
-                      "Gia Si"
+                      "{profileData.personal.alias}"
                     </span>
                   </span>
                   <span className="text-neutral-500">;</span>
@@ -213,14 +216,9 @@ function Home() {
               <div className="w-3 h-3 rounded-full bg-amber-500"></div>
               <span className="text-xl md:text-2xl font-semibold text-neutral-200">
                 <TypeWriter
-                  texts={[
-                    "Java Backend Developer",
-                    "Spring Boot Specialist",
-                    "Software Engineer",
-                    "Full Stack Developer",
-                  ]}
-                  delay={isMobile ? 100 : 80}
-                  deleteDelay={isMobile ? 50 : 30}
+                  texts={homeData.hero.typewriter.texts}
+                  delay={isMobile ? homeData.hero.typewriter.mobileDelay : homeData.hero.typewriter.delay}
+                  deleteDelay={isMobile ? homeData.hero.typewriter.mobileDeleteDelay : homeData.hero.typewriter.deleteDelay}
                 />
               </span>
             </div>
@@ -228,23 +226,14 @@ function Home() {
 
           {/* Description */}
           <p className="hero-element text-neutral-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            Final-year{" "}
-            <span className="text-amber-400 font-medium">
-              Software Engineering
-            </span>{" "}
-            student specializing in{" "}
-            <span className="text-amber-400 font-medium">
-              Java & Spring Boot
-            </span>
-            . Passionate about building scalable, high-performance backend
-            systems.
+            {homeData.hero.description}
           </p>
 
           {/* CTA Buttons */}
           <div className="hero-element flex flex-wrap justify-center gap-4 pt-4">
             <button
               onClick={() => {
-                const element = document.getElementById("projects");
+                const element = document.getElementById(homeData.hero.cta.primary.target);
                 if (element) {
                   const offsetTop = element.offsetTop - 80;
                   window.scrollTo({ top: offsetTop, behavior: "smooth" });
@@ -252,13 +241,13 @@ function Home() {
               }}
               className="btn-primary flex items-center gap-3 px-8 py-4 text-lg group"
             >
-              View My Work
+              {homeData.hero.cta.primary.text}
               <FaArrowRight className="text-lg group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button
               onClick={() => {
-                const element = document.getElementById("contact");
+                const element = document.getElementById(homeData.hero.cta.secondary.target);
                 if (element) {
                   const offsetTop = element.offsetTop - 80;
                   window.scrollTo({ top: offsetTop, behavior: "smooth" });
@@ -266,27 +255,27 @@ function Home() {
               }}
               className="px-8 py-4 text-lg font-medium text-neutral-200 bg-neutral-800/60 hover:bg-neutral-700/60 border border-neutral-700/50 hover:border-amber-500/30 rounded-xl transition-all duration-300"
             >
-              Get In Touch
+              {homeData.hero.cta.secondary.text}
             </button>
           </div>
 
           {/* Social Links */}
           <div className="hero-element flex justify-center gap-4 pt-2">
             <a
-              href="https://github.com/giasinguyen"
+              href={socialLinksData.github.url}
               target="_blank"
               rel="noreferrer"
               className="p-3 text-neutral-400 hover:text-amber-400 bg-neutral-800/40 hover:bg-neutral-800/80 border border-neutral-700/30 hover:border-amber-500/30 rounded-xl transition-all duration-300"
-              aria-label="GitHub"
+              aria-label={socialLinksData.github.label}
             >
               <FaGithub className="h-6 w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/giasinguyen"
+              href={socialLinksData.linkedin.url}
               target="_blank"
               rel="noreferrer"
               className="p-3 text-neutral-400 hover:text-amber-400 bg-neutral-800/40 hover:bg-neutral-800/80 border border-neutral-700/30 hover:border-amber-500/30 rounded-xl transition-all duration-300"
-              aria-label="LinkedIn"
+              aria-label={socialLinksData.linkedin.label}
             >
               <FaLinkedin className="h-6 w-6" />
             </a>

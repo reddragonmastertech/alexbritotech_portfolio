@@ -1,8 +1,9 @@
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback } from 'react'
 import { FaDownload, FaEye, FaFilePdf, FaSpinner, FaGraduationCap, FaBriefcase, FaCertificate, FaAward } from 'react-icons/fa'
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import { motion, AnimatePresence } from 'framer-motion'
+import resumeData from '../../data/resume.json'
 
 function Resume() {
   const [showPDF, setShowPDF] = useState(false)
@@ -22,102 +23,18 @@ function Resume() {
 
   const handleDownloadPDF = useCallback(() => {
     const link = document.createElement('a')
-    link.href = '/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf'
-    link.download = 'NguyenTranGiaSi_Intern_JAVA_Backend.pdf'
+    link.href = resumeData.pdf.path
+    link.download = resumeData.pdf.fileName
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
   }, [])
-
-  // Memoize static data for performance - Updated with real resume content
-  const experiences = useMemo(() => [
-    {
-      title: "Fullstack Developer",
-      company: "Personal Projects",
-      period: "April 2025 - Present",
-      location: "Ho Chi Minh City, Vietnam",
-      achievements: [
-        "Developed Portfolio website showcasing web development skills using React 19 and TailwindCSS 4",
-        "Built CodeHub platform for developers to share and collaborate on code snippets with real-time features",
-        "Created NatureGrain e-commerce platform for organic food retail with complete admin dashboard",
-        "Implemented modern technologies including Spring Boot, JWT security, and cloud services integration"
-      ]
-    },
-    {
-      title: "Backend Developer (CodeHub Project)",
-      company: "Personal Development",
-      period: "June 2025 - July 2025",
-      location: "Ho Chi Minh City, Vietnam",
-      achievements: [
-        "Built full-stack platform using Spring Boot (Java 23) and Spring Security with JWT authentication",
-        "Implemented RESTful APIs and WebSocket for real-time collaboration features",
-        "Integrated MariaDB/MySQL database with comprehensive data modeling",
-        "Added multi-language snippet support (70+) and notification system with Cloudinary integration"
-      ]
-    }
-  ], []);
-
-  // Education data - also memoized with real information
-  const education = useMemo(() => [
-    {
-      degree: "Bachelor of Software Engineering",
-      institution: "IUH - Industrial University of Ho Chi Minh City",
-      period: "August 2022 - Present",
-      location: "Ho Chi Minh City, Vietnam",
-      gpa: "3.44/4.0",
-      details: "Final-year Software Engineering student with solid experience in Java and Spring Boot. Passionate about backend development, database design, and building scalable applications."
-    }
-  ], []);
-
-  // Certifications - memoized with real project-based accomplishments
-  const certifications = useMemo(() => [
-    {
-      name: "Java Backend Development",
-      issuer: "Self-Study & Practice",
-      year: "2024-2025",
-      details: "Spring Boot, Spring Security, Spring Data JPA expertise demonstrated through multiple projects"
-    },
-    {
-      name: "Full Stack Web Development",
-      issuer: "Project-Based Learning",
-      year: "2025",
-      details: "React 19, TailwindCSS 4, Modern JavaScript, RESTful APIs development"
-    },
-    {
-      name: "Database Design & Management",
-      issuer: "Practical Implementation",
-      year: "2025",
-      details: "MySQL, MariaDB, MongoDB, and Neo4J through CodeHub and NatureGrain projects"
-    }
-  ], []);
-
-  // Awards & Scholarships - memoized with actual achievements
-  const awards = useMemo(() => [
-    {
-      title: "Academic Excellence Scholarship",
-      issuer: "Industrial University of Ho Chi Minh City",
-      year: "2024",
-      type: "Full Scholarship (100%)",
-      achievement: "GPA 3.75/4.0",
-      description: "Awarded full tuition scholarship for outstanding academic performance"
-    },
-    {
-      title: "Academic Excellence Scholarship", 
-      issuer: "Industrial University of Ho Chi Minh City",
-      year: "2023",
-      type: "Partial Scholarship (50%)",
-      achievement: "GPA 3.62/4.0",
-      description: "Recognized for consistent high academic achievement"
-    },
-    {
-      title: "Academic Excellence Scholarship",
-      issuer: "Industrial University of Ho Chi Minh City", 
-      year: "2022",
-      type: "Partial Scholarship (70%)",
-      achievement: "GPA 3.50/4.0",
-      description: "First-year excellence recognition in Software Engineering program"
-    }
-  ], []);
+  
+  // Use data from JSON file
+  const experiences = resumeData.experiences
+  const education = resumeData.education
+  const certifications = resumeData.certifications
+  const awards = resumeData.awards
 
 
 
@@ -185,7 +102,7 @@ function Resume() {
                         Resume Preview
                       </h3>
                       <p className="text-neutral-400 text-sm mt-1">
-                        NguyenTranGiaSi_Intern_JAVA_Backend.pdf
+                        {resumeData.pdf.fileName}
                       </p>
                     </div>
                     <motion.button
@@ -199,7 +116,7 @@ function Resume() {
                   </div>
                   <div className="bg-neutral-800/50 rounded-xl p-4">
                     <iframe
-                      src="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH"
+                      src={`${resumeData.pdf.path}#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH`}
                       className="w-full h-[600px] rounded-lg border border-neutral-700/30"
                       title="Resume PDF"
                       loading="lazy"
@@ -214,7 +131,7 @@ function Resume() {
                       </p>
                       <div className="flex gap-4 justify-center">
                         <a
-                          href="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
+                          href={resumeData.pdf.path}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-neutral-900 font-medium px-4 py-2 rounded-lg text-sm transition-colors duration-300"

@@ -14,6 +14,18 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import navigationData from "../../../data/navigation.json";
+import socialLinksData from "../../../data/socialLinks.json";
+
+// Icon mapping
+const navIconMap = {
+  home: FaHome,
+  user: FaUser,
+  laptopCode: FaLaptopCode,
+  cogs: FaCogs,
+  file: FaFile,
+  envelope: FaEnvelope
+};
 
 function Navbar() {
   const navigate = useNavigate();
@@ -23,15 +35,11 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  // Navigation items configuration
-  const navItems = [
-    { id: "home", label: "Home", icon: FaHome },
-    { id: "about", label: "About", icon: FaUser },
-    { id: "projects", label: "Projects", icon: FaLaptopCode },
-    { id: "tech-stack", label: "Tech Stack", icon: FaCogs },
-    { id: "resume", label: "Resume", icon: FaFile },
-    { id: "contact", label: "Contact", icon: FaEnvelope },
-  ];
+  // Navigation items configuration from JSON
+  const navItems = navigationData.navItems.map(item => ({
+    ...item,
+    icon: navIconMap[item.icon] || FaHome
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -155,8 +163,8 @@ function Navbar() {
                 />
                 <div className="relative w-11 h-11 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-xl border border-neutral-700/50 flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/logo-bg.png" 
-                    alt="GiaSi Dev Logo" 
+                    src={navigationData.brand.logo} 
+                    alt={`${navigationData.brand.name} Dev Logo`} 
                     className="w-8 h-8 object-contain"
                   />
                 </div>
@@ -167,9 +175,9 @@ function Navbar() {
                 <motion.span 
                   className="text-xl font-bold bg-gradient-to-r from-neutral-100 via-amber-200 to-neutral-300 bg-clip-text text-transparent"
                 >
-                  GiaSi
+                  {navigationData.brand.name}
                 </motion.span>
-                <span className="text-neutral-500 font-medium text-sm block -mt-1">Developer</span>
+                <span className="text-neutral-500 font-medium text-sm block -mt-1">{navigationData.brand.tagline}</span>
               </div>
             </motion.button>
 
@@ -221,7 +229,7 @@ function Navbar() {
               {/* Social Links */}
               <div className="flex items-center gap-2 mr-2">
                 <motion.a
-                  href="https://github.com/giasinguyen"
+                  href={socialLinksData.github.url}
                   target="_blank"
                   rel="noreferrer"
                   className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-700/50 hover:border-neutral-600 transition-all duration-300"
@@ -231,7 +239,7 @@ function Navbar() {
                   <FaGithub className="w-5 h-5" />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com/in/giasinguyen"
+                  href={socialLinksData.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
                   className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-amber-400 hover:bg-neutral-700/50 hover:border-amber-500/30 transition-all duration-300"
@@ -327,7 +335,7 @@ function Navbar() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
                     <img 
-                      src="/logo-bg.png" 
+                      src={navigationData.brand.logo} 
                       alt="Logo" 
                       className="w-7 h-7 object-contain"
                     />
@@ -399,7 +407,7 @@ function Navbar() {
                 <p className="text-xs text-neutral-500 mb-4 uppercase tracking-wider">Connect with me</p>
                 <div className="flex items-center gap-3">
                   <motion.a
-                    href="https://github.com/giasinguyen"
+                    href={socialLinksData.github.url}
                     target="_blank"
                     rel="noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700/30 text-neutral-300 hover:text-white hover:bg-neutral-700/50 transition-all duration-300"
@@ -407,10 +415,10 @@ function Navbar() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <FaGithub className="w-5 h-5" />
-                    <span className="text-sm font-medium">GitHub</span>
+                    <span className="text-sm font-medium">{socialLinksData.github.label}</span>
                   </motion.a>
                   <motion.a
-                    href="https://linkedin.com/in/giasinguyen"
+                    href={socialLinksData.linkedin.url}
                     target="_blank"
                     rel="noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 hover:bg-amber-500/20 transition-all duration-300"
@@ -418,7 +426,7 @@ function Navbar() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <FaLinkedin className="w-5 h-5" />
-                    <span className="text-sm font-medium">LinkedIn</span>
+                    <span className="text-sm font-medium">{socialLinksData.linkedin.label}</span>
                   </motion.a>
                 </div>
               </div>

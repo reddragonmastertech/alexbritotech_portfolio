@@ -14,8 +14,16 @@ import {
 } from "react-icons/fa";
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
+import contactData from '../../data/contact.json';
+import socialLinksData from '../../data/socialLinks.json';
+import profileData from '../../data/profile.json';
 
-const WEB3FORMS_ACCESS_KEY = "110d43b6-1f58-4df5-a1bb-1363142e734b";
+// Icon mapping
+const iconMap = {
+  email: FaEnvelope,
+  phone: FaPhone,
+  location: FaMapMarkerAlt
+};
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -55,12 +63,12 @@ function Contact() {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
+          access_key: contactData.form.web3FormsAccessKey,
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Portfolio Contact: Message from ${formData.name}`,
-          from_name: "GiaSi Portfolio"
+          subject: `${contactData.form.subjectPrefix} ${formData.name}`,
+          from_name: contactData.form.fromName
         })
       });
 
@@ -80,31 +88,15 @@ function Contact() {
     }
   }, [formData, showToast]);
 
-  // Direct contact methods
-  const contactMethods = [
-    {
-      icon: FaEnvelope,
-      label: "Email",
-      value: "giasinguyentran@gmail.com",
-      href: "mailto:giasinguyentran@gmail.com",
-    },
-    {
-      icon: FaPhone,
-      label: "Phone",
-      value: "(+84) 34 899 6487",
-      href: "tel:+84348996487",
-    },
-    {
-      icon: FaMapMarkerAlt,
-      label: "Location",
-      value: "Ho Chi Minh City, Vietnam",
-      href: "https://maps.google.com/?q=Ho+Chi+Minh+City",
-    }
-  ];
+  // Direct contact methods from JSON
+  const contactMethods = contactData.methods.map(method => ({
+    ...method,
+    icon: iconMap[method.icon] || FaEnvelope
+  }));
 
   const socialLinks = [
-    { icon: FaGithub, href: "https://github.com/giasinguyen", label: "GitHub" },
-    { icon: FaLinkedin, href: "https://linkedin.com/in/giasinguyen", label: "LinkedIn" }
+    { icon: FaGithub, href: socialLinksData.github.url, label: socialLinksData.github.label },
+    { icon: FaLinkedin, href: socialLinksData.linkedin.url, label: socialLinksData.linkedin.label }
   ];
 
   return (
@@ -121,15 +113,15 @@ function Contact() {
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-sm font-medium mb-6">
-              Available for opportunities
+              {contactData.header.badge}
             </span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-100 mb-4">
-              Get In Touch
+              {contactData.header.title}
             </h1>
             
             <p className="text-neutral-400 text-lg max-w-xl mx-auto">
-              Looking for a Java Backend Developer? Let's connect and discuss how I can contribute to your team.
+              {contactData.header.description}
             </p>
           </motion.div>
 
@@ -159,7 +151,7 @@ function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder="Nguyễn Trần Gia Sĩ"
+                      placeholder={profileData.personal.fullName}
                       required
                     />
                   </div>
@@ -174,7 +166,7 @@ function Contact() {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder="giasinguyentran@gmail.com"
+                      placeholder={profileData.personal.email}
                       required
                     />
                   </div>
@@ -233,11 +225,11 @@ function Contact() {
                 </h2>
                 
                 <div className="space-y-4">
-                  {contactMethods.map((method, index) => {
+                  {contactMethods.map((method) => {
                     const Icon = method.icon;
                     return (
                       <a
-                        key={index}
+                        key={method.id}
                         href={method.href}
                         target={method.href.startsWith('http') ? '_blank' : undefined}
                         rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -290,10 +282,10 @@ function Contact() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                   </span>
-                  <span className="text-sm font-semibold text-amber-400">Open to Work</span>
+                  <span className="text-sm font-semibold text-amber-400">{profileData.personal.status.statusText}</span>
                 </div>
                 <p className="text-sm text-neutral-400 leading-relaxed">
-                  Currently seeking internship opportunities as a Java Backend Developer. Available to start immediately.
+                  {profileData.personal.status.description}
                 </p>
               </div>
             </motion.div>

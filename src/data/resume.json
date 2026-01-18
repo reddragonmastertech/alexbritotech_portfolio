@@ -1,0 +1,97 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "title": "Fullstack Developer",
+      "company": "Personal Projects",
+      "period": "April 2025 - Present",
+      "location": "Ho Chi Minh City, Vietnam",
+      "achievements": [
+        "Developed Portfolio website showcasing web development skills using React 19 and TailwindCSS 4",
+        "Built CodeHub platform for developers to share and collaborate on code snippets with real-time features",
+        "Created NatureGrain e-commerce platform for organic food retail with complete admin dashboard",
+        "Implemented modern technologies including Spring Boot, JWT security, and cloud services integration"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Backend Developer (CodeHub Project)",
+      "company": "Personal Development",
+      "period": "June 2025 - July 2025",
+      "location": "Ho Chi Minh City, Vietnam",
+      "achievements": [
+        "Built full-stack platform using Spring Boot (Java 23) and Spring Security with JWT authentication",
+        "Implemented RESTful APIs and WebSocket for real-time collaboration features",
+        "Integrated MariaDB/MySQL database with comprehensive data modeling",
+        "Added multi-language snippet support (70+) and notification system with Cloudinary integration"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "degree": "Bachelor of Software Engineering",
+      "institution": "IUH - Industrial University of Ho Chi Minh City",
+      "period": "August 2022 - Present",
+      "location": "Ho Chi Minh City, Vietnam",
+      "gpa": "3.44/4.0",
+      "details": "Final-year Software Engineering student with solid experience in Java and Spring Boot. Passionate about backend development, database design, and building scalable applications."
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "name": "Java Backend Development",
+      "issuer": "Self-Study & Practice",
+      "year": "2024-2025",
+      "details": "Spring Boot, Spring Security, Spring Data JPA expertise demonstrated through multiple projects"
+    },
+    {
+      "id": 2,
+      "name": "Full Stack Web Development",
+      "issuer": "Project-Based Learning",
+      "year": "2025",
+      "details": "React 19, TailwindCSS 4, Modern JavaScript, RESTful APIs development"
+    },
+    {
+      "id": 3,
+      "name": "Database Design & Management",
+      "issuer": "Practical Implementation",
+      "year": "2025",
+      "details": "MySQL, MariaDB, MongoDB, and Neo4J through CodeHub and NatureGrain projects"
+    }
+  ],
+  "awards": [
+    {
+      "id": 1,
+      "title": "Academic Excellence Scholarship",
+      "issuer": "Industrial University of Ho Chi Minh City",
+      "year": "2024",
+      "type": "Full Scholarship (100%)",
+      "achievement": "GPA 3.75/4.0",
+      "description": "Awarded full tuition scholarship for outstanding academic performance"
+    },
+    {
+      "id": 2,
+      "title": "Academic Excellence Scholarship",
+      "issuer": "Industrial University of Ho Chi Minh City",
+      "year": "2023",
+      "type": "Partial Scholarship (50%)",
+      "achievement": "GPA 3.62/4.0",
+      "description": "Recognized for consistent high academic achievement"
+    },
+    {
+      "id": 3,
+      "title": "Academic Excellence Scholarship",
+      "issuer": "Industrial University of Ho Chi Minh City",
+      "year": "2022",
+      "type": "Partial Scholarship (70%)",
+      "achievement": "GPA 3.50/4.0",
+      "description": "First-year excellence recognition in Software Engineering program"
+    }
+  ],
+  "pdf": {
+    "fileName": "NguyenTranGiaSi_Intern_JAVA_Backend.pdf",
+    "path": "/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
+  }
+}

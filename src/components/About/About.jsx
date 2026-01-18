@@ -6,6 +6,16 @@ import {
   FaGraduationCap,
   FaMapMarkerAlt
 } from "react-icons/fa";
+import profileData from "../../data/profile.json";
+import aboutData from "../../data/about.json";
+
+// Icon mapping
+const iconMap = {
+  code: FaCode,
+  server: FaServer,
+  graduation: FaGraduationCap,
+  location: FaMapMarkerAlt
+};
 
 function About() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -27,28 +37,14 @@ function About() {
     };
   }, []);
 
-  const highlights = [
-    {
-      icon: <FaCode />,
-      title: "Full-Stack Developer",
-      description: "Specialized in Java Spring Boot & React ecosystem"
-    },
-    {
-      icon: <FaServer />,
-      title: "Backend Focus",
-      description: "Building scalable APIs and microservices"
-    },
-    {
-      icon: <FaGraduationCap />,
-      title: "IT Student",
-      description: "Industrial University of Ho Chi Minh City"
-    },
-    {
-      icon: <FaMapMarkerAlt />,
-      title: "Based in",
-      description: "Ho Chi Minh City, Vietnam"
-    }
-  ];
+  // Map highlights from JSON with icons
+  const highlights = aboutData.highlights.map(item => {
+    const IconComponent = iconMap[item.icon] || FaCode;
+    return {
+      ...item,
+      icon: <IconComponent />
+    };
+  });
 
   return (
     <section className="py-24 px-6">
@@ -82,8 +78,8 @@ function About() {
               {/* Avatar Container */}
               <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-900">
                 <img
-                  src="/avatar.jpg"
-                  alt="Nguyen Tran Gia Si"
+                  src={profileData.personal.avatar}
+                  alt={profileData.personal.fullName}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -97,7 +93,7 @@ function About() {
               {/* Status Badge */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-neutral-900 border border-neutral-700 rounded-full flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-xs text-neutral-300 whitespace-nowrap">Open to Work</span>
+                <span className="text-xs text-neutral-300 whitespace-nowrap">{profileData.personal.status.statusText}</span>
               </div>
             </div>
           </motion.div>
@@ -112,9 +108,9 @@ function About() {
           >
             <div>
               <h3 className="text-2xl font-bold text-neutral-100 mb-2">
-                Hi, I'm <span className="text-amber-400">Gia Si</span>
+                {profileData.about.greeting} <span className="text-amber-400">{profileData.about.nameHighlight}</span>
               </h3>
-              <p className="text-amber-500/80 font-medium">Full-Stack Developer</p>
+              <p className="text-amber-500/80 font-medium">{profileData.role.title}</p>
             </div>
             
             <div className="space-y-4 text-neutral-400 leading-relaxed">
@@ -124,26 +120,25 @@ function About() {
                 backend development and <span className="text-amber-400">React</span> for creating interactive user interfaces.
               </p>
               <p>
-                I believe in writing clean, maintainable code and continuously learning new technologies 
-                to deliver exceptional solutions that drive business growth.
+                {profileData.about.belief}
               </p>
             </div>
 
             {/* Quick Stats */}
             <div className="flex flex-wrap gap-6 pt-2">
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">5+</div>
-                <div className="text-xs text-neutral-500">Projects</div>
+                <div className="text-2xl font-bold text-amber-400">{aboutData.stats.projects.value}</div>
+                <div className="text-xs text-neutral-500">{aboutData.stats.projects.label}</div>
               </div>
               <div className="w-px h-12 bg-neutral-800"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">1+</div>
-                <div className="text-xs text-neutral-500">Year Exp</div>
+                <div className="text-2xl font-bold text-amber-400">{aboutData.stats.experience.value}</div>
+                <div className="text-xs text-neutral-500">{aboutData.stats.experience.label}</div>
               </div>
               <div className="w-px h-12 bg-neutral-800"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">100%</div>
-                <div className="text-xs text-neutral-500">Dedication</div>
+                <div className="text-2xl font-bold text-amber-400">{aboutData.stats.dedication.value}</div>
+                <div className="text-xs text-neutral-500">{aboutData.stats.dedication.label}</div>
               </div>
             </div>
           </motion.div>

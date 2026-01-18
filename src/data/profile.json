@@ -1,0 +1,44 @@
+{
+  "personal": {
+    "fullName": "Nguyen Tran Gia Si",
+    "alias": "Gia Si",
+    "email": "giasinguyentran@gmail.com",
+    "phone": "(+84) 34 899 6487",
+    "location": "Ho Chi Minh City, Vietnam",
+    "avatar": "/avatar.jpg",
+    "status": {
+      "available": true,
+      "message": "Available for opportunities",
+      "statusText": "Open to Work",
+      "description": "Currently seeking internship opportunities as a Java Backend Developer. Available to start immediately."
+    }
+  },
+  "role": {
+    "title": "Full-Stack Developer",
+    "titles": [
+      "Java Backend Developer",
+      "Spring Boot Specialist",
+      "Software Engineer",
+      "Full Stack Developer"
+    ],
+    "description": "Final-year Software Engineering student specializing in Java & Spring Boot. Passionate about building scalable, high-performance backend systems.",
+    "studentStatus": {
+      "isStudent": true,
+      "year": "Final-year",
+      "major": "Software Engineering",
+      "specialization": "Java & Spring Boot"
+    }
+  },
+  "about": {
+    "greeting": "Hi, I'm",
+    "nameHighlight": "Gia Si",
+    "intro": "I'm passionate about building enterprise-level applications using modern technologies. My expertise lies in Java Spring Boot for backend development and React for creating interactive user interfaces.",
+    "belief": "I believe in writing clean, maintainable code and continuously learning new technologies to deliver exceptional solutions that drive business growth.",
+    "stats": {
+      "projects": "5+",
+      "experience": "1+",
+      "experienceUnit": "Year Exp",
+      "dedication": "100%"
+    }
+  }
+}
