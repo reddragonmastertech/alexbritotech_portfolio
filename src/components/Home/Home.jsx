@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import TypeWriter from "./TypeWriter";
-import { FaArrowRight, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
+import { FaArrowRight, FaJava } from "react-icons/fa";
 import {
   SiSpringboot,
   SiReact,
@@ -10,7 +10,6 @@ import {
 } from "react-icons/si";
 import profileData from "../../data/profile.json";
 import homeData from "../../data/home.json";
-import socialLinksData from "../../data/socialLinks.json";
 
 // Lazy load heavy dependencies only when needed
 let HeroModel = null;
@@ -259,27 +258,6 @@ function Home() {
             </button>
           </div>
 
-          {/* Social Links */}
-          <div className="hero-element flex justify-center gap-4 pt-2">
-            <a
-              href={socialLinksData.github.url}
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 text-neutral-400 hover:text-amber-400 bg-neutral-800/40 hover:bg-neutral-800/80 border border-neutral-700/30 hover:border-amber-500/30 rounded-xl transition-all duration-300"
-              aria-label={socialLinksData.github.label}
-            >
-              <FaGithub className="h-6 w-6" />
-            </a>
-            <a
-              href={socialLinksData.linkedin.url}
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 text-neutral-400 hover:text-amber-400 bg-neutral-800/40 hover:bg-neutral-800/80 border border-neutral-700/30 hover:border-amber-500/30 rounded-xl transition-all duration-300"
-              aria-label={socialLinksData.linkedin.label}
-            >
-              <FaLinkedin className="h-6 w-6" />
-            </a>
-          </div>
         </div>
 
         {!isMobile && (

@@ -9,13 +9,15 @@ import {
   FaFile,
   FaEnvelope,
   FaCogs,
-  FaGithub,
   FaLinkedin,
+  FaWhatsapp,
+  FaDownload,
   FaArrowRight,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import navigationData from "../../../data/navigation.json";
 import socialLinksData from "../../../data/socialLinks.json";
+import resumeData from "../../../data/resume.json";
 
 // Icon mapping
 const navIconMap = {
@@ -111,6 +113,16 @@ function Navbar() {
     }
     setIsOpen(false);
   }, [location.pathname, navigate]);
+
+  // Handle resume download
+  const handleDownloadPDF = useCallback(() => {
+    const link = document.createElement('a');
+    link.href = resumeData.pdf.path;
+    link.download = resumeData.pdf.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
 
   const handleMobileNavClick = useCallback((sectionId) => {
     setIsOpen(false);
@@ -226,28 +238,48 @@ function Navbar() {
 
             {/* Desktop Right Section */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Social Links */}
+              {/* Action Buttons - Email, WhatsApp, LinkedIn, Download */}
               <div className="flex items-center gap-2 mr-2">
                 <motion.a
-                  href={socialLinksData.github.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-700/50 hover:border-neutral-600 transition-all duration-300"
+                  href={socialLinksData.email.url}
+                  className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-amber-400 hover:bg-neutral-700/50 hover:border-amber-500/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
+                  aria-label={socialLinksData.email.label}
                 >
-                  <FaGithub className="w-5 h-5" />
+                  <FaEnvelope className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  href={socialLinksData.whatsapp.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-green-400 hover:bg-neutral-700/50 hover:border-green-500/30 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={socialLinksData.whatsapp.label}
+                >
+                  <FaWhatsapp className="w-5 h-5" />
                 </motion.a>
                 <motion.a
                   href={socialLinksData.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-amber-400 hover:bg-neutral-700/50 hover:border-amber-500/30 transition-all duration-300"
-                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-blue-400 hover:bg-neutral-700/50 hover:border-blue-500/30 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
+                  aria-label={socialLinksData.linkedin.label}
                 >
                   <FaLinkedin className="w-5 h-5" />
                 </motion.a>
+                <motion.button
+                  onClick={handleDownloadPDF}
+                  className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-amber-400 hover:bg-neutral-700/50 hover:border-amber-500/30 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Download Resume"
+                >
+                  <FaDownload className="w-5 h-5" />
+                </motion.button>
               </div>
 
               {/* CTA Button */}
@@ -402,32 +434,50 @@ function Navbar() {
                 ))}
               </div>
 
-              {/* Social Links */}
+              {/* Action Buttons - Email, WhatsApp, LinkedIn, Download */}
               <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-neutral-800/80 bg-neutral-900/80 backdrop-blur-sm">
                 <p className="text-xs text-neutral-500 mb-4 uppercase tracking-wider">Connect with me</p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center gap-3">
                   <motion.a
-                    href={socialLinksData.github.url}
+                    href={socialLinksData.email.url}
+                    className="w-12 h-12 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-300 hover:text-amber-400 hover:bg-neutral-700/50 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={socialLinksData.email.label}
+                  >
+                    <FaEnvelope className="w-5 h-5" />
+                  </motion.a>
+                  <motion.a
+                    href={socialLinksData.whatsapp.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700/30 text-neutral-300 hover:text-white hover:bg-neutral-700/50 transition-all duration-300"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 hover:bg-green-500/20 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={socialLinksData.whatsapp.label}
                   >
-                    <FaGithub className="w-5 h-5" />
-                    <span className="text-sm font-medium">{socialLinksData.github.label}</span>
+                    <FaWhatsapp className="w-5 h-5" />
                   </motion.a>
                   <motion.a
                     href={socialLinksData.linkedin.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 hover:bg-amber-500/20 transition-all duration-300"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 hover:bg-blue-500/20 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={socialLinksData.linkedin.label}
                   >
                     <FaLinkedin className="w-5 h-5" />
-                    <span className="text-sm font-medium">{socialLinksData.linkedin.label}</span>
                   </motion.a>
+                  <motion.button
+                    onClick={handleDownloadPDF}
+                    className="w-12 h-12 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-300 hover:text-amber-400 hover:bg-neutral-700/50 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Download Resume"
+                  >
+                    <FaDownload className="w-5 h-5" />
+                  </motion.button>
                 </div>
               </div>
             </motion.div>

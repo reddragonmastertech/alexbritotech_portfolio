@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from "react";
 import TypeWriter from "./TypeWriter";
-import { FaArrowRight, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
+import { FaArrowRight, FaJava } from "react-icons/fa";
 import {
   SiSpringboot,
   SiJavascript,
@@ -10,6 +10,7 @@ import {
   SiSpring,
   SiSpringsecurity,
 } from "react-icons/si";
+import profileData from "../../data/profile.json";
 
 // Mobile-first Home component - no heavy animations or 3D models
 const MobileHome = memo(() => {
@@ -39,11 +40,11 @@ const MobileHome = memo(() => {
           <div>
             <p className="text-blue-400 font-medium mb-2">Hello, I'm</p>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="gradient-text">Nguyen Tran Gia Si</span>
+              <span className="gradient-text">{profileData.personal.fullName}</span>
             </h1>
             <div className="text-xl md:text-2xl text-slate-300 min-h-[2rem]">
               <TypeWriter 
-                words={[
+                texts={[
                   "Full Stack Developer",
                   "Spring Boot Expert", 
                   "React Enthusiast",
@@ -80,25 +81,6 @@ const MobileHome = memo(() => {
             </a>
           </div>
 
-          {/* Social Links */}
-          <div className="flex gap-6 justify-center">
-            <a 
-              href="https://github.com/giasinguyen" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800/50 transition-colors"
-            >
-              <FaGithub size={24} />
-            </a>
-            <a 
-              href="https://linkedin.com/in/giasinguyen" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-blue-400 p-2 rounded-lg hover:bg-slate-800/50 transition-colors"
-            >
-              <FaLinkedin size={24} />
-            </a>
-          </div>
 
           {/* Tech Stack */}
           <div className="pt-8">
