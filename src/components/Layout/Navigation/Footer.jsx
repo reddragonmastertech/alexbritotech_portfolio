@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FaGithub, FaLinkedin, FaHeart, FaEnvelope } from 'react-icons/fa'
 import { motion } from 'framer-motion'
-import navigationData from '../../../data/navigation.json'
+import settingData from '../../../data/setting.json'
 import contactData from '../../../data/contact.json'
 import profileData from '../../../data/profile.json'
 
@@ -21,23 +21,23 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: contactData.socialLinks.github.name,
+      name: contactData.contactInfo.github.name,
       icon: FaGithub,
-      url: contactData.socialLinks.github.url
+      url: contactData.contactInfo.github.url
     },
     {
-      name: contactData.socialLinks.linkedin.name,
+      name: contactData.contactInfo.linkedin.name,
       icon: FaLinkedin,
-      url: contactData.socialLinks.linkedin.url
+      url: contactData.contactInfo.linkedin.url
     },
     {
-      name: contactData.socialLinks.email.name,
+      name: contactData.contactInfo.email.name,
       icon: FaEnvelope,
-      url: contactData.socialLinks.email.url
+      url: contactData.contactInfo.email.url
     }
   ]
 
-  const quickLinks = navigationData.quickLinks
+  const quickLinks = settingData.navigation.quickLinks
 
   return (
     <footer className="relative">

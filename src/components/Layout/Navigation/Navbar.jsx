@@ -15,7 +15,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import navigationData from "../../../data/navigation.json";
+import settingData from "../../../data/setting.json";
 import contactData from "../../../data/contact.json";
 import experienceData from "../../../data/experience.json";
 
@@ -38,7 +38,7 @@ function Navbar() {
   const [hoveredItem, setHoveredItem] = useState(null);
 
   // Navigation items configuration from JSON
-  const navItems = navigationData.navItems.map(item => ({
+  const navItems = settingData.navigation.navItems.map(item => ({
     ...item,
     icon: navIconMap[item.icon] || FaHome
   }));
@@ -175,8 +175,8 @@ function Navbar() {
                 />
                 <div className="relative w-11 h-11 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-xl border border-neutral-700/50 flex items-center justify-center overflow-hidden">
                   <img 
-                    src={navigationData.brand.logo} 
-                    alt={`${navigationData.brand.name} Dev Logo`} 
+                    src={settingData.navigation.brand.logo} 
+                    alt={`${settingData.navigation.brand.name} Dev Logo`} 
                     className="w-8 h-8 object-contain"
                   />
                 </div>
@@ -187,9 +187,9 @@ function Navbar() {
                 <motion.span 
                   className="text-xl font-bold bg-gradient-to-r from-neutral-100 via-amber-200 to-neutral-300 bg-clip-text text-transparent"
                 >
-                  {navigationData.brand.name}
+                  {settingData.navigation.brand.name}
                 </motion.span>
-                <span className="text-neutral-500 font-medium text-sm block -mt-1">{navigationData.brand.tagline}</span>
+                <span className="text-neutral-500 font-medium text-sm block -mt-1">{settingData.navigation.brand.tagline}</span>
               </div>
             </motion.button>
 
@@ -241,33 +241,33 @@ function Navbar() {
               {/* Action Buttons - Email, WhatsApp, LinkedIn, Download */}
               <div className="flex items-center gap-2 mr-2">
                 <motion.a
-                  href={contactData.socialLinks.email.url}
+                  href={contactData.contactInfo.email.url}
                   className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-amber-400 hover:bg-neutral-700/50 hover:border-amber-500/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-label={contactData.socialLinks.email.label}
+                  aria-label={contactData.contactInfo.email.label}
                 >
                   <FaEnvelope className="w-5 h-5" />
                 </motion.a>
                 <motion.a
-                  href={contactData.socialLinks.whatsapp.url}
+                  href={contactData.contactInfo.whatsapp.url}
                   target="_blank"
                   rel="noreferrer"
                   className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-green-400 hover:bg-neutral-700/50 hover:border-green-500/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-label={contactData.socialLinks.whatsapp.label}
+                  aria-label={contactData.contactInfo.whatsapp.label}
                 >
                   <FaWhatsapp className="w-5 h-5" />
                 </motion.a>
                 <motion.a
-                  href={contactData.socialLinks.linkedin.url}
+                  href={contactData.contactInfo.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
                   className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-blue-400 hover:bg-neutral-700/50 hover:border-blue-500/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-label={contactData.socialLinks.linkedin.label}
+                  aria-label={contactData.contactInfo.linkedin.label}
                 >
                   <FaLinkedin className="w-5 h-5" />
                 </motion.a>
@@ -367,7 +367,7 @@ function Navbar() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
                     <img 
-                      src={navigationData.brand.logo} 
+                      src={settingData.navigation.brand.logo} 
                       alt="Logo" 
                       className="w-7 h-7 object-contain"
                     />
@@ -439,33 +439,33 @@ function Navbar() {
                 <p className="text-xs text-neutral-500 mb-4 uppercase tracking-wider">Connect with me</p>
                 <div className="flex items-center justify-center gap-3">
                   <motion.a
-                    href={contactData.socialLinks.email.url}
+                    href={contactData.contactInfo.email.url}
                     className="w-12 h-12 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-300 hover:text-amber-400 hover:bg-neutral-700/50 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    aria-label={contactData.socialLinks.email.label}
+                    aria-label={contactData.contactInfo.email.label}
                   >
                     <FaEnvelope className="w-5 h-5" />
                   </motion.a>
                   <motion.a
-                    href={contactData.socialLinks.whatsapp.url}
+                    href={contactData.contactInfo.whatsapp.url}
                     target="_blank"
                     rel="noreferrer"
                     className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 hover:bg-green-500/20 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    aria-label={contactData.socialLinks.whatsapp.label}
+                    aria-label={contactData.contactInfo.whatsapp.label}
                   >
                     <FaWhatsapp className="w-5 h-5" />
                   </motion.a>
                   <motion.a
-                    href={contactData.socialLinks.linkedin.url}
+                    href={contactData.contactInfo.linkedin.url}
                     target="_blank"
                     rel="noreferrer"
                     className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 hover:bg-blue-500/20 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    aria-label={contactData.socialLinks.linkedin.label}
+                    aria-label={contactData.contactInfo.linkedin.label}
                   >
                     <FaLinkedin className="w-5 h-5" />
                   </motion.a>

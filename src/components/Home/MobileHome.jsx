@@ -11,6 +11,19 @@ import {
   SiSpringsecurity,
 } from "react-icons/si";
 import profileData from "../../data/profile.json";
+import settingData from "../../data/setting.json";
+
+// Static CTA buttons
+const CTA_BUTTONS = {
+  primary: {
+    text: "View My Work",
+    target: "projects"
+  },
+  secondary: {
+    text: "Get In Touch",
+    target: "contact"
+  }
+};
 
 // Mobile-first Home component - no heavy animations or 3D models
 const MobileHome = memo(() => {
@@ -44,40 +57,33 @@ const MobileHome = memo(() => {
             </h1>
             <div className="text-xl md:text-2xl text-slate-300 min-h-[2rem]">
               <TypeWriter 
-                texts={[
-                  "Full Stack Developer",
-                  "Spring Boot Expert", 
-                  "React Enthusiast",
-                  "Problem Solver"
-                ]}
-                delay={isMobile ? 100 : 80}
-                deleteDelay={isMobile ? 50 : 30}
+                texts={settingData.typewriter.texts}
+                delay={isMobile ? settingData.typewriter.mobileDelay : settingData.typewriter.delay}
+                deleteDelay={isMobile ? settingData.typewriter.mobileDeleteDelay : settingData.typewriter.deleteDelay}
               />
             </div>
           </div>
 
           {/* Description */}
           <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-            Passionate about creating robust backend systems with Spring Boot and 
-            intuitive frontend experiences with React. Always eager to learn and 
-            tackle new challenges in software development.
+            {settingData.description}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
-              href="#projects" 
+              href={`#${CTA_BUTTONS.primary.target}`}
               className="group inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              View My Work
+              {CTA_BUTTONS.primary.text}
               <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
             </a>
             
             <a 
-              href="#contact" 
+              href={`#${CTA_BUTTONS.secondary.target}`}
               className="inline-flex items-center gap-2 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              Get In Touch
+              {CTA_BUTTONS.secondary.text}
             </a>
           </div>
 
