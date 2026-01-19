@@ -1,18 +1,23 @@
 {
   "github": {
     "name": "GitHub",
-    "url": "https://github.com/giasinguyen",
+    "url": "https://github.com/reddragonmastertech",
     "label": "GitHub"
   },
   "linkedin": {
     "name": "LinkedIn",
-    "url": "https://linkedin.com/in/giasinguyen",
+    "url": "https://linkedin.com/in/alexandrosilvadebrito",
     "label": "LinkedIn"
   },
   "email": {
     "name": "Email",
-    "url": "mailto:giasinguyentran@gmail.com",
+    "url": "mailto:alexbritotech@gmail.com",
     "label": "Email",
-    "value": "giasinguyentran@gmail.com"
+    "value": "alexbritotech@gmail.com"
+  },
+  "whatsapp": {
+    "name": "WhatsApp",
+    "url": "https://wa.me/554196159483",
+    "label": "WhatsApp"
   }
 }
