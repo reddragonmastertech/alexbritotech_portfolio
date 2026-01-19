@@ -3,7 +3,7 @@ import { FaDownload, FaEye, FaFilePdf, FaSpinner, FaGraduationCap, FaBriefcase }
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import { motion, AnimatePresence } from 'framer-motion'
-import resumeData from '../../data/resume.json'
+import experienceData from '../../data/experience.json'
 
 function Resume() {
   const [showPDF, setShowPDF] = useState(false)
@@ -23,16 +23,16 @@ function Resume() {
 
   const handleDownloadPDF = useCallback(() => {
     const link = document.createElement('a')
-    link.href = resumeData.pdf.path
-    link.download = resumeData.pdf.fileName
+    link.href = experienceData.pdf.path
+    link.download = experienceData.pdf.fileName
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
   }, [])
   
   // Use data from JSON file
-  const experiences = resumeData.experiences
-  const education = resumeData.education
+  const experiences = experienceData.experiences
+  const education = experienceData.education
 
 
 
@@ -100,7 +100,7 @@ function Resume() {
                         Resume Preview
                       </h3>
                       <p className="text-neutral-400 text-sm mt-1">
-                        {resumeData.pdf.fileName}
+                        {experienceData.pdf.fileName}
                       </p>
                     </div>
                     <motion.button
@@ -114,7 +114,7 @@ function Resume() {
                   </div>
                   <div className="bg-neutral-800/50 rounded-xl p-4">
                     <iframe
-                      src={`${resumeData.pdf.path}#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH`}
+                      src={`${experienceData.pdf.path}#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH`}
                       className="w-full h-[600px] rounded-lg border border-neutral-700/30"
                       title="Resume PDF"
                       loading="lazy"
@@ -129,7 +129,7 @@ function Resume() {
                       </p>
                       <div className="flex gap-4 justify-center">
                         <a
-                          href={resumeData.pdf.path}
+                          href={experienceData.pdf.path}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-neutral-900 font-medium px-4 py-2 rounded-lg text-sm transition-colors duration-300"

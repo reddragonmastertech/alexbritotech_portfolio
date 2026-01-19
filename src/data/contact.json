@@ -1,4 +1,27 @@
 {
+  "socialLinks": {
+    "github": {
+      "name": "GitHub",
+      "url": "https://github.com/reddragonmastertech",
+      "label": "GitHub"
+    },
+    "linkedin": {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/alexandrosilvadebrito",
+      "label": "LinkedIn"
+    },
+    "email": {
+      "name": "Email",
+      "url": "mailto:alexbritotech@gmail.com",
+      "label": "Email",
+      "value": "alexbritotech@gmail.com"
+    },
+    "whatsapp": {
+      "name": "WhatsApp",
+      "url": "https://wa.me/554196159483",
+      "label": "WhatsApp"
+    }
+  },
   "form": {
     "web3FormsAccessKey": "110d43b6-1f58-4df5-a1bb-1363142e734b",
     "subjectPrefix": "Portfolio Contact: Message from",

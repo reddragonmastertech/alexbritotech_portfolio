@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { FaGithub, FaLinkedin, FaHeart, FaEnvelope } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import navigationData from '../../../data/navigation.json'
-import socialLinksData from '../../../data/socialLinks.json'
+import contactData from '../../../data/contact.json'
 import profileData from '../../../data/profile.json'
 
 // Icon mapping
@@ -21,19 +21,19 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: socialLinksData.github.name,
+      name: contactData.socialLinks.github.name,
       icon: FaGithub,
-      url: socialLinksData.github.url
+      url: contactData.socialLinks.github.url
     },
     {
-      name: socialLinksData.linkedin.name,
+      name: contactData.socialLinks.linkedin.name,
       icon: FaLinkedin,
-      url: socialLinksData.linkedin.url
+      url: contactData.socialLinks.linkedin.url
     },
     {
-      name: socialLinksData.email.name,
+      name: contactData.socialLinks.email.name,
       icon: FaEnvelope,
-      url: socialLinksData.email.url
+      url: contactData.socialLinks.email.url
     }
   ]
 

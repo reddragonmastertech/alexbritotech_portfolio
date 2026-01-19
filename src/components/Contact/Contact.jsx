@@ -15,7 +15,6 @@ import {
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import contactData from '../../data/contact.json';
-import socialLinksData from '../../data/socialLinks.json';
 import profileData from '../../data/profile.json';
 
 // Icon mapping
@@ -95,8 +94,8 @@ function Contact() {
   }));
 
   const socialLinks = [
-    { icon: FaGithub, href: socialLinksData.github.url, label: socialLinksData.github.label },
-    { icon: FaLinkedin, href: socialLinksData.linkedin.url, label: socialLinksData.linkedin.label }
+    { icon: FaGithub, href: contactData.socialLinks.github.url, label: contactData.socialLinks.github.label },
+    { icon: FaLinkedin, href: contactData.socialLinks.linkedin.url, label: contactData.socialLinks.linkedin.label }
   ];
 
   return (
