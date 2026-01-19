@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { FaDownload, FaEye, FaFilePdf, FaSpinner, FaGraduationCap, FaBriefcase, FaCertificate, FaAward } from 'react-icons/fa'
+import { FaDownload, FaEye, FaFilePdf, FaSpinner, FaGraduationCap, FaBriefcase } from 'react-icons/fa'
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -33,8 +33,6 @@ function Resume() {
   // Use data from JSON file
   const experiences = resumeData.experiences
   const education = resumeData.education
-  const certifications = resumeData.certifications
-  const awards = resumeData.awards
 
 
 
@@ -212,24 +210,22 @@ function Resume() {
             </div>
           </div>
 
-          {/* Education, Certifications & Awards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
-            {/* Education */}
-            <div className="min-h-[600px] flex flex-col">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
-                  <FaGraduationCap className="w-5 h-5 text-amber-400" />
-                  <span className="text-lg font-semibold text-neutral-300">
-                    Education
-                  </span>
-                </div>
-                <h2 className="text-2xl font-bold gradient-text">
-                  Academic Background
-                </h2>
+          {/* Education Section */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
+                <FaGraduationCap className="w-5 h-5 text-amber-400" />
+                <span className="text-lg font-semibold text-neutral-300">
+                  Education
+                </span>
               </div>
+              <h2 className="text-2xl font-bold gradient-text">
+                Academic Background
+              </h2>
+            </div>
 
-              <div className="flex-1">
-                {education.map((edu, index) => (
+            <div className="space-y-6">
+              {education.map((edu, index) => (
                 <motion.div
                   key={index}
                   className="glass-effect rounded-2xl p-6 border border-neutral-700/50"
@@ -262,128 +258,8 @@ function Resume() {
                   )}
                 </motion.div>
               ))}
-              </div>
-            </div>
-
-            {/* Certifications */}
-            <div className="min-h-[600px] flex flex-col">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
-                  <FaCertificate className="w-5 h-5 text-amber-400" />
-                  <span className="text-lg font-semibold text-neutral-300">
-                    Certifications
-                  </span>
-                </div>
-                <h2 className="text-2xl font-bold gradient-text">
-                  Professional Certifications
-                </h2>
-              </div>
-
-              <div className="flex-1">
-                <div className="space-y-4">
-                  {certifications.map((cert, index) => (
-                  <motion.div
-                    key={index}
-                    className="glass-effect rounded-xl p-6 border border-neutral-700/50"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ 
-                      x: 5,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <FaAward className="text-amber-400" />
-                      <h3 className="font-bold text-neutral-100">
-                        {cert.name}
-                      </h3>
-                    </div>
-                    <p className="text-neutral-400 text-sm mb-2">
-                      {cert.issuer} • {cert.year}
-                    </p>
-                    {cert.details && (
-                      <p className="text-neutral-300 text-sm leading-relaxed">
-                        {cert.details}
-                      </p>
-                    )}
-                  </motion.div>
-                ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Awards & Scholarships */}
-            <div className="min-h-[600px] flex flex-col">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
-                  <FaAward className="w-5 h-5 text-amber-400" />
-                  <span className="text-lg font-semibold text-neutral-300">
-                    Awards & Scholarships
-                  </span>
-                </div>
-                <h2 className="text-2xl font-bold gradient-text">
-                  Awards & Recognition
-                </h2>
-              </div>
-
-              <div className="space-y-4">
-                {awards.map((award, index) => (
-                  <motion.div
-                    key={index}
-                    className="glass-effect rounded-xl p-6 border border-neutral-700/50 relative overflow-hidden"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.02,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    {/* Award background gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-yellow-500/5 rounded-xl"></div>
-                    
-                    <div className="relative">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-lg flex items-center justify-center">
-                            <FaAward className="text-white text-lg" />
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-neutral-100 text-lg">
-                              {award.title}
-                            </h3>
-                            <p className="text-amber-400 text-sm font-medium">
-                              {award.type}
-                            </p>
-                          </div>
-                        </div>
-                        <span className="text-neutral-400 text-sm font-medium bg-neutral-800/50 px-3 py-1 rounded-full">
-                          {award.year}
-                        </span>
-                      </div>
-                      
-                      <div className="mb-3">
-                        <p className="text-neutral-300 text-sm mb-1">
-                          <span className="font-medium">Institution:</span> {award.issuer}
-                        </p>
-                        <p className="text-amber-400 text-sm font-medium">
-                          <span className="text-neutral-300">Achievement:</span> {award.achievement}
-                        </p>
-                      </div>
-                      
-                      <p className="text-neutral-400 text-sm leading-relaxed">
-                        {award.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
-
           {/* Call to Action */}
           <motion.div
             className="text-center glass-effect rounded-3xl p-12 border border-neutral-700/50"

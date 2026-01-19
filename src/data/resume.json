@@ -2,96 +2,63 @@
   "experiences": [
     {
       "id": 1,
-      "title": "Fullstack Developer",
-      "company": "Personal Projects",
-      "period": "April 2025 - Present",
-      "location": "Ho Chi Minh City, Vietnam",
+      "title": "Senior Full Stack Developer",
+      "company": "Nearsure",
+      "period": "August 2024 - Present",
+      "location": "Los Angeles, CA, USA",
       "achievements": [
-        "Developed Portfolio website showcasing web development skills using React 19 and TailwindCSS 4",
-        "Built CodeHub platform for developers to share and collaborate on code snippets with real-time features",
-        "Created NatureGrain e-commerce platform for organic food retail with complete admin dashboard",
-        "Implemented modern technologies including Spring Boot, JWT security, and cloud services integration"
+        "Led the development of AI-driven web and mobile platforms leveraging Python, FastAPI, and OpenAI API for FinTech, EdTech, and Retail clients, delivering 10+ production-ready applications",
+        "Leveraged LLM-based chatbots and Generative AI modules, automating workflows and boosting customer response efficiency by 60%",
+        "Directed system architecture design leveraging event-driven architecture and microservices, supporting 99.9% uptime, 30% faster feature delivery",
+        "Mentored and guided 5+ junior developers through code reviews, architecture sessions, and best practices, improving team delivery velocity by 25% and reducing production defects by 20%",
+        "Reduced manual operations by 50%, suggesting cross-functional teams to deploy automation solutions using n8n and Zapier",
+        "Streamlined cloud deployments on AWS and Azure, optimizing CI/CD pipelines and infrastructure configurations to cut deployment times by 35%"
       ]
     },
     {
       "id": 2,
-      "title": "Backend Developer (CodeHub Project)",
-      "company": "Personal Development",
-      "period": "June 2025 - July 2025",
-      "location": "Ho Chi Minh City, Vietnam",
+      "title": "Full Stack Developer",
+      "company": "Vinta Software",
+      "period": "May 2022 - July 2024",
+      "location": "San Francisco, CA, USA",
       "achievements": [
-        "Built full-stack platform using Spring Boot (Java 23) and Spring Security with JWT authentication",
-        "Implemented RESTful APIs and WebSocket for real-time collaboration features",
-        "Integrated MariaDB/MySQL database with comprehensive data modeling",
-        "Added multi-language snippet support (70+) and notification system with Cloudinary integration"
+        "Architected full-stack SaaS applications in the Healthcare domain using React, Next.js, Django, and PostgreSQL, improving page load speeds by 40% and supporting 50,000+ concurrent users",
+        "Integrated LLM and NLP components to automate patient data categorization, increasing processing efficiency by 60% and reducing manual errors by 45%",
+        "Developed and maintained mobile applications using React Native, expanding platform accessibility across 3 major device types and increasing mobile adoption by 35%",
+        "Partnered with DevOps engineers to optimize CI/CD pipelines and deployment processes in Microsoft Azure, reducing deployment time by 50% and achieving 99.9% uptime",
+        "Conducted unit and integration testing with Jest and PyTest, increasing code coverage to 90% and reducing post-release bugs by 40%",
+        "Improved cross-functional collaboration through agile methodologies, delivering 6 major releases on schedule within 12 months"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Software Developer",
+      "company": "Luby Software",
+      "period": "March 2020 - April 2022",
+      "location": "São Paulo, Brazil",
+      "achievements": [
+        "Engineered scalable web and SaaS applications using React, Next.js, and Node.js, improving platform performance and user retention by 30%",
+        "Designed and optimized MongoDB data models, reducing query latency for financial data visualization by 40%",
+        "Deployed containerized microservices on AWS using Docker and Kubernetes, maintaining 99.9% service uptime",
+        "Collaborated with data scientists to integrate predictive analytics, increasing FinTech feature adoption by 25%",
+        "Enhanced CI/CD pipelines to automate deployments, accelerating release cycles by 35%",
+        "Implemented advanced API security with JWT, OAuth2, and caching strategies, decreasing unauthorized access incidents by 50%"
       ]
     }
   ],
   "education": [
     {
       "id": 1,
-      "degree": "Bachelor of Software Engineering",
-      "institution": "IUH - Industrial University of Ho Chi Minh City",
-      "period": "August 2022 - Present",
-      "location": "Ho Chi Minh City, Vietnam",
-      "gpa": "3.44/4.0",
-      "details": "Final-year Software Engineering student with solid experience in Java and Spring Boot. Passionate about backend development, database design, and building scalable applications."
-    }
-  ],
-  "certifications": [
-    {
-      "id": 1,
-      "name": "Java Backend Development",
-      "issuer": "Self-Study & Practice",
-      "year": "2024-2025",
-      "details": "Spring Boot, Spring Security, Spring Data JPA expertise demonstrated through multiple projects"
-    },
-    {
-      "id": 2,
-      "name": "Full Stack Web Development",
-      "issuer": "Project-Based Learning",
-      "year": "2025",
-      "details": "React 19, TailwindCSS 4, Modern JavaScript, RESTful APIs development"
-    },
-    {
-      "id": 3,
-      "name": "Database Design & Management",
-      "issuer": "Practical Implementation",
-      "year": "2025",
-      "details": "MySQL, MariaDB, MongoDB, and Neo4J through CodeHub and NatureGrain projects"
-    }
-  ],
-  "awards": [
-    {
-      "id": 1,
-      "title": "Academic Excellence Scholarship",
-      "issuer": "Industrial University of Ho Chi Minh City",
-      "year": "2024",
-      "type": "Full Scholarship (100%)",
-      "achievement": "GPA 3.75/4.0",
-      "description": "Awarded full tuition scholarship for outstanding academic performance"
-    },
-    {
-      "id": 2,
-      "title": "Academic Excellence Scholarship",
-      "issuer": "Industrial University of Ho Chi Minh City",
-      "year": "2023",
-      "type": "Partial Scholarship (50%)",
-      "achievement": "GPA 3.62/4.0",
-      "description": "Recognized for consistent high academic achievement"
-    },
-    {
-      "id": 3,
-      "title": "Academic Excellence Scholarship",
-      "issuer": "Industrial University of Ho Chi Minh City",
-      "year": "2022",
-      "type": "Partial Scholarship (70%)",
-      "achievement": "GPA 3.50/4.0",
-      "description": "First-year excellence recognition in Software Engineering program"
+      "degree": "Bachelor's Degree of Computer Science",
+      "institution": "Universidade Federal de São Paulo",
+      "period": "March 2018 - August 2022",
+      "location": "São Paulo, Brazil",
+      "gpa": "",
+      "details": ""
     }
   ],
   "pdf": {
-    "fileName": "NguyenTranGiaSi_Intern_JAVA_Backend.pdf",
-    "path": "/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
+    "fileName": "Alexandro-Brito-Resume.pdf",
+    "path": "/documents/Alexandro-Brito-Resume.pdf"
   }
 }
