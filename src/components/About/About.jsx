@@ -7,7 +7,7 @@ import {
   FaMapMarkerAlt
 } from "react-icons/fa";
 import profileData from "../../data/profile.json";
-import aboutData from "../../data/about.json";
+import settingData from "../../data/setting.json";
 
 // Icon mapping
 const iconMap = {
@@ -38,7 +38,7 @@ function About() {
   }, []);
 
   // Map highlights from JSON with icons
-  const highlights = aboutData.highlights.map(item => {
+  const highlights = profileData.about.highlights.map(item => {
     const IconComponent = iconMap[item.icon] || FaCode;
     return {
       ...item,
@@ -93,7 +93,7 @@ function About() {
               {/* Status Badge */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-neutral-900 border border-neutral-700 rounded-full flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-xs text-neutral-300 whitespace-nowrap">{profileData.personal.status.statusText}</span>
+                <span className="text-xs text-neutral-300 whitespace-nowrap">{settingData.statusBadge.message}</span>
               </div>
             </div>
           </motion.div>
@@ -127,18 +127,18 @@ function About() {
             {/* Quick Stats */}
             <div className="flex flex-wrap gap-6 pt-2">
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{aboutData.stats.projects.value}</div>
-                <div className="text-xs text-neutral-500">{aboutData.stats.projects.label}</div>
+                <div className="text-2xl font-bold text-amber-400">{profileData.about.stats.projects.value}</div>
+                <div className="text-xs text-neutral-500">{profileData.about.stats.projects.label}</div>
               </div>
               <div className="w-px h-12 bg-neutral-800"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{aboutData.stats.experience.value}</div>
-                <div className="text-xs text-neutral-500">{aboutData.stats.experience.label}</div>
+                <div className="text-2xl font-bold text-amber-400">{profileData.about.stats.experience.value}</div>
+                <div className="text-xs text-neutral-500">{profileData.about.stats.experience.label}</div>
               </div>
               <div className="w-px h-12 bg-neutral-800"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{aboutData.stats.dedication.value}</div>
-                <div className="text-xs text-neutral-500">{aboutData.stats.dedication.label}</div>
+                <div className="text-2xl font-bold text-amber-400">{profileData.about.stats.dedication.value}</div>
+                <div className="text-xs text-neutral-500">{profileData.about.stats.dedication.label}</div>
               </div>
             </div>
           </motion.div>

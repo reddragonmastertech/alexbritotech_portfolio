@@ -9,7 +9,26 @@ import {
   SiSpring,
 } from "react-icons/si";
 import profileData from "../../data/profile.json";
-import homeData from "../../data/home.json";
+import settingData from "../../data/setting.json";
+
+// Static greeting
+const GREETING = {
+  prefix: "<",
+  text: "Hello World",
+  suffix: "/>"
+};
+
+// Static CTA buttons
+const CTA_BUTTONS = {
+  primary: {
+    text: "View My Work",
+    target: "projects"
+  },
+  secondary: {
+    text: "Get In Touch",
+    target: "contact"
+  }
+};
 
 // Lazy load heavy dependencies only when needed
 let HeroModel = null;
@@ -140,7 +159,7 @@ function Home() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
               <span className="text-neutral-300 text-sm font-medium">
-                {homeData.hero.statusBadge.message}
+                {settingData.statusBadge.message}
               </span>
             </div>
           </div>
@@ -149,9 +168,9 @@ function Home() {
           <div className="hero-element space-y-6">
             {/* Code-style greeting */}
             <div className="inline-flex items-center gap-2 font-mono text-neutral-400">
-              <span className="text-amber-500">{homeData.hero.greeting.prefix}</span>
-              <span>{homeData.hero.greeting.text}</span>
-              <span className="text-amber-500">{homeData.hero.greeting.suffix}</span>
+              <span className="text-amber-500">{GREETING.prefix}</span>
+              <span>{GREETING.text}</span>
+              <span className="text-amber-500">{GREETING.suffix}</span>
             </div>
 
             {/* Name Display - Code Format */}
@@ -215,9 +234,9 @@ function Home() {
               <div className="w-3 h-3 rounded-full bg-amber-500"></div>
               <span className="text-xl md:text-2xl font-semibold text-neutral-200">
                 <TypeWriter
-                  texts={homeData.hero.typewriter.texts}
-                  delay={isMobile ? homeData.hero.typewriter.mobileDelay : homeData.hero.typewriter.delay}
-                  deleteDelay={isMobile ? homeData.hero.typewriter.mobileDeleteDelay : homeData.hero.typewriter.deleteDelay}
+                  texts={settingData.typewriter.texts}
+                  delay={isMobile ? settingData.typewriter.mobileDelay : settingData.typewriter.delay}
+                  deleteDelay={isMobile ? settingData.typewriter.mobileDeleteDelay : settingData.typewriter.deleteDelay}
                 />
               </span>
             </div>
@@ -225,14 +244,14 @@ function Home() {
 
           {/* Description */}
           <p className="hero-element text-neutral-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            {homeData.hero.description}
+            {settingData.description}
           </p>
 
           {/* CTA Buttons */}
           <div className="hero-element flex flex-wrap justify-center gap-4 pt-4">
             <button
               onClick={() => {
-                const element = document.getElementById(homeData.hero.cta.primary.target);
+                const element = document.getElementById(CTA_BUTTONS.primary.target);
                 if (element) {
                   const offsetTop = element.offsetTop - 80;
                   window.scrollTo({ top: offsetTop, behavior: "smooth" });
@@ -240,13 +259,13 @@ function Home() {
               }}
               className="btn-primary flex items-center gap-3 px-8 py-4 text-lg group"
             >
-              {homeData.hero.cta.primary.text}
+              {CTA_BUTTONS.primary.text}
               <FaArrowRight className="text-lg group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button
               onClick={() => {
-                const element = document.getElementById(homeData.hero.cta.secondary.target);
+                const element = document.getElementById(CTA_BUTTONS.secondary.target);
                 if (element) {
                   const offsetTop = element.offsetTop - 80;
                   window.scrollTo({ top: offsetTop, behavior: "smooth" });
@@ -254,7 +273,7 @@ function Home() {
               }}
               className="px-8 py-4 text-lg font-medium text-neutral-200 bg-neutral-800/60 hover:bg-neutral-700/60 border border-neutral-700/50 hover:border-amber-500/30 rounded-xl transition-all duration-300"
             >
-              {homeData.hero.cta.secondary.text}
+              {CTA_BUTTONS.secondary.text}
             </button>
           </div>
 

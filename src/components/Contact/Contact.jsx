@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FaEnvelope,
   FaPaperPlane,
-  FaPhone,
+  FaWhatsapp,
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
@@ -16,11 +16,19 @@ import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import contactData from '../../data/contact.json';
 import profileData from '../../data/profile.json';
+import settingData from '../../data/setting.json';
+
+// Static header data
+const CONTACT_HEADER = {
+  badge: settingData.statusBadge.message,
+  title: "Get In Touch",
+  description: "Looking for a Java Backend Developer? Let's connect and discuss how I can contribute to your team."
+};
 
 // Icon mapping
 const iconMap = {
   email: FaEnvelope,
-  phone: FaPhone,
+  phone: FaWhatsapp,
   location: FaMapMarkerAlt
 };
 
@@ -87,15 +95,34 @@ function Contact() {
     }
   }, [formData, showToast]);
 
-  // Direct contact methods from JSON
-  const contactMethods = contactData.methods.map(method => ({
-    ...method,
-    icon: iconMap[method.icon] || FaEnvelope
-  }));
+  // Direct contact methods from contactInfo
+  const contactMethods = [
+    {
+      id: 1,
+      icon: FaEnvelope,
+      label: "Email",
+      value: contactData.contactInfo.email.value,
+      href: contactData.contactInfo.email.url
+    },
+    {
+      id: 2,
+      icon: FaWhatsapp,
+      label: "Whatsapp",
+      value: profileData.personal.whatsapp,
+      href: `https://wa.me/${profileData.personal.whatsapp.replace(/\s/g, '').replace(/[()]/g, '')}`
+    },
+    {
+      id: 3,
+      icon: FaMapMarkerAlt,
+      label: "Location",
+      value: profileData.personal.location,
+      href: `https://maps.google.com/?q=${encodeURIComponent(profileData.personal.location)}`
+    }
+  ];
 
   const socialLinks = [
-    { icon: FaGithub, href: contactData.socialLinks.github.url, label: contactData.socialLinks.github.label },
-    { icon: FaLinkedin, href: contactData.socialLinks.linkedin.url, label: contactData.socialLinks.linkedin.label }
+    { icon: FaGithub, href: contactData.contactInfo.github.url, label: contactData.contactInfo.github.label },
+    { icon: FaLinkedin, href: contactData.contactInfo.linkedin.url, label: contactData.contactInfo.linkedin.label }
   ];
 
   return (
@@ -112,15 +139,15 @@ function Contact() {
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-sm font-medium mb-6">
-              {contactData.header.badge}
+              {CONTACT_HEADER.badge}
             </span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-100 mb-4">
-              {contactData.header.title}
+              {CONTACT_HEADER.title}
             </h1>
             
             <p className="text-neutral-400 text-lg max-w-xl mx-auto">
-              {contactData.header.description}
+              {CONTACT_HEADER.description}
             </p>
           </motion.div>
 
@@ -281,7 +308,7 @@ function Contact() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                   </span>
-                  <span className="text-sm font-semibold text-amber-400">{profileData.personal.status.statusText}</span>
+                  <span className="text-sm font-semibold text-amber-400">{settingData.statusBadge.message}</span>
                 </div>
                 <p className="text-sm text-neutral-400 leading-relaxed">
                   {profileData.personal.status.description}

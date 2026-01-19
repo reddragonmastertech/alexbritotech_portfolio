@@ -1,15 +1,5 @@
 {
-  "socialLinks": {
-    "github": {
-      "name": "GitHub",
-      "url": "https://github.com/reddragonmastertech",
-      "label": "GitHub"
-    },
-    "linkedin": {
-      "name": "LinkedIn",
-      "url": "https://linkedin.com/in/alexandrosilvadebrito",
-      "label": "LinkedIn"
-    },
+  "contactInfo": {
     "email": {
       "name": "Email",
       "url": "mailto:alexbritotech@gmail.com",
@@ -20,39 +10,21 @@
       "name": "WhatsApp",
       "url": "https://wa.me/554196159483",
       "label": "WhatsApp"
+    },
+    "linkedin": {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/alexandrosilvadebrito",
+      "label": "LinkedIn"
+    },
+    "github": {
+      "name": "GitHub",
+      "url": "https://github.com/reddragonmastertech",
+      "label": "GitHub"
     }
   },
   "form": {
     "web3FormsAccessKey": "110d43b6-1f58-4df5-a1bb-1363142e734b",
     "subjectPrefix": "Portfolio Contact: Message from",
-    "fromName": "GiaSi Portfolio"
-  },
-  "methods": [
-    {
-      "id": 1,
-      "icon": "email",
-      "label": "Email",
-      "value": "giasinguyentran@gmail.com",
-      "href": "mailto:giasinguyentran@gmail.com"
-    },
-    {
-      "id": 2,
-      "icon": "phone",
-      "label": "Phone",
-      "value": "(+84) 34 899 6487",
-      "href": "tel:+84348996487"
-    },
-    {
-      "id": 3,
-      "icon": "location",
-      "label": "Location",
-      "value": "Ho Chi Minh City, Vietnam",
-      "href": "https://maps.google.com/?q=Ho+Chi+Minh+City"
-    }
-  ],
-  "header": {
-    "badge": "Available for opportunities",
-    "title": "Get In Touch",
-    "description": "Looking for a Java Backend Developer? Let's connect and discuss how I can contribute to your team."
+    "fromName": "Alex Portfolio"
   }
 }
