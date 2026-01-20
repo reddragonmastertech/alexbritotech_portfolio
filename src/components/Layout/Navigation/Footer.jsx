@@ -59,7 +59,7 @@ const Footer = () => {
             whileHover={{ scale: 1.02 }}
           >
             <span className="text-2xl font-bold text-neutral-100 tracking-tight">
-              {profileData.personal.fullName}
+              {profileData.personalInfo.fullName}
             </span>
             <span className="text-amber-500 text-2xl">.</span>
           </motion.a>

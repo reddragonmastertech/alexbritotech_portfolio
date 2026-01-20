@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import TypeWriter from "./TypeWriter";
-import { FaArrowRight, FaJava } from "react-icons/fa";
+import { FaArrowRight, FaDownload, FaJava } from "react-icons/fa";
 import {
   SiSpringboot,
   SiReact,
@@ -10,6 +10,7 @@ import {
 } from "react-icons/si";
 import profileData from "../../data/profile.json";
 import settingData from "../../data/setting.json";
+import experienceData from "../../data/experience.json";
 
 // Static greeting
 const GREETING = {
@@ -25,8 +26,7 @@ const CTA_BUTTONS = {
     target: "projects"
   },
   secondary: {
-    text: "Get In Touch",
-    target: "contact"
+    text: "Download CV",
   }
 };
 
@@ -60,6 +60,16 @@ function Home() {
   const [show3D, setShow3D] = useState(false);
   const [animationsEnabled, setAnimationsEnabled] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Handle resume download
+  const handleDownloadPDF = useCallback(() => {
+    const link = document.createElement('a');
+    link.href = experienceData.pdf.path;
+    link.download = experienceData.pdf.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
 
   // Performance check to decide whether to show 3D model and heavy animations
   useEffect(() => {
@@ -159,7 +169,7 @@ function Home() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
               <span className="text-neutral-300 text-sm font-medium">
-                {settingData.statusBadge.message}
+                {profileData.status.message}
               </span>
             </div>
           </div>
@@ -196,7 +206,7 @@ function Home() {
                     ={" "}
                   </span>
                   <span className="text-green-400 text-xl md:text-2xl lg:text-3xl font-semibold">
-                    "{profileData.personal.fullName}"
+                    "{profileData.personalInfo.fullName}"
                   </span>
                   <span className="text-neutral-500">;</span>
                 </div>
@@ -213,7 +223,7 @@ function Home() {
                   </span>
                   <span className="text-3xl md:text-4xl lg:text-5xl font-black">
                     <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">
-                      "{profileData.personal.alias}"
+                      "{profileData.personalInfo.alias}"
                     </span>
                   </span>
                   <span className="text-neutral-500">;</span>
@@ -244,7 +254,7 @@ function Home() {
 
           {/* Description */}
           <p className="hero-element text-neutral-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            {settingData.description}
+            {profileData.devProfile.headline}
           </p>
 
           {/* CTA Buttons */}
@@ -264,16 +274,11 @@ function Home() {
             </button>
 
             <button
-              onClick={() => {
-                const element = document.getElementById(CTA_BUTTONS.secondary.target);
-                if (element) {
-                  const offsetTop = element.offsetTop - 80;
-                  window.scrollTo({ top: offsetTop, behavior: "smooth" });
-                }
-              }}
-              className="px-8 py-4 text-lg font-medium text-neutral-200 bg-neutral-800/60 hover:bg-neutral-700/60 border border-neutral-700/50 hover:border-amber-500/30 rounded-xl transition-all duration-300"
+              onClick={handleDownloadPDF}
+              className="px-8 py-4 text-lg font-medium text-neutral-200 bg-neutral-800/60 hover:bg-neutral-700/60 border border-neutral-700/50 hover:border-amber-500/30 rounded-xl transition-all duration-300 flex items-center gap-2 group"
             >
               {CTA_BUTTONS.secondary.text}
+              <FaDownload className="text-lg group-hover:translate-y-0.5 transition-transform" />
             </button>
           </div>
 

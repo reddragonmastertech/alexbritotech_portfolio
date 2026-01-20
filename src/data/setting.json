@@ -1,22 +1,4 @@
 {
-  "statusBadge": {
-    "message": "Available for any remote jobs",
-    "color": "green"
-  },
-  "typewriter": {
-    "texts": [
-      "Senior Full Stack Developer",
-      "Senior Frontend Developer",
-      "Senior Backend Engineer",
-      "Senior Software Engineer",
-      "AI & Automation Engineer"
-    ],
-    "delay": 80,
-    "deleteDelay": 30,
-    "mobileDelay": 100,
-    "mobileDeleteDelay": 50
-  },
-  "description": "Final-year Software Engineering student specializing in Java & Spring Boot. Passionate about building scalable, high-performance backend systems.",
   "navigation": {
     "navItems": [
       {
@@ -73,5 +55,18 @@
       "tagline": "Developer",
       "logo": "/logo-bg.png"
     }
+  },
+  "typewriter": {
+    "texts": [
+      "Senior Full Stack Developer",
+      "Senior Frontend Developer",
+      "Senior Backend Engineer",
+      "Senior Software Engineer",
+      "AI & Automation Engineer"
+    ],
+    "delay": 80,
+    "deleteDelay": 30,
+    "mobileDelay": 100,
+    "mobileDeleteDelay": 50
   }
 }

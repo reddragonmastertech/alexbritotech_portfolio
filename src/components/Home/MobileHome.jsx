@@ -53,7 +53,7 @@ const MobileHome = memo(() => {
           <div>
             <p className="text-blue-400 font-medium mb-2">Hello, I'm</p>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="gradient-text">{profileData.personal.fullName}</span>
+              <span className="gradient-text">{profileData.personalInfo.fullName}</span>
             </h1>
             <div className="text-xl md:text-2xl text-slate-300 min-h-[2rem]">
               <TypeWriter 
@@ -66,7 +66,7 @@ const MobileHome = memo(() => {
 
           {/* Description */}
           <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-            {settingData.description}
+            {profileData.devProfile.headline}
           </p>
 
           {/* CTA Buttons */}

@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect } from 'react';
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext({
+  darkMode: false,
+  toggleTheme: () => {}
+});
 
 export const ThemeProvider = ({ children }) => {
   // Kiểm tra preferences hệ thống hoặc localStorage

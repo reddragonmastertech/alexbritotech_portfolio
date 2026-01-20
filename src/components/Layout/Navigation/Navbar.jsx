@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaBars,
@@ -11,13 +11,14 @@ import {
   FaCogs,
   FaLinkedin,
   FaWhatsapp,
-  FaDownload,
+  FaSun,
+  FaMoon,
   FaArrowRight,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeContext } from "../../../context/ThemeContext";
 import settingData from "../../../data/setting.json";
 import contactData from "../../../data/contact.json";
-import experienceData from "../../../data/experience.json";
 
 // Icon mapping
 const navIconMap = {
@@ -32,6 +33,7 @@ const navIconMap = {
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -113,16 +115,6 @@ function Navbar() {
     }
     setIsOpen(false);
   }, [location.pathname, navigate]);
-
-  // Handle resume download
-  const handleDownloadPDF = useCallback(() => {
-    const link = document.createElement('a');
-    link.href = experienceData.pdf.path;
-    link.download = experienceData.pdf.fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }, []);
 
   const handleMobileNavClick = useCallback((sectionId) => {
     setIsOpen(false);
@@ -238,7 +230,7 @@ function Navbar() {
 
             {/* Desktop Right Section */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Action Buttons - Email, WhatsApp, LinkedIn, Download */}
+              {/* Action Buttons - Email, WhatsApp, LinkedIn, Theme Toggle */}
               <div className="flex items-center gap-2 mr-2">
                 <motion.a
                   href={contactData.contactInfo.email.url}
@@ -272,13 +264,13 @@ function Navbar() {
                   <FaLinkedin className="w-5 h-5" />
                 </motion.a>
                 <motion.button
-                  onClick={handleDownloadPDF}
+                  onClick={toggleTheme}
                   className="w-10 h-10 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-400 hover:text-amber-400 hover:bg-neutral-700/50 hover:border-amber-500/30 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-label="Download Resume"
+                  aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 >
-                  <FaDownload className="w-5 h-5" />
+                  {darkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
                 </motion.button>
               </div>
 
@@ -434,7 +426,7 @@ function Navbar() {
                 ))}
               </div>
 
-              {/* Action Buttons - Email, WhatsApp, LinkedIn, Download */}
+              {/* Action Buttons - Email, WhatsApp, LinkedIn, Theme Toggle */}
               <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-neutral-800/80 bg-neutral-900/80 backdrop-blur-sm">
                 <p className="text-xs text-neutral-500 mb-4 uppercase tracking-wider">Connect with me</p>
                 <div className="flex items-center justify-center gap-3">
@@ -470,13 +462,13 @@ function Navbar() {
                     <FaLinkedin className="w-5 h-5" />
                   </motion.a>
                   <motion.button
-                    onClick={handleDownloadPDF}
+                    onClick={toggleTheme}
                     className="w-12 h-12 rounded-xl bg-neutral-800/50 border border-neutral-700/30 flex items-center justify-center text-neutral-300 hover:text-amber-400 hover:bg-neutral-700/50 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    aria-label="Download Resume"
+                    aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                   >
-                    <FaDownload className="w-5 h-5" />
+                    {darkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
                   </motion.button>
                 </div>
               </div>

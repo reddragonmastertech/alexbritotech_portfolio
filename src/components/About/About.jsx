@@ -7,7 +7,6 @@ import {
   FaMapMarkerAlt
 } from "react-icons/fa";
 import profileData from "../../data/profile.json";
-import settingData from "../../data/setting.json";
 
 // Icon mapping
 const iconMap = {
@@ -37,8 +36,8 @@ function About() {
     };
   }, []);
 
-  // Map highlights from JSON with icons
-  const highlights = profileData.about.highlights.map(item => {
+  // Map services from JSON with icons
+  const highlights = profileData.services.map(item => {
     const IconComponent = iconMap[item.icon] || FaCode;
     return {
       ...item,
@@ -78,8 +77,8 @@ function About() {
               {/* Avatar Container */}
               <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-900">
                 <img
-                  src={profileData.personal.avatar}
-                  alt={profileData.personal.fullName}
+                  src={profileData.personalInfo.avatar}
+                  alt={profileData.personalInfo.fullName}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -93,7 +92,7 @@ function About() {
               {/* Status Badge */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-neutral-900 border border-neutral-700 rounded-full flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-xs text-neutral-300 whitespace-nowrap">{settingData.statusBadge.message}</span>
+                <span className="text-xs text-neutral-300 whitespace-nowrap">{profileData.status.message}</span>
               </div>
             </div>
           </motion.div>
@@ -108,37 +107,35 @@ function About() {
           >
             <div>
               <h3 className="text-2xl font-bold text-neutral-100 mb-2">
-                {profileData.about.greeting} <span className="text-amber-400">{profileData.about.nameHighlight}</span>
+                Hi, I'm <span className="text-amber-400">{profileData.personalInfo.alias}</span>
               </h3>
-              <p className="text-amber-500/80 font-medium">{profileData.role.title}</p>
+              <p className="text-amber-500/80 font-medium">{profileData.devProfile.title}</p>
             </div>
             
             <div className="space-y-4 text-neutral-400 leading-relaxed">
               <p>
-                I'm passionate about building <span className="text-neutral-200">enterprise-level applications</span> using 
-                modern technologies. My expertise lies in <span className="text-amber-400">Java Spring Boot</span> for 
-                backend development and <span className="text-amber-400">React</span> for creating interactive user interfaces.
+                {profileData.devProfile.headline}
               </p>
               <p>
-                {profileData.about.belief}
+                {profileData.devProfile.summary}
               </p>
             </div>
 
             {/* Quick Stats */}
             <div className="flex flex-wrap gap-6 pt-2">
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{profileData.about.stats.projects.value}</div>
-                <div className="text-xs text-neutral-500">{profileData.about.stats.projects.label}</div>
+                <div className="text-2xl font-bold text-amber-400">{profileData.stats.projects.value}</div>
+                <div className="text-xs text-neutral-500">{profileData.stats.projects.label}</div>
               </div>
               <div className="w-px h-12 bg-neutral-800"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{profileData.about.stats.experience.value}</div>
-                <div className="text-xs text-neutral-500">{profileData.about.stats.experience.label}</div>
+                <div className="text-2xl font-bold text-amber-400">{profileData.stats.experience.value}</div>
+                <div className="text-xs text-neutral-500">{profileData.stats.experience.label}</div>
               </div>
               <div className="w-px h-12 bg-neutral-800"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{profileData.about.stats.dedication.value}</div>
-                <div className="text-xs text-neutral-500">{profileData.about.stats.dedication.label}</div>
+                <div className="text-2xl font-bold text-amber-400">{profileData.stats.dedication.value}</div>
+                <div className="text-xs text-neutral-500">{profileData.stats.dedication.label}</div>
               </div>
             </div>
           </motion.div>

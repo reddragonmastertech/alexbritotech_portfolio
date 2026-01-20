@@ -16,11 +16,10 @@ import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import contactData from '../../data/contact.json';
 import profileData from '../../data/profile.json';
-import settingData from '../../data/setting.json';
 
 // Static header data
 const CONTACT_HEADER = {
-  badge: settingData.statusBadge.message,
+  badge: profileData.status.message,
   title: "Get In Touch",
   description: "Looking for a Java Backend Developer? Let's connect and discuss how I can contribute to your team."
 };
@@ -108,15 +107,15 @@ function Contact() {
       id: 2,
       icon: FaWhatsapp,
       label: "Whatsapp",
-      value: profileData.personal.whatsapp,
-      href: `https://wa.me/${profileData.personal.whatsapp.replace(/\s/g, '').replace(/[()]/g, '')}`
+      value: contactData.contactInfo.whatsapp.value,
+      href: contactData.contactInfo.whatsapp.url
     },
     {
       id: 3,
       icon: FaMapMarkerAlt,
       label: "Location",
-      value: profileData.personal.location,
-      href: `https://maps.google.com/?q=${encodeURIComponent(profileData.personal.location)}`
+      value: profileData.personalInfo.location,
+      href: `https://maps.google.com/?q=${encodeURIComponent(profileData.personalInfo.location)}`
     }
   ];
 
@@ -177,7 +176,7 @@ function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder={profileData.personal.fullName}
+                      placeholder={profileData.personalInfo.fullName}
                       required
                     />
                   </div>
@@ -192,7 +191,7 @@ function Contact() {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder={profileData.personal.email}
+                      placeholder={contactData.contactInfo.email.value}
                       required
                     />
                   </div>
@@ -308,10 +307,10 @@ function Contact() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                   </span>
-                  <span className="text-sm font-semibold text-amber-400">{settingData.statusBadge.message}</span>
+                  <span className="text-sm font-semibold text-amber-400">{profileData.status.message}</span>
                 </div>
                 <p className="text-sm text-neutral-400 leading-relaxed">
-                  {profileData.personal.status.description}
+                  {profileData.status.description}
                 </p>
               </div>
             </motion.div>

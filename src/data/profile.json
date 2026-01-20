@@ -1,78 +1,58 @@
 {
-  "personal": {
+  "personalInfo": {
     "fullName": "Alexandro Brito",
     "alias": "Alex",
-    "email": "alexbritotech@gmail.com",
-    "whatsapp": "(+55) 41 96159483",
     "location": "Andradina, SP, Brazil",
-    "avatar": "/avatar.jpg",
-    "status": {
-      "available": true,
-      "message": "Available for opportunities",
-      "statusText": "Open to Work",
-      "description": "Currently seeking internship opportunities as a Java Backend Developer. Available to start immediately."
-    }
+    "avatar": "/avatar.jpg"
   },
-  "role": {
+  "status": {
+    "available": true,
+    "message": "Available for opportunities",
+    "description": "Currently seeking internship opportunities as a Java Backend Developer. Available to start immediately."
+  },
+  "devProfile": {
     "title": "Full-Stack Developer",
-    "titles": [
-      "Java Backend Developer",
-      "Spring Boot Specialist",
-      "Software Engineer",
-      "Full Stack Developer"
-    ],
-    "description": "Final-year Software Engineering student specializing in Java & Spring Boot. Passionate about building scalable, high-performance backend systems.",
-    "studentStatus": {
-      "isStudent": true,
-      "year": "Final-year",
-      "major": "Software Engineering",
-      "specialization": "Java & Spring Boot"
-    }
+    "headline": "Experienced in remote, cross-functional development environments, and maintaining production-grade, scalable codebases",
+    "summary": "Full Stack Developer with 6+ years of experience delivering 20+ scalable SaaS platforms and high-performance web and mobile applications across FinTech, Healthcare, and AI-driven domains. Specialized in building modern front-end systems with React, Next.js, and Vue.js, and back-end services using Node.js, Django, and FastAPI supporting 50K+ users. Hands-on experience integrating LLMs, NLP pipelines, and automation workflows to improve product efficiency. Experienced in remote, cross-functional development environments, mentoring 5+ junior engineers, and maintaining production-grade, scalable codebases."
   },
-  "about": {
-    "greeting": "Hi, I'm",
-    "nameHighlight": "Alexandro",
-    "intro": "Full Stack Developer with 6+ years of experience delivering 20+ scalable SaaS platforms and high-performance web and mobile applications across FinTech, Healthcare, and AI-driven domains. Specialized in building modern front-end systems with React, Next.js, and Vue.js, and back-end services using Node.js, Django, and FastAPI supporting 50K+ users. Hands-on experience integrating LLMs, NLP pipelines, and automation workflows to improve product efficiency. Experienced in remote, cross-functional development environments, mentoring 5+ junior engineers, and maintaining production-grade, scalable codebases.",
-    "belief": "",
-    "highlights": [
-      {
-        "id": 1,
-        "title": "Full-Stack Developer",
-        "description": "Specialized in Java Spring Boot & React ecosystem",
-        "icon": "code"
-      },
-      {
-        "id": 2,
-        "title": "Backend Focus",
-        "description": "Building scalable APIs and microservices",
-        "icon": "server"
-      },
-      {
-        "id": 3,
-        "title": "IT Student",
-        "description": "Industrial University of Ho Chi Minh City",
-        "icon": "graduation"
-      },
-      {
-        "id": 4,
-        "title": "Based in",
-        "description": "Ho Chi Minh City, Vietnam",
-        "icon": "location"
-      }
-    ],
-    "stats": {
-      "projects": {
-        "value": "5+",
-        "label": "Projects"
-      },
-      "experience": {
-        "value": "1+",
-        "label": "Year Exp"
-      },
-      "dedication": {
-        "value": "100%",
-        "label": "Dedication"
-      }
+  "services": [
+    {
+      "id": 1,
+      "title": "Full-Stack Developer",
+      "description": "Specialized in Java Spring Boot & React ecosystem",
+      "icon": "code"
+    },
+    {
+      "id": 2,
+      "title": "Backend Focus",
+      "description": "Building scalable APIs and microservices",
+      "icon": "server"
+    },
+    {
+      "id": 3,
+      "title": "IT Student",
+      "description": "Industrial University of Ho Chi Minh City",
+      "icon": "graduation"
+    },
+    {
+      "id": 4,
+      "title": "Based in",
+      "description": "Andradina, SP, Brazil",
+      "icon": "location"
+    }
+  ],
+  "stats": {
+    "projects": {
+      "value": "30+",
+      "label": "Projects"
+    },
+    "experience": {
+      "value": "6+",
+      "label": "Year Exp"
+    },
+    "dedication": {
+      "value": "100%",
+      "label": "Dedication"
     }
   }
 }

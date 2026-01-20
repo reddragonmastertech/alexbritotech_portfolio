@@ -2,6 +2,7 @@ import { useEffect, useState, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
+import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import Navbar from './components/Layout/Navigation/Navbar'
 import Footer from './components/Layout/Navigation/Footer'
@@ -63,8 +64,9 @@ function App() {
 
   return (
     <ErrorBoundary fallbackMessage="Something went wrong. Please refresh the page.">
-      <Router>
-        <div className="App min-h-screen relative">
+      <ThemeProvider>
+        <Router>
+          <div className="App min-h-screen relative">
           {/* Global Background - Rich Dark Theme */}
           <div className="fixed inset-0 bg-[#0a0a0c]">
             {/* Elegant Background decoration */}
@@ -147,6 +149,7 @@ function App() {
           </div>
         </div>
       </Router>
+      </ThemeProvider>
     </ErrorBoundary>
   )
 }
