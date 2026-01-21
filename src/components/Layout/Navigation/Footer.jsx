@@ -122,28 +122,6 @@ const Footer = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Scroll to top button */}
-      <motion.button
-        className="fixed bottom-6 right-6 w-10 h-10 bg-neutral-800/80 backdrop-blur-sm border border-neutral-700/50 text-neutral-400 rounded-full shadow-lg flex items-center justify-center z-50 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        whileHover={{ y: -2 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-        aria-label="Scroll to top"
-      >
-        <svg 
-          className="w-4 h-4" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-        </svg>
-      </motion.button>
     </footer>
   )
 }

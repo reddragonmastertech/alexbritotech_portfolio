@@ -2,43 +2,117 @@
   "personalInfo": {
     "fullName": "Alexandro Brito",
     "alias": "Alex",
-    "location": "Andradina, SP, Brazil",
+    "location": "Andradina, São Paulo, Brazil",
     "avatar": "/avatar.jpg"
   },
   "status": {
     "available": true,
     "message": "Available for opportunities",
-    "description": "Currently seeking internship opportunities as a Java Backend Developer. Available to start immediately."
+    "description": ""
   },
   "devProfile": {
-    "title": "Full-Stack Developer",
-    "headline": "Experienced in remote, cross-functional development environments, and maintaining production-grade, scalable codebases",
+    "title": "Full Stack Developer | AI & Automation Engineer | DevOps & Cloud Engineer",
+    "headline": "",
     "summary": "Full Stack Developer with 6+ years of experience delivering 20+ scalable SaaS platforms and high-performance web and mobile applications across FinTech, Healthcare, and AI-driven domains. Specialized in building modern front-end systems with React, Next.js, and Vue.js, and back-end services using Node.js, Django, and FastAPI supporting 50K+ users. Hands-on experience integrating LLMs, NLP pipelines, and automation workflows to improve product efficiency. Experienced in remote, cross-functional development environments, mentoring 5+ junior engineers, and maintaining production-grade, scalable codebases."
   },
   "services": [
     {
       "id": 1,
-      "title": "Full-Stack Developer",
-      "description": "Specialized in Java Spring Boot & React ecosystem",
+      "title": "Full Stack Web Development",
+      "description": "End-to-end web application development with modern frameworks and best practices",
       "icon": "code"
     },
     {
       "id": 2,
-      "title": "Backend Focus",
-      "description": "Building scalable APIs and microservices",
-      "icon": "server"
+      "title": "AI-powered App Development",
+      "description": "Integrating AI capabilities and machine learning into applications",
+      "icon": "brain"
     },
     {
       "id": 3,
-      "title": "IT Student",
-      "description": "Industrial University of Ho Chi Minh City",
-      "icon": "graduation"
+      "title": "Workflow Automation",
+      "description": "Streamlining business processes with intelligent automation solutions",
+      "icon": "automation"
     },
     {
       "id": 4,
-      "title": "Based in",
-      "description": "Andradina, SP, Brazil",
-      "icon": "location"
+      "title": "SaaS Platform Development",
+      "description": "Building scalable software-as-a-service platforms for businesses",
+      "icon": "cloud"
+    },
+    {
+      "id": 5,
+      "title": "UI/UX-Focused Frontend Development",
+      "description": "Creating intuitive and beautiful user interfaces with exceptional UX",
+      "icon": "design"
+    },
+    {
+      "id": 6,
+      "title": "Backend & Database Architecture",
+      "description": "Designing robust server-side systems and optimized database structures",
+      "icon": "server"
+    },
+    {
+      "id": 7,
+      "title": "Mobile App Development",
+      "description": "Building native and cross-platform mobile applications",
+      "icon": "mobile"
+    },
+    {
+      "id": 8,
+      "title": "DevOps & Cloud Engineering",
+      "description": "Setting up CI/CD pipelines and cloud infrastructure for scalable deployment",
+      "icon": "devops"
+    }
+  ],
+  "servicesForStartups": [
+    {
+      "id": 1,
+      "title": "Full Stack Web Development",
+      "description": "End-to-end web application development with modern frameworks and best practices",
+      "icon": "code"
+    },
+    {
+      "id": 2,
+      "title": "AI-Powered Product Features",
+      "description": "Integrating AI capabilities and machine learning into applications",
+      "icon": "brain"
+    },
+    {
+      "id": 3,
+      "title": "Startup Automation & Internal Tools",
+      "description": "Streamlining business processes with intelligent automation solutions",
+      "icon": "automation"
+    },
+    {
+      "id": 4,
+      "title": "MVP Development (Idea -> Launch)",
+      "description": "Building scalable software-as-a-service platforms for businesses",
+      "icon": "cloud"
+    },
+    {
+      "id": 5,
+      "title": "UI/UX-Focused Frontend Development",
+      "description": "Creating intuitive and beautiful user interfaces with exceptional UX",
+      "icon": "design"
+    },
+    {
+      "id": 6,
+      "title": "Backend & Database Architecture",
+      "description": "Designing robust server-side systems and optimized database structures",
+      "icon": "server"
+    },
+    {
+      "id": 7,
+      "title": "Mobile App Development",
+      "description": "Building native and cross-platform mobile applications",
+      "icon": "mobile"
+    },
+    {
+      "id": 8,
+      "title": "DevOps & Cloud Engineering",
+      "description": "Setting up CI/CD pipelines and cloud infrastructure for scalable deployment",
+      "icon": "devops"
     }
   ],
   "stats": {

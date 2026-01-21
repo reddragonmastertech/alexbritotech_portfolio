@@ -248,9 +248,7 @@ function Resume() {
                     <span>{edu.period}</span>
                     <span>{edu.location}</span>
                   </div>
-                  <p className="text-neutral-300 font-semibold mb-3">
-                    GPA: {edu.gpa}
-                  </p>
+
                   {edu.details && (
                     <p className="text-neutral-400 text-sm leading-relaxed">
                       {edu.details}

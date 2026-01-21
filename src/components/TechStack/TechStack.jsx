@@ -187,7 +187,7 @@ function TechStack() {
             })}
           </div>
 
-          {/* Project Highlights */}
+          {/* Project Highlights
           <div className="mb-16">
             <div className="text-center mb-12">
               <motion.h2 
@@ -255,7 +255,7 @@ function TechStack() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Call to Action */}
           <motion.div

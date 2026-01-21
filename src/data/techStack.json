@@ -2,6 +2,20 @@
   "categories": [
     {
       "id": 1,
+      "title": "Frontend Development",
+      "icon": "rocket",
+      "color": "text-amber-400",
+      "bgColor": "bg-amber-500/10",
+      "borderColor": "border-amber-500/20",
+      "technologies": [
+        { "name": "React.js", "icon": "react", "level": "Advanced", "color": "#61DAFB" },
+        { "name": "TailwindCSS", "icon": "tailwindcss", "level": "Expert", "color": "#06B6D4" },
+        { "name": "Three.js", "icon": "cube", "level": "Intermediate", "color": "#000000" },
+        { "name": "Framer Motion", "icon": "framer", "level": "Advanced", "color": "#0055FF" }
+      ]
+    },
+    {
+      "id": 2,
       "title": "Backend Development",
       "icon": "code",
       "color": "text-orange-400",
@@ -14,20 +28,6 @@
         { "name": "Spring Data JPA", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
         { "name": "WebSocket", "icon": "code", "level": "Intermediate", "color": "#FF6B6B" },
         { "name": "Maven", "icon": "box", "level": "Proficient", "color": "#C71A36" }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Frontend Development",
-      "icon": "rocket",
-      "color": "text-amber-400",
-      "bgColor": "bg-amber-500/10",
-      "borderColor": "border-amber-500/20",
-      "technologies": [
-        { "name": "React.js", "icon": "react", "level": "Advanced", "color": "#61DAFB" },
-        { "name": "TailwindCSS", "icon": "tailwindcss", "level": "Expert", "color": "#06B6D4" },
-        { "name": "Three.js", "icon": "cube", "level": "Intermediate", "color": "#000000" },
-        { "name": "Framer Motion", "icon": "framer", "level": "Advanced", "color": "#0055FF" }
       ]
     },
     {
