@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import TypeWriter from "./TypeWriter";
-import { FaArrowRight, FaDownload, FaJava } from "react-icons/fa";
-import {
-  SiSpringboot,
-  SiReact,
-  SiTailwindcss,
-  SiTypescript,
-  SiSpring,
-} from "react-icons/si";
+import { FaArrowRight, FaDownload} from "react-icons/fa";
+
 import profileData from "../../data/profile.json";
 import settingData from "../../data/setting.json";
 import experienceData from "../../data/experience.json";

@@ -3,15 +3,23 @@
     {
       "id": 1,
       "title": "Frontend Development",
-      "icon": "rocket",
+      "icon": "design",
       "color": "text-amber-400",
       "bgColor": "bg-amber-500/10",
       "borderColor": "border-amber-500/20",
       "technologies": [
-        { "name": "React.js", "icon": "react", "level": "Advanced", "color": "#61DAFB" },
-        { "name": "TailwindCSS", "icon": "tailwindcss", "level": "Expert", "color": "#06B6D4" },
-        { "name": "Three.js", "icon": "cube", "level": "Intermediate", "color": "#000000" },
-        { "name": "Framer Motion", "icon": "framer", "level": "Advanced", "color": "#0055FF" }
+        { "name": "TypeScript", "icon": "typescript", "color": "#3178C6" },
+        { "name": "JavaScript", "icon": "javascript", "color": "#F7DF1E" },
+        { "name": "HTML5", "icon": "html5", "color": "#E34F26" },
+        { "name": "CSS3", "icon": "css3", "color": "#1572B6" },
+        { "name": "React", "icon": "react", "color": "#61DAFB" },
+        { "name": "Next.js", "icon": "nextjs", "color": "#000000" },
+        { "name": "Angular", "icon": "angular", "color": "#DD0031" },
+        { "name": "Tailwind CSS", "icon": "tailwindcss", "color": "#06B6D4" },
+        { "name": "PostCSS", "icon": "postcss", "color": "#E34F26" },
+        { "name": "Sass", "icon": "sass", "color": "#CC6699" },
+        { "name": "Vite", "icon": "vite", "color": "#646CFF" },
+        { "name": "Webpack", "icon": "webpack", "color": "#06B6D4" }
       ]
     },
     {
@@ -22,66 +30,87 @@
       "bgColor": "bg-orange-500/10",
       "borderColor": "border-orange-500/20",
       "technologies": [
-        { "name": "Java", "icon": "java", "level": "Expert", "color": "#ED8B00" },
-        { "name": "Spring Boot", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
-        { "name": "Spring Security", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
-        { "name": "Spring Data JPA", "icon": "springboot", "level": "Advanced", "color": "#6DB33F" },
-        { "name": "WebSocket", "icon": "code", "level": "Intermediate", "color": "#FF6B6B" },
-        { "name": "Maven", "icon": "box", "level": "Proficient", "color": "#C71A36" }
+        { "name": "Node.js", "icon": "nodejs", "color": "#339933" },
+        { "name": "Express.js", "icon": "express", "color": "#000000" },
+        { "name": "NestJS", "icon": "nestjs", "color": "#E0234E" },
+        { "name": "Python", "icon": "python", "color": "#3776AB" },
+        { "name": "Django", "icon": "django", "color": "#092E20" },
+        { "name": "FastAPI", "icon": "fastapi", "color": "#009688" },
+        { "name": "Ruby", "icon": "ruby", "color": "#CC342D" },
+        { "name": "Ruby on Rails", "icon": "rubyonrails", "color": "#CC0000" },
+        { "name": "REST API", "icon": "restapi", "color": "#FF6B6B" },
+        { "name": "GraphQL", "icon": "graphql", "color": "#E10098" }
       ]
     },
     {
       "id": 3,
-      "title": "Database Systems",
+      "title": "Database & Storage",
       "icon": "database",
       "color": "text-green-400",
       "bgColor": "bg-green-500/10",
       "borderColor": "border-green-500/20",
       "technologies": [
-        { "name": "MySQL", "icon": "mysql", "level": "Advanced", "color": "#4479A1" },
-        { "name": "MariaDB", "icon": "mariadb", "level": "Advanced", "color": "#003545" },
-        { "name": "MongoDB", "icon": "mongodb", "level": "Intermediate", "color": "#47A248" },
-        { "name": "Neo4J", "icon": "neo4j", "level": "Beginner", "color": "#008CC1" }
+        { "name": "PostgreSQL", "icon": "postgresql", "color": "#336791" },
+        { "name": "MySQL", "icon": "mysql", "color": "#4479A1" },
+        { "name": "MongoDB", "icon": "mongodb", "color": "#47A248" },
+        { "name": "Redis", "icon": "redis", "color": "#DC382D" },
+        { "name": "Firebase", "icon": "firebase", "color": "#FFCA28" },
+        { "name": "Supabase", "icon": "supabase", "color": "#3ECF8E" }
       ]
     },
     {
       "id": 4,
-      "title": "Development Tools",
-      "icon": "tools",
-      "color": "text-purple-400",
-      "bgColor": "bg-purple-500/10",
-      "borderColor": "border-purple-500/20",
-      "technologies": [
-        { "name": "IntelliJ IDEA", "icon": "intellij", "level": "Expert", "color": "#000000" },
-        { "name": "VS Code", "icon": "code", "level": "Advanced", "color": "#007ACC" },
-        { "name": "Git", "icon": "git", "level": "Advanced", "color": "#F05032" },
-        { "name": "Postman", "icon": "postman", "level": "Proficient", "color": "#FF6C37" }
-      ]
-    },
-    {
-      "id": 5,
-      "title": "Cloud & Deployment",
-      "icon": "cloud",
-      "color": "text-cyan-400",
-      "bgColor": "bg-cyan-500/10",
-      "borderColor": "border-cyan-500/20",
-      "technologies": [
-        { "name": "Docker", "icon": "docker", "level": "Intermediate", "color": "#2496ED" },
-        { "name": "Vercel", "icon": "vercel", "level": "Advanced", "color": "#000000" },
-        { "name": "Cloudinary", "icon": "cloudinary", "level": "Proficient", "color": "#3448C5" },
-        { "name": "GitHub", "icon": "github", "level": "Advanced", "color": "#181717" }
-      ]
-    },
-    {
-      "id": 6,
       "title": "AI & Automation",
       "icon": "brain",
       "color": "text-amber-300",
       "bgColor": "bg-amber-500/10",
       "borderColor": "border-amber-500/20",
       "technologies": [
-        { "name": "ChatGPT", "icon": "brain", "level": "Advanced", "color": "#10A37F" },
-        { "name": "Claude AI", "icon": "brain", "level": "Proficient", "color": "#CC785C" }
+        { "name": "OpenAI", "icon": "openai", "color": "#10A37F" },
+        { "name": "Claude", "icon": "claude", "color": "#CC785C" },
+        { "name": "Google Gemini", "icon": "googlegemini", "color": "#4285F4" },
+        { "name": "LLM", "icon": "llm", "color": "#8B5CF6" },
+        { "name": "LangChain", "icon": "langchain", "color": "#1C3C3C" },
+        { "name": "LangGraph", "icon": "langgraph", "color": "#1C3C3C" },
+        { "name": "VoiceFlow", "icon": "voiceflow", "color": "#FFFFFF" },
+        { "name": "n8n", "icon": "n8n", "color": "#FF6D5A" },
+        { "name": "Make", "icon": "make", "color": "#000000" },
+        { "name": "Zapier", "icon": "zapier", "color": "#FF4A00" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Cloud, DevOps & Deployment",
+      "icon": "cloud",
+      "color": "text-cyan-400",
+      "bgColor": "bg-cyan-500/10",
+      "borderColor": "border-cyan-500/20",
+      "technologies": [
+        { "name": "AWS", "icon": "aws", "color": "#FF9900" },
+        { "name": "Microsoft Azure", "icon": "azure", "color": "#0078D4" },
+        { "name": "GCP", "icon": "gcp", "color": "#4285F4" },
+        { "name": "CI/CD", "icon": "cicd", "color": "#2088FF" },
+        { "name": "GitHub Actions", "icon": "githubactions", "color": "#FFFFFF" },
+        { "name": "Git", "icon": "git", "color": "#F05032" },
+        { "name": "Docker", "icon": "docker", "color": "#2496ED" },
+        { "name": "Kubernetes", "icon": "kubernetes", "color": "#326CE5" },
+        { "name": "Terraform", "icon": "terraform", "color": "#7B42BC" },
+        { "name": "Vercel", "icon": "vercel", "color": "#000000" },
+        { "name": "Netlify", "icon": "netlify", "color": "#00C7B7" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Mobile & Others",
+      "icon": "mobile",
+      "color": "text-pink-400",
+      "bgColor": "bg-pink-500/10",
+      "borderColor": "border-pink-500/20",
+      "technologies": [
+        { "name": "React Native", "icon": "reactnative", "color": "#61DAFB" },
+        { "name": "Expo", "icon": "expo", "color": "#000020" },
+        { "name": "Flutter", "icon": "flutter", "color": "#02569B" },
+        { "name": "Dart", "icon": "dart", "color": "#0175C2" }
       ]
     }
   ],

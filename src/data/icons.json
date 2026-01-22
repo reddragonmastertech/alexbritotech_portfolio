@@ -1,0 +1,242 @@
+{
+  "categoryIcons": {
+    "design": {
+      "library": "fa",
+      "component": "FaLaptopCode"
+    },
+    "code": {
+      "library": "fa",
+      "component": "FaCode"
+    },
+    "database": {
+      "library": "fa",
+      "component": "FaDatabase"
+    },
+    "brain": {
+      "library": "fa",
+      "component": "FaBrain"
+    },
+    "cloud": {
+      "library": "fa",
+      "component": "FaCloud"
+    },
+    "mobile": {
+      "library": "fa",
+      "component": "FaMobileAlt"
+    }
+  },
+  "techIcons": {
+    "typescript": {
+      "library": "si",
+      "component": "SiTypescript"
+    },
+    "javascript": {
+      "library": "si",
+      "component": "SiJavascript"
+    },
+    "html5": {
+      "library": "si",
+      "component": "SiHtml5"
+    },
+    "css3": {
+      "library": "si",
+      "component": "SiCss3"
+    },    
+    "react": {
+      "library": "si",
+      "component": "SiReact"
+    },
+    "nextjs": {
+      "library": "si",
+      "component": "SiNextdotjs"
+    },
+    "angular": {
+      "library": "si",
+      "component": "SiAngular"
+    },
+    "tailwindcss": {
+      "library": "si",
+      "component": "SiTailwindcss"
+    },
+    "postcss": {
+      "library": "si",
+      "component": "SiPostcss"
+    },
+    "sass": {
+      "library": "si",
+      "component": "SiSass"
+    },
+    "vite": {
+      "library": "si",
+      "component": "SiVite"
+    },
+    "webpack": {
+      "library": "si",
+      "component": "SiWebpack"
+    },
+    "nodejs": {
+      "library": "si",
+      "component": "SiNodedotjs"
+    },
+    "express": {
+      "library": "si",
+      "component": "SiExpress"
+    },
+    "nestjs": {
+      "library": "si",
+      "component": "SiNestjs"
+    },
+    "python": {
+      "library": "si",
+      "component": "SiPython"
+    },
+    "django": {
+      "library": "si",
+      "component": "SiDjango"
+    },
+    "fastapi": {
+      "library": "si",
+      "component": "SiFastapi"
+    },
+    "ruby": {
+      "library": "si",
+      "component": "SiRuby"
+    },
+    "rubyonrails": {
+      "library": "si",
+      "component": "SiRubyonrails"
+    },
+    "restapi": {
+      "library": "fa",
+      "component": "FaNetworkWired"
+    },
+    "graphql": {
+      "library": "si",
+      "component": "SiGraphql"
+    },
+    "postgresql": {
+      "library": "si",
+      "component": "SiPostgresql"
+    },
+    "mysql": {
+      "library": "si",
+      "component": "SiMysql"
+    },
+    "mongodb": {
+      "library": "si",
+      "component": "SiMongodb"
+    },
+    "redis": {
+      "library": "si",
+      "component": "SiRedis"
+    },
+    "firebase": {
+      "library": "si",
+      "component": "SiFirebase"
+    },
+    "supabase": {
+      "library": "si",
+      "component": "SiSupabase"
+    },
+    "reactnative": {
+      "library": "si",
+      "component": "SiReact"
+    },
+    "expo": {
+      "library": "si",
+      "component": "SiExpo"
+    },
+    "flutter": {
+      "library": "si",
+      "component": "SiFlutter"
+    },
+    "dart": {
+      "library": "si",
+      "component": "SiDart"
+    },
+    "openai": {
+      "library": "si",
+      "component": "SiOpenai"
+    },
+    "claude": {
+      "type": "image",
+      "image": "claude.png"
+    },
+    "googlegemini": {
+      "library": "si",
+      "component": "SiGoogle"
+    },
+    "llm": {
+      "library": "fa",
+      "component": "FaBrain"
+    },
+    "langchain": {
+      "library": "si",
+      "component": "SiLangchain"
+    },
+    "langgraph": {
+      "type": "image",
+      "image": "langgraph.png"
+    },
+    "voiceflow" : {
+      "type": "image",
+      "image": "voiceflow.png"
+    },
+    "n8n": {
+      "type": "image",
+      "image": "n8n.png"
+    },
+    "make": {
+      "type": "image",
+      "image": "make.png"
+    },
+    "zapier": {
+      "type": "image",
+      "image": "zapier.png"
+    },
+    "aws": {
+      "type": "image",
+      "image": "aws.png"
+    },
+    "azure": {
+      "type": "image",
+      "image": "azure.png"
+    },
+    "gcp": {
+      "type": "image",
+      "image": "google_cloud.png"
+    },
+    "cicd": {
+      "library": "si",
+      "component": "SiGithubactions"
+    },
+    "git": {
+      "library": "si",
+      "component": "SiGit"
+    },
+    "githubactions": {
+      "library": "si",
+      "component": "SiGithub"
+    },
+    "docker": {
+      "library": "si",
+      "component": "SiDocker"
+    },    
+    "kubernetes": {
+      "library": "si",
+      "component": "SiKubernetes"
+    },
+    "terraform": {
+      "library": "si",
+      "component": "SiTerraform"
+    },    
+    "vercel": {
+      "library": "si",
+      "component": "SiVercel"
+    },
+    "netlify": {
+      "library": "si",
+      "component": "SiNetlify"
+    }
+  }
+}

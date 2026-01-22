@@ -2,31 +2,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { 
   FaCode,
-  FaServer,
-  FaGraduationCap,
-  FaMapMarkerAlt,
   FaBrain,
   FaRocket,
   FaCloud,
-  FaLaptopCode,
-  FaDatabase,
+  FaLaptopCode,  
+  FaServer,
   FaMobileAlt,
   FaCogs,
+  FaMapMarkerAlt,
   FaStar
 } from "react-icons/fa";
 import profileData from "../../data/profile.json";
 
 // Icon mapping
-const iconMap = {
+const serviceIconMap = {
   code: FaCode,
-  server: FaServer,
-  graduation: FaGraduationCap,
-  location: FaMapMarkerAlt,
   brain: FaBrain,
   automation: FaRocket,
   cloud: FaCloud,
   design: FaLaptopCode,
-  database: FaDatabase,
+  server: FaServer,
   mobile: FaMobileAlt,
   devops: FaCogs
 };
@@ -57,7 +52,7 @@ function About() {
   
   // Map services from JSON with icons
   const highlights = currentServices.map(item => {
-    const IconComponent = iconMap[item.icon] || FaCode;
+    const IconComponent = serviceIconMap[item.icon] || FaCode;
     return {
       ...item,
       icon: <IconComponent />

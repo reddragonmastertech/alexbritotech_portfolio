@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { FaDownload, FaEye, FaFilePdf, FaSpinner, FaGraduationCap, FaBriefcase } from 'react-icons/fa'
+import { FaDownload, FaEye, FaFilePdf, FaGraduationCap, FaBriefcase } from 'react-icons/fa'
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import { motion, AnimatePresence } from 'framer-motion'

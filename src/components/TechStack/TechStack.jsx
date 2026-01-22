@@ -2,88 +2,25 @@ import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
-import { 
-  SiSpringboot, 
-  SiReact, 
-  SiTailwindcss, 
-  SiMysql, 
-  SiMongodb, 
-  SiDocker, 
-  SiGit,
-  SiIntellijidea,
-  SiPostman,
-  SiMariadb,
-  SiFramer,
-  SiCloudinary,
-  SiVercel,
-  SiGithub,
-  SiJavascript,
-  SiTypescript,
-  SiNeo4J
-} from 'react-icons/si'
-import { FaDatabase, FaTools, FaCloud, FaRocket, FaJava, FaCube, FaBox, FaCode, FaBrain } from 'react-icons/fa'
+import { FaCode, FaRocket } from 'react-icons/fa'
 import techStackData from '../../data/techStack.json'
-
-// Icon mapping for category icons
-const categoryIconMap = {
-  code: FaCode,
-  rocket: FaRocket,
-  database: FaDatabase,
-  tools: FaTools,
-  cloud: FaCloud,
-  brain: FaBrain
-}
-
-// Icon mapping for technology icons
-const techIconMap = {
-  java: FaJava,
-  springboot: SiSpringboot,
-  react: SiReact,
-  tailwindcss: SiTailwindcss,
-  cube: FaCube,
-  framer: SiFramer,
-  mysql: SiMysql,
-  mariadb: SiMariadb,
-  mongodb: SiMongodb,
-  neo4j: SiNeo4J,
-  intellij: SiIntellijidea,
-  code: FaCode,
-  git: SiGit,
-  postman: SiPostman,
-  docker: SiDocker,
-  vercel: SiVercel,
-  cloudinary: SiCloudinary,
-  github: SiGithub,
-  brain: FaBrain,
-  box: FaBox
-}
+import { categoryIconMap, techIconMap, defaultIcon } from '../../utils/iconMapper'
 
 function TechStack() {
   // Tech Stack data organized by categories from JSON
   const techCategories = useMemo(() => 
     techStackData.categories.map(category => ({
       ...category,
-      icon: categoryIconMap[category.icon] || FaCode,
+      icon: categoryIconMap[category.icon] || defaultIcon,
       technologies: category.technologies.map(tech => ({
         ...tech,
-        icon: techIconMap[tech.icon] || FaCode
+        icon: techIconMap[tech.icon] || defaultIcon
       }))
     })), []
   )
   
   // Project highlights from JSON
   const projectHighlights = useMemo(() => techStackData.projectHighlights, [])
-  
-
-  const getLevelColor = (level) => {
-    switch (level) {
-      case 'Expert': return 'text-amber-400'
-      case 'Advanced': return 'text-amber-300'
-      case 'Intermediate': return 'text-yellow-400'
-      case 'Proficient': return 'text-amber-500'
-      default: return 'text-neutral-400'
-    }
-  }
 
   return (
     <>
@@ -128,6 +65,7 @@ function TechStack() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {techCategories.map((category, categoryIndex) => {
               const IconComponent = category.icon
+              const isImageIcon = typeof IconComponent === 'object' && IconComponent?.type === 'image'
               return (
                 <motion.div
                   key={category.id}
@@ -143,40 +81,53 @@ function TechStack() {
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className={`w-12 h-12 ${category.bgColor} rounded-xl flex items-center justify-center`}>
-                      <IconComponent className={`w-6 h-6 ${category.color}`} />
+                      {isImageIcon ? (
+                        <img 
+                          src={IconComponent.src} 
+                          alt={category.title}
+                          className="w-6 h-6 object-contain"
+                        />
+                      ) : (
+                        <IconComponent className={`w-6 h-6 ${category.color}`} />
+                      )}
                     </div>
                     <h3 className="text-lg font-bold text-neutral-100">
                       {category.title}
                     </h3>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
                     {category.technologies.map((tech, techIndex) => {
                       const TechIcon = tech.icon
+                      const isImageIcon = typeof TechIcon === 'object' && TechIcon?.type === 'image'
                       return (
                         <motion.div
                           key={techIndex}
-                          className="flex items-center justify-between p-3 bg-neutral-800/30 rounded-lg border border-neutral-700/30"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + techIndex * 0.1 }}
+                          className="flex items-center gap-2.5 p-3 bg-neutral-800/30 rounded-lg border border-neutral-700/30 min-h-[3.5rem]"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.3 + techIndex * 0.05 }}
                           viewport={{ once: true }}
                           whileHover={{ 
-                            x: 5,
-                            backgroundColor: "rgba(38, 38, 38, 0.5)"
+                            scale: 1.05,
+                            backgroundColor: "rgba(38, 38, 38, 0.5)",
+                            borderColor: "rgba(251, 191, 36, 0.3)"
                           }}
                         >
-                          <div className="flex items-center gap-3">
+                          {isImageIcon ? (
+                            <img 
+                              src={TechIcon.src} 
+                              alt={tech.name}
+                              className="w-5 h-5 flex-shrink-0 object-contain"
+                            />
+                          ) : (
                             <TechIcon 
-                              className="w-5 h-5" 
+                              className="w-5 h-5 flex-shrink-0" 
                               style={{ color: tech.color }}
                             />
-                            <span className="font-medium text-neutral-200">
-                              {tech.name}
-                            </span>
-                          </div>
-                          <span className={`text-sm font-semibold ${getLevelColor(tech.level)}`}>
-                            {tech.level}
+                          )}
+                          <span className="font-medium text-neutral-200 text-sm leading-tight flex-1">
+                            {tech.name}
                           </span>
                         </motion.div>
                       )
