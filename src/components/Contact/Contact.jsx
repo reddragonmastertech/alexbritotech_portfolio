@@ -4,8 +4,6 @@ import {
   FaEnvelope,
   FaPaperPlane,
   FaWhatsapp,
-  FaMapMarkerAlt,
-  FaGithub,
   FaLinkedin,
   FaCheckCircle,
   FaTimes,
@@ -28,7 +26,7 @@ const CONTACT_HEADER = {
 const iconMap = {
   email: FaEnvelope,
   phone: FaWhatsapp,
-  location: FaMapMarkerAlt
+  linkedin: FaLinkedin
 };
 
 function Contact() {
@@ -112,16 +110,11 @@ function Contact() {
     },
     {
       id: 3,
-      icon: FaMapMarkerAlt,
-      label: "Location",
-      value: profileData.personalInfo.location,
-      href: `https://maps.google.com/?q=${encodeURIComponent(profileData.personalInfo.location)}`
+      icon: FaLinkedin,
+      label: "LinkedIn",
+      value: contactData.contactInfo.linkedin.value || "LinkedIn Profile",
+      href: contactData.contactInfo.linkedin.url
     }
-  ];
-
-  const socialLinks = [
-    { icon: FaGithub, href: contactData.contactInfo.github.url, label: contactData.contactInfo.github.label },
-    { icon: FaLinkedin, href: contactData.contactInfo.linkedin.url, label: contactData.contactInfo.linkedin.label }
   ];
 
   return (
@@ -268,32 +261,6 @@ function Contact() {
                           <p className="text-sm text-neutral-200 truncate">{method.value}</p>
                         </div>
                         <FaExternalLinkAlt className="text-xs text-neutral-500 group-hover:text-amber-400 transition-colors" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-800">
-                <h2 className="text-lg font-semibold text-neutral-100 mb-5">
-                  Connect Online
-                </h2>
-                
-                <div className="flex gap-3">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-800/40 hover:bg-neutral-800/70 border border-neutral-700/50 hover:border-amber-500/30 text-neutral-400 hover:text-amber-400 transition-all duration-300"
-                        aria-label={social.label}
-                      >
-                        <Icon className="text-xl" />
-                        <span className="text-sm font-medium">{social.label}</span>
                       </a>
                     );
                   })}

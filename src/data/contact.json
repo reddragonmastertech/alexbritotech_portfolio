@@ -15,7 +15,8 @@
     "linkedin": {
       "name": "LinkedIn",
       "url": "https://linkedin.com/in/alexandrosilvadebrito",
-      "label": "LinkedIn"
+      "label": "LinkedIn",
+      "value": "linkedin.com/in/alexandrosilvadebrito"
     },
     "github": {
       "name": "GitHub",

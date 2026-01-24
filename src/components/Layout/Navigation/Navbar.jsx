@@ -165,11 +165,11 @@ function Navbar() {
                     ease: "easeInOut"
                   }}
                 />
-                <div className="relative w-11 h-11 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-xl border border-neutral-700/50 flex items-center justify-center overflow-hidden">
+                <div className="relative w-14 h-14 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-xl border border-neutral-700/50 flex items-center justify-center overflow-hidden">
                   <img 
                     src={settingData.navigation.brand.logo} 
                     alt={`${settingData.navigation.brand.name} Dev Logo`} 
-                    className="w-8 h-8 object-contain"
+                    className="w-11 h-11 object-contain"
                   />
                 </div>
               </div>
@@ -357,11 +357,11 @@ function Navbar() {
               {/* Menu Header */}
               <div className="flex items-center justify-between p-6 border-b border-neutral-800/80">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
                     <img 
                       src={settingData.navigation.brand.logo} 
                       alt="Logo" 
-                      className="w-7 h-7 object-contain"
+                      className="w-9 h-9 object-contain"
                     />
                   </div>
                   <div>

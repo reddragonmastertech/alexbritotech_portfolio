@@ -13,7 +13,8 @@
   "devProfile": {
     "title": "Full Stack Developer | AI & Automation Engineer | DevOps & Cloud Engineer",
     "headline": "",
-    "summary": "Full Stack Developer with 6+ years of experience delivering 20+ scalable SaaS platforms and high-performance web and mobile applications across FinTech, Healthcare, and AI-driven domains. Specialized in building modern front-end systems with React, Next.js, and Vue.js, and back-end services using Node.js, Django, and FastAPI supporting 50K+ users. Hands-on experience integrating LLMs, NLP pipelines, and automation workflows to improve product efficiency. Experienced in remote, cross-functional development environments, mentoring 5+ junior engineers, and maintaining production-grade, scalable codebases."
+    "summary": "Full Stack Developer with 6+ years of experience delivering 20+ scalable SaaS platforms and high-performance web and mobile applications across FinTech, Healthcare, and AI-driven domains. Specialized in building modern front-end systems with React, Next.js, and Vue.js, and back-end services using Node.js, Django, and FastAPI supporting 50K+ users. Hands-on experience integrating LLMs, NLP pipelines, and automation workflows to improve product efficiency. Experienced in remote, cross-functional development environments, mentoring 5+ junior engineers, and maintaining production-grade, scalable codebases.",
+    "emphasizing": ["Full Stack Developer", "6+", "FinTech, Healthcare, and AI-driven domains", "React, Next.js, and Vue.js", "Node.js, Django, and FastAPI", "LLMs, NLP pipelines, and automation workflows"]
   },
   "services": [
     {

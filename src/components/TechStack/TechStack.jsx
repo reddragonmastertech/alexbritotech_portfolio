@@ -7,7 +7,7 @@ import techStackData from '../../data/techStack.json'
 import { categoryIconMap, techIconMap, defaultIcon } from '../../utils/iconMapper'
 
 function TechStack() {
-  // Tech Stack data organized by categories from JSON
+  // Skills data organized by categories from JSON
   const techCategories = useMemo(() => 
     techStackData.categories.map(category => ({
       ...category,
@@ -37,7 +37,7 @@ function TechStack() {
             >
               <FaCode className="w-6 h-6 text-amber-400" />
               <span className="text-lg font-semibold text-neutral-300">
-                Technology Stack
+                Skills
               </span>
             </motion.div>
 
@@ -88,7 +88,7 @@ function TechStack() {
                           className="w-6 h-6 object-contain"
                         />
                       ) : (
-                        <IconComponent className={`w-6 h-6 ${category.color}`} />
+                      <IconComponent className={`w-6 h-6 ${category.color}`} />
                       )}
                     </div>
                     <h3 className="text-lg font-bold text-neutral-100">
@@ -121,10 +121,10 @@ function TechStack() {
                               className="w-5 h-5 flex-shrink-0 object-contain"
                             />
                           ) : (
-                            <TechIcon 
-                              className="w-5 h-5 flex-shrink-0" 
-                              style={{ color: tech.color }}
-                            />
+                          <TechIcon 
+                            className="w-5 h-5 flex-shrink-0" 
+                            style={{ color: tech.color }}
+                          />
                           )}
                           <span className="font-medium text-neutral-200 text-sm leading-tight flex-1">
                             {tech.name}
@@ -148,7 +148,7 @@ function TechStack() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                Tech Stack in Action
+                Skills in Action
               </motion.h2>
               <motion.p 
                 className="text-neutral-400 max-w-2xl mx-auto"

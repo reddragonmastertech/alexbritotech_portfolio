@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaGithub, FaLinkedin, FaHeart, FaEnvelope } from 'react-icons/fa'
+import { FaLinkedin, FaHeart, FaEnvelope, FaWhatsapp } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import settingData from '../../../data/setting.json'
 import contactData from '../../../data/contact.json'
@@ -7,9 +7,9 @@ import profileData from '../../../data/profile.json'
 
 // Icon mapping
 const socialIconMap = {
-  github: FaGithub,
-  linkedin: FaLinkedin,
-  email: FaEnvelope
+  email: FaEnvelope,
+  whatsapp: FaWhatsapp,
+  linkedin: FaLinkedin
 }
 
 const Footer = () => {
@@ -21,19 +21,19 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: contactData.contactInfo.github.name,
-      icon: FaGithub,
-      url: contactData.contactInfo.github.url
+      name: contactData.contactInfo.email.name,
+      icon: FaEnvelope,
+      url: contactData.contactInfo.email.url
+    },
+    {
+      name: contactData.contactInfo.whatsapp.name,
+      icon: FaWhatsapp,
+      url: contactData.contactInfo.whatsapp.url
     },
     {
       name: contactData.contactInfo.linkedin.name,
       icon: FaLinkedin,
       url: contactData.contactInfo.linkedin.url
-    },
-    {
-      name: contactData.contactInfo.email.name,
-      icon: FaEnvelope,
-      url: contactData.contactInfo.email.url
     }
   ]
 

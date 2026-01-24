@@ -118,9 +118,9 @@ function App() {
                           </Suspense>
                         </MobileSafeSection>
 
-                        {/* Tech Stack section */}
-                        <MobileSafeSection id="tech-stack" fallback={<FastFallback message="Loading tech stack..." />}>
-                          <Suspense fallback={<FastFallback message="Loading tech stack..." />}>
+                        {/* Skills section */}
+                        <MobileSafeSection id="tech-stack" fallback={<FastFallback message="Loading skills..." />}>
+                          <Suspense fallback={<FastFallback message="Loading skills..." />}>
                             <TechStack />
                           </Suspense>
                         </MobileSafeSection>

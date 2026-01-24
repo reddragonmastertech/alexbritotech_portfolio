@@ -26,6 +26,81 @@ const serviceIconMap = {
   devops: FaCogs
 };
 
+// Helper function to emphasize words in text
+const emphasizeText = (text, emphasizingWords) => {
+  if (!emphasizingWords || emphasizingWords.length === 0) {
+    return text;
+  }
+
+  // Sort by length (longest first) to handle longer phrases before shorter ones
+  const sortedWords = [...emphasizingWords].sort((a, b) => b.length - a.length);
+  
+  // Create an array to track which characters should be bolded
+  const boldRanges = [];
+  
+  // Find all matches for each emphasizing word
+  sortedWords.forEach(word => {
+    const regex = new RegExp(word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      boldRanges.push({
+        start: match.index,
+        end: match.index + match[0].length
+      });
+    }
+  });
+
+  // Merge overlapping ranges
+  boldRanges.sort((a, b) => a.start - b.start);
+  const mergedRanges = [];
+  for (const range of boldRanges) {
+    if (mergedRanges.length === 0 || range.start > mergedRanges[mergedRanges.length - 1].end) {
+      mergedRanges.push({ ...range });
+    } else {
+      mergedRanges[mergedRanges.length - 1].end = Math.max(
+        mergedRanges[mergedRanges.length - 1].end,
+        range.end
+      );
+    }
+  }
+
+  // If no matches found, return original text
+  if (mergedRanges.length === 0) {
+    return text;
+  }
+
+  // Build parts array
+  const parts = [];
+  let lastIndex = 0;
+
+  mergedRanges.forEach(range => {
+    // Add text before bold range
+    if (range.start > lastIndex) {
+      parts.push({ text: text.substring(lastIndex, range.start), bold: false });
+    }
+    
+    // Add bold text
+    parts.push({ text: text.substring(range.start, range.end), bold: true });
+    lastIndex = range.end;
+  });
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push({ text: text.substring(lastIndex), bold: false });
+  }
+
+  // Render parts with React elements
+  return parts.map((part, index) => 
+    part.bold ? (
+      <span key={index} className="font-bold text-green-400">
+        {part.text}
+      </span>
+    ) : (
+      <span key={index}>{part.text}</span>
+    )
+  );
+};
+
 function About() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isForStartups, setIsForStartups] = useState(false);
@@ -91,7 +166,7 @@ function About() {
             >
               <div className="relative w-full flex flex-col items-center mb-6">
                 {/* Avatar Container */}
-                <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-900">
+                <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-900 relative">
                   <img
                     src={profileData.personalInfo.avatar}
                     alt={profileData.personalInfo.fullName}
@@ -103,12 +178,6 @@ function About() {
                 {/* Decorative Elements - Stuck to corners */}
                 <div className="absolute top-0 right-0 w-6 h-6 rounded-full bg-amber-500 -translate-y-1/2 translate-x-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-4 h-4 rounded-full bg-amber-400/60 translate-y-1/2 -translate-x-1/2"></div>
-                
-                {/* Status Badge */}
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-neutral-900 border border-neutral-700 rounded-full flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                  <span className="text-xs text-neutral-300 whitespace-nowrap">{profileData.status.message}</span>
-                </div>
               </div>
               
               {/* Personal Info - Aligned with Stats */}
@@ -145,7 +214,10 @@ function About() {
               
               <div className="text-neutral-400 leading-relaxed mb-6">
                 <p>
-                  {profileData.devProfile.summary}
+                  {emphasizeText(
+                    profileData.devProfile.summary,
+                    profileData.devProfile.emphasizing || []
+                  )}
                 </p>
               </div>
               
@@ -180,52 +252,122 @@ function About() {
         <div className="mb-12">
           {/* Section Header with Toggle */}
           <motion.div
-            className="flex flex-col items-center mb-12"
+            className="mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-4 mb-4">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-100">
+            <div className="relative grid grid-cols-1 sm:grid-cols-3 items-center gap-4 mb-4">
+              {/* Spacer for left side on desktop */}
+              <div className="hidden sm:block"></div>
+              
+              {/* Centered Heading */}
+              <h3 className="text-2xl md:text-3xl font-bold text-neutral-100 text-center col-span-1 sm:col-span-1">
                 What I <span className="text-amber-400">Can Do</span>
               </h3>
               
-              {/* For Startups Toggle */}
-              <motion.button
-                onClick={() => setIsForStartups(!isForStartups)}
-                className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full border transition-all duration-300 overflow-hidden ${
-                  isForStartups
-                    ? "bg-gradient-to-r from-amber-500/20 to-amber-600/10 border-amber-500/50 text-amber-400 shadow-lg shadow-amber-500/20"
-                    : "bg-neutral-800/50 border-neutral-700/50 text-neutral-400 hover:border-amber-500/30 hover:text-amber-400 hover:bg-neutral-800/70"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {/* Animated star decoration */}
-                <div className="relative">
-                  <FaStar className={`w-4 h-4 ${isForStartups ? "text-amber-400 animate-pulse" : "text-amber-500/60"}`} />
-                  {isForStartups && (
-                    <motion.div
-                      className="absolute inset-0"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    >
-                      <FaStar className="w-4 h-4 text-amber-400/30" />
-                    </motion.div>
-                  )}
-                </div>
-                <span className="text-sm font-semibold relative z-10">For Startups</span>
-                {isForStartups && (
+              {/* Right-aligned For Startups Button */}
+              <div className="flex justify-center sm:justify-end col-span-1 sm:col-span-1">
+                <motion.button
+                  onClick={() => setIsForStartups(!isForStartups)}
+                  className={`relative flex items-center gap-2.5 px-5 py-2.5 rounded-lg border-2 transition-all duration-300 overflow-hidden font-semibold text-base cursor-pointer ${
+                    isForStartups
+                      ? "bg-gradient-to-r from-amber-500/30 via-amber-500/20 to-amber-600/30 border-amber-500 text-amber-100 shadow-2xl shadow-amber-500/50"
+                      : "bg-gradient-to-r from-neutral-800 via-neutral-700 to-neutral-800 border-amber-500/50 text-neutral-300 hover:border-amber-500 hover:text-amber-400 hover:bg-gradient-to-r hover:from-amber-500/10 hover:via-amber-500/5 hover:to-amber-600/10 hover:shadow-xl hover:shadow-amber-500/30"
+                  }`}
+                  whileHover={{ 
+                    scale: 1.08,
+                    y: -2,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
+                  whileTap={{ scale: 0.92 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: 0.2,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                  viewport={{ once: true }}
+                  animate={{
+                    boxShadow: isForStartups 
+                      ? "0 0 20px rgba(245, 158, 11, 0.5), 0 0 40px rgba(245, 158, 11, 0.3)"
+                      : "0 0 10px rgba(245, 158, 11, 0.2)"
+                  }}
+                >
+                  {/* Enhanced Glow effect - always visible */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent"
-                    animate={{ x: ["-100%", "100%"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    className="absolute -inset-2 bg-gradient-to-r from-amber-500/50 via-amber-400/40 to-amber-600/50 rounded-lg blur-lg"
+                    animate={{ 
+                      opacity: [0.5, 0.9, 0.5],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
                   />
-                )}
-              </motion.button>
+                  
+                  {/* Pulsing ring effect */}
+                  <motion.div
+                    className="absolute -inset-1 border-2 border-amber-500/30 rounded-lg"
+                    animate={{
+                      scale: [1, 1.15, 1],
+                      opacity: [0.5, 0.8, 0.5]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {/* Animated star decoration */}
+                  <motion.div 
+                    className="relative z-10"
+                    animate={isForStartups ? {
+                      rotate: [0, 360],
+                      scale: [1, 1.2, 1]
+                    } : {}}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <FaStar className={`w-5 h-5 ${isForStartups ? "text-amber-300 animate-pulse" : "text-amber-500/70"}`} />
+                    {isForStartups && (
+                      <motion.div
+                        className="absolute inset-0"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      >
+                        <FaStar className="w-5 h-5 text-amber-400/40" />
+                      </motion.div>
+                    )}
+                  </motion.div>
+                  <span className="relative z-10 font-bold">For Startups</span>
+                  {isForStartups && (
+                    <>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"
+                        animate={{ x: ["-100%", "100%"] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-amber-500/30 via-transparent to-amber-600/30 blur-sm"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    </>
+                  )}
+                </motion.button>
+              </div>
             </div>
-            <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-amber-600"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto"></div>
           </motion.div>
 
           {/* Services Grid */}

@@ -22,9 +22,9 @@ export const SEO_CONFIGS = {
   },
   
   techStack: {
-    title: "Tech Stack - GiaSi Dev Portfolio | Technologies & Tools",
-    description: "Explore GiaSi's comprehensive technology stack including Java, Spring Boot, React, databases, cloud tools and development frameworks used in modern projects.",
-    keywords: "tech stack, technologies, java, spring boot, react, mysql, mongodb, docker, git, development tools, programming languages",
+    title: "Skills - GiaSi Dev Portfolio | Technologies & Tools",
+    description: "Explore GiaSi's comprehensive skills including Java, Spring Boot, React, databases, cloud tools and development frameworks used in modern projects.",
+    keywords: "skills, technologies, java, spring boot, react, mysql, mongodb, docker, git, development tools, programming languages",
     url: "https://nguyentrangiasi.id.vn/tech-stack"
   },
   

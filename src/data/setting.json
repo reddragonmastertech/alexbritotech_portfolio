@@ -18,7 +18,7 @@
       },
       {
         "id": "tech-stack",
-        "label": "Tech Stack",
+        "label": "Skills",
         "icon": "cogs"
       },
       {
@@ -42,7 +42,7 @@
         "href": "#projects"
       },
       {
-        "name": "Tech Stack",
+        "name": "Skills",
         "href": "#tech-stack"
       },
       {
