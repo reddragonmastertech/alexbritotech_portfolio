@@ -144,88 +144,91 @@ function Contact() {
           </motion.div>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-5 gap-8">
+          <div className="grid lg:grid-cols-5 gap-8 lg:items-end">
             
             {/* Contact Form - Takes 3 columns */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="lg:col-span-3"
+              className="lg:col-span-3 flex flex-col"
             >
-              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-neutral-800">
+              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-neutral-800 flex-1 flex flex-col">
                 <h2 className="text-xl font-semibold text-neutral-100 mb-6">
                   Send a Message
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-400 mb-2">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder={profileData.personalInfo.fullName}
-                      required
-                    />
+                <form onSubmit={handleSubmit} className="flex-1 flex flex-col">
+                  <div className="space-y-5 flex-1">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-400 mb-2">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
+                        placeholder={profileData.personalInfo.fullName}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-400 mb-2">
+                        Your Email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
+                        placeholder={contactData.contactInfo.email.value}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-400 mb-2">
+                        Message
+                      </label>
+                      <textarea
+                        name="message"
+                        rows={5}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all resize-none"
+                        placeholder="Tell me about your project or opportunity..."
+                        required
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-400 mb-2">
-                      Your Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder={contactData.contactInfo.email.value}
-                      required
-                    />
+                  <div className="mt-auto pt-5">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-neutral-900 font-semibold hover:from-amber-400 hover:to-amber-500 transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <FaSpinner className="text-sm animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <FaPaperPlane className="text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                    <p className="text-neutral-500 text-xs text-center mt-4">
+                      Your message will be sent directly to my inbox
+                    </p>
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-400 mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      name="message"
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all resize-none"
-                      placeholder="Tell me about your project or opportunity..."
-                      required
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-neutral-900 font-semibold hover:from-amber-400 hover:to-amber-500 transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <FaSpinner className="text-sm animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <FaPaperPlane className="text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
                 </form>
-
-                <p className="text-neutral-500 text-xs text-center mt-4">
-                  Your message will be sent directly to my inbox
-                </p>
               </div>
             </motion.div>
 
@@ -234,7 +237,7 @@ function Contact() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="lg:col-span-2 space-y-6"
+              className="lg:col-span-2 flex flex-col space-y-6"
             >
               {/* Direct Contact */}
               <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-800">
@@ -268,7 +271,7 @@ function Contact() {
               </div>
 
               {/* Availability Status */}
-              <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 rounded-2xl p-6 border border-amber-500/20">
+              <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 rounded-2xl p-6 border border-amber-500/20 mt-auto">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="flex h-3 w-3 relative">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>

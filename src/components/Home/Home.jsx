@@ -277,15 +277,6 @@ function Home() {
           </div>
 
         </div>
-
-        {!isMobile && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500">
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <div className="w-5 h-8 border-2 border-neutral-600 rounded-full flex justify-center pt-1.5">
-              <div className="w-1 h-2 bg-amber-500 rounded-full animate-bounce"></div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
