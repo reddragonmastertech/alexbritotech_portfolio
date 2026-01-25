@@ -96,7 +96,7 @@ const extractPersonalInfo = (text) => {
     email,
     phone,
     linkedin: linkedin ? `linkedin.com/in/${linkedin}` : '',
-    github: github ? `github.com/${github}` : '',
+    github: '',
     location: extractLocation(safeText)
   };
 }
@@ -315,7 +315,9 @@ const extractGPA = (text) => {
 
 const extractURL = (text) => {
   const urlMatch = text.match(/(https?:\/\/[^\s]+)/i)
-  return urlMatch ? urlMatch[1] : null
+  const url = urlMatch ? urlMatch[1] : null
+  if (url && url.includes('github.com')) return null
+  return url
 }
 
 const extractCredentialId = (text) => {

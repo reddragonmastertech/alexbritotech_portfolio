@@ -166,11 +166,11 @@ function About() {
             >
               <div className="relative w-full flex flex-col items-center mb-6">
                 {/* Avatar Container */}
-                <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-900 relative">
+                <div className="w-56 h-72 md:w-64 md:h-80 rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-900 relative">
                   <img
                     src={profileData.personalInfo.avatar}
                     alt={profileData.personalInfo.fullName}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     loading="lazy"
                   />
                 </div>

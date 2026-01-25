@@ -17,13 +17,6 @@
   <a href="https://www.framer.com/motion/"><img src="https://img.shields.io/badge/Framer_Motion-12.9-FF0080?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" /></a>
 </p>
 
-<p>
-  <img src="https://img.shields.io/github/stars/giasinguyen/GiaSi-Portfolio?style=social" alt="Stars" />
-  <img src="https://img.shields.io/github/forks/giasinguyen/GiaSi-Portfolio?style=social" alt="Forks" />
-  <img src="https://img.shields.io/github/license/giasinguyen/GiaSi-Portfolio?color=blue" alt="License" />
-  <img src="https://img.shields.io/github/last-commit/giasinguyen/GiaSi-Portfolio?color=green" alt="Last Commit" />
-</p>
-
 <!-- Quick Links -->
 <p>
   <a href="https://nguyentrangiasi.id.vn"><strong>🌐 Live Demo</strong></a>
@@ -121,7 +114,6 @@ Welcome to my **Personal Developer Portfolio** — a meticulously crafted websit
 | Component | Description |
 |-----------|-------------|
 | 📄 **PDF Resume Viewer** | View resume directly in-browser with zoom & download options |
-| 📊 **GitHub Calendar** | Real-time contribution graph integration |
 | 📬 **Contact Form** | EmailJS/Formspree powered form with validation |
 | 🏷️ **Project Filtering** | Dynamic category-based project showcase |
 | ⌨️ **Typewriter Effect** | Engaging animated text on hero section |
@@ -187,7 +179,6 @@ Welcome to my **Personal Developer Portfolio** — a meticulously crafted websit
 | `zustand` | ^5.0.3 | State management |
 | `react-hook-form` | ^7.56.1 | Form handling |
 | `react-pdf` | ^9.2.1 | PDF viewer |
-| `react-github-calendar` | ^4.5.6 | GitHub contributions |
 | `lucide-react` | ^0.525.0 | Icon library |
 | `react-icons` | ^5.5.0 | Additional icons |
 | `sonner` | ^2.0.3 | Toast notifications |
@@ -229,8 +220,7 @@ Welcome to my **Personal Developer Portfolio** — a meticulously crafted websit
 ├── 📂 src/
 │   ├── 📂 components/
 │   │   ├── 📂 About/           # About section
-│   │   │   ├── About.jsx
-│   │   │   └── GitHubContributions.jsx
+│   │   │   └── About.jsx
 │   │   │
 │   │   ├── 📂 Contact/         # Contact form
 │   │   │   └── Contact.jsx
@@ -287,13 +277,13 @@ Before you begin, ensure you have the following installed:
 1️⃣ **Clone the repository**
 
 ```bash
-git clone https://github.com/giasinguyen/GiaSi-Portfolio.git
+git clone <your-repo-url>
 ```
 
 2️⃣ **Navigate to project directory**
 
 ```bash
-cd GiaSi-Portfolio
+cd alex-brito-tech-portfolio
 ```
 
 3️⃣ **Install dependencies**
@@ -337,8 +327,6 @@ http://localhost:5173
 
 This portfolio is configured for seamless deployment on **Vercel**:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/giasinguyen/GiaSi-Portfolio)
-
 ### Manual Deployment
 
 ```bash
@@ -381,7 +369,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2025 Gia Si Nguyen
+Copyright (c) 2025 Alexandro Brito
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -396,12 +384,9 @@ copies of the Software...
 
 <div align="center">
 
-### **Gia Si Nguyen** — Full Stack Developer
+### **Alexandro Brito** — Full Stack Developer
 
 <p>
-  <a href="https://github.com/giasinguyen">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-  </a>
   <a href="https://linkedin.com/in/giasinguyen">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
@@ -417,16 +402,12 @@ copies of the Software...
 
 **🌟 If you found this project helpful, please give it a star!**
 
-<a href="https://github.com/giasinguyen/GiaSi-Portfolio/stargazers">
-  <img src="https://img.shields.io/github/stars/giasinguyen/GiaSi-Portfolio?style=social" alt="Stars" />
-</a>
-
 </div>
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ and ☕ by <a href="https://github.com/giasinguyen">Gia Si Nguyen</a></sub>
+  <sub>Built with ❤️ and ☕ by Alexandro Brito</sub>
   <br />
   <sub>© 2025 All Rights Reserved</sub>
 </div>

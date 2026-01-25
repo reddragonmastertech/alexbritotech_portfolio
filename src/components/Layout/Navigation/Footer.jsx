@@ -114,7 +114,7 @@ const Footer = () => {
               >
                 <FaHeart className="text-xs" />
               </motion.span>
-              by <span className="text-neutral-400">Nguyen Tran Gia Si</span>
+              by <span className="text-neutral-400">Alexandro Brito</span>
             </span>
             <span className="text-neutral-600">
               © {currentYear} All rights reserved.

@@ -1,5 +1,5 @@
 // Simple service worker for mobile performance
-const CACHE_NAME = 'giasi-dev-portfolio-v1';
+const CACHE_NAME = 'ale-dev-portfolio-v1';
 const urlsToCache = [
   '/',
   '/src/main.jsx',

@@ -23,7 +23,7 @@ const Preloader = memo(function Preloader() {
     { text: 'const', type: 'keyword' },
     { text: ' developer', type: 'variable' },
     { text: ' = ', type: 'operator' },
-    { text: '"Gia Si"', type: 'string' },
+    { text: '"Alex"', type: 'string' },
     { text: ';', type: 'punctuation' },
   ];
 
@@ -77,7 +77,7 @@ const Preloader = memo(function Preloader() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
                 >
-                  "Gia Si"
+                  "Alex"
                 </motion.span>
                 <span className="text-neutral-500">;</span>
               </div>

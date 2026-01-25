@@ -11,7 +11,7 @@
 
 // Sample PDF content that you can convert to PDF
 export const SAMPLE_RESUME_CONTENT = `
-NGUYEN TRAN GIA SI
+ALEXANDRO BRITO
 Full-Stack Developer
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -20,7 +20,6 @@ CONTACT INFORMATION
 📧 Email: giasi@example.com
 📱 Phone: +84 123 456 789
 🔗 LinkedIn: linkedin.com/in/giasinguyen
-💻 GitHub: github.com/giasinguyen
 📍 Location: Ho Chi Minh City, Vietnam
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -131,7 +130,6 @@ Key Features:
 • Admin dashboard with analytics and reporting
 
 Technologies: Java, Spring Boot, React, PostgreSQL, Redis, Docker, AWS
-GitHub: github.com/giasinguyen/ecommerce-platform
 
 🚀 TASK MANAGEMENT SYSTEM
 Collaborative project management tool with real-time updates
@@ -144,7 +142,6 @@ Key Features:
 • Team management and role-based permissions
 
 Technologies: React, Node.js, Socket.io, MongoDB, Express.js
-GitHub: github.com/giasinguyen/task-manager
 
 🚀 PERSONAL PORTFOLIO
 Modern portfolio website with 3D elements and animations
@@ -157,7 +154,6 @@ Key Features:
 • Responsive design for all devices
 
 Technologies: React, Three.js, TailwindCSS, Vite, GSAP
-GitHub: github.com/giasinguyen/giasi-dev-portfolio
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

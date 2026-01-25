@@ -24,12 +24,11 @@ export const PDF_CONFIG = {
 export const PDF_DATA = {
   resume: {
     personalInfo: {
-      name: "Nguyen Tran Gia Si",
+      name: "Alexandro Brito",
       email: "giasinguyentran@gmail.com",
       phone: "+84 34 899 6487",
       location: "Ho Chi Minh City, Vietnam",
       linkedin: "linkedin.com/in/giasinguyen",
-      github: "github.com/giasinguyen",
     },
 
     summary: `Passionate Full-Stack Developer with expertise in Java ecosystem, React, and modern web technologies. 
@@ -122,7 +121,7 @@ export const PDF_DATA = {
           "Redis",
           "Docker",
         ],
-        url: "https://github.com/giasinguyen/ecommerce",
+        url: "",
         highlights: [
           "Handles 10K+ concurrent users",
           "99.9% uptime achieved",
@@ -136,7 +135,7 @@ export const PDF_DATA = {
         description:
           "Collaborative project management tool with real-time updates",
         technologies: ["React", "Node.js", "Socket.io", "MongoDB"],
-        url: "https://github.com/giasinguyen/task-manager",
+        url: "",
         highlights: [
           "Real-time collaboration",
           "Drag-and-drop interface",

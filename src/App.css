@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Main styles for the giasi-dev-portfolio app */
+/* Main styles for the alex-dev-portfolio app */
 
 /* Animation for blinking cursor in TypeWriter component */
 @keyframes blink {
@@ -181,4 +181,24 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(38, 38, 38, 0.6);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Project modal – Solution section scrollbar */
+.solution-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 191, 36, 0.6) rgba(38, 38, 38, 0.9);
+}
+.solution-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.solution-scrollbar::-webkit-scrollbar-track {
+  background: rgba(38, 38, 38, 0.9);
+  border-radius: 4px;
+}
+.solution-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(251, 191, 36, 0.6);
+  border-radius: 4px;
+}
+.solution-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 191, 36, 0.8);
 }
