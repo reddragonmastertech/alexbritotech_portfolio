@@ -33,7 +33,7 @@ export const useProjects = (filter = 'all') => {
  */
 export const getProjectCategories = (projects) => {
   if (!Array.isArray(projects) || projects.length === 0) {
-    return [{ value: 'all', label: 'All Projects', count: 0 }];
+    return [{ value: `all`, label: `All Projects`, count: 0 }];
   }
 
   const categoriesMap = projects.reduce((acc, project) => {
