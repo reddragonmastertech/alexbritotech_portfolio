@@ -407,12 +407,12 @@ function ProjectDetailModal({ project, onClose }) {
         className="relative w-full max-w-6xl min-h-[85vh] my-8 bg-neutral-900 rounded-2xl border border-neutral-800 overflow-hidden shadow-2xl flex flex-col"
       >
         {/* Modal Content - Two Column Layout */}
-        <div className="flex flex-col lg:flex-row flex-1 pt-6 pb-6">
+        <div className="flex flex-col lg:flex-row flex-1 min-h-0 pt-6 pb-6">
           {/* Left Section - Image, Category & Industry, Technology Icons */}
           <div className="lg:w-3/5 flex flex-col">
             {/* Project Image - Clickable */}
             <div 
-              className="relative w-full aspect-video overflow-hidden bg-neutral-800/50 cursor-pointer group"
+              className="relative w-full aspect-[4/3] overflow-hidden bg-neutral-800/50 cursor-pointer group"
               onClick={handleImageClick}
             >
               {!imageError ? (
@@ -497,10 +497,10 @@ function ProjectDetailModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Right Section - Title, Description, Solution */}
-          <div className="lg:w-2/5 flex flex-col border-t lg:border-t-0 lg:border-l border-neutral-800">
+          {/* Right Section - Title, Description, Solution (fixed), Visit aligned with Tech */}
+          <div className="lg:w-2/5 flex flex-col min-h-0 border-t lg:border-t-0 lg:border-l border-neutral-800">
             {/* Project Title */}
-            <div className="px-6 py-6 border-b border-neutral-800 flex items-start justify-between gap-4">
+            <div className="px-6 py-6 border-b border-neutral-800 flex items-start justify-between gap-4 flex-shrink-0">
               <div className="flex-1">
                 <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
                 {project.role && (
@@ -522,29 +522,37 @@ function ProjectDetailModal({ project, onClose }) {
               )}
             </div>
 
-            {/* Description */}
-            <div className="px-6 py-6 border-b border-neutral-800 flex-1 overflow-y-auto">
+            {/* Description - divider under */}
+            <div className="px-6 py-6 border-b border-neutral-800 flex-shrink-0">
               <h3 className="text-sm font-semibold text-amber-400 mb-3 uppercase tracking-wider">Description</h3>
               <p className="text-neutral-300 leading-relaxed">{project.description}</p>
             </div>
 
-            {/* Solution */}
+            {/* Solution - fixed height, scroll inside when overflow */}
             {project.solution && (
-              <div className="px-6 pb-6">
+              <div className="flex flex-col flex-shrink-0 px-6 py-6 border-b border-neutral-800">
                 <h3 className="text-sm font-semibold text-amber-400 mb-3 uppercase tracking-wider">Solution</h3>
-                <p className="text-neutral-300 leading-relaxed italic mb-6">{project.solution}</p>
-                {/* Action Button - Under Solution */}
-                {project.website && (
-                  <a
-                    href={project.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-neutral-900 font-semibold transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40"
-                  >
-                    <FaExternalLinkAlt className="w-4 h-4" />
-                    <span>Visit Website</span>
-                  </a>
-                )}
+                <div className="h-[200px] max-h-[200px] min-h-0 shrink-0 overflow-y-auto overflow-x-hidden pr-1 solution-scrollbar">
+                  <p className="text-neutral-300 leading-relaxed italic pr-1">{project.solution}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Spacer: pushes Visit to bottom so it aligns with Technologies row */}
+            <div className="flex-1 min-h-0" />
+
+            {/* Visit Button - same row as Technologies (bottom), divider above */}
+            {project.website && (
+              <div className="px-6 py-4 border-t border-neutral-800 flex-shrink-0 flex items-center">
+                <a
+                  href={project.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-neutral-900 font-semibold transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40"
+                >
+                  <FaExternalLinkAlt className="w-4 h-4" />
+                  <span>Visit Website</span>
+                </a>
               </div>
             )}
           </div>
