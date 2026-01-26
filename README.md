@@ -1,9 +1,9 @@
 <div align="center">
 
 <!-- Logo & Title -->
-<img src="public/logo.png" alt="GiaSi Portfolio Logo" width="140" height="140" style="border-radius: 20px;" />
+<img src="public/logo.png" alt="Alex Portfolio Logo" width="140" height="140" style="border-radius: 20px;" />
 
-# 🚀 GiaSi Developer Portfolio
+# 🚀 Alex Developer Portfolio
 
 <h3>
   <em>A Modern, Interactive & Performance-Optimized Personal Portfolio</em>
@@ -211,7 +211,7 @@ Welcome to my **Personal Developer Portfolio** — a meticulously crafted websit
 ## 📁 Project Structure
 
 ```
-📦 GiaSi-Portfolio
+📦 Alex-Portfolio
 ├── 📂 public/
 │   ├── 📄 manifest.json        # PWA manifest
 │   ├── 📄 sw.js                # Service worker
@@ -387,10 +387,10 @@ copies of the Software...
 ### **Alexandro Brito** — Full Stack Developer
 
 <p>
-  <a href="https://linkedin.com/in/giasinguyen">
+  <a href="https://linkedin.com/in/alexandrosilvadebrito">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
-  <a href="mailto:nguyentrangiasi@gmail.com">
+  <a href="mailto:alexbritotech@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>
   <a href="https://nguyentrangiasi.id.vn">

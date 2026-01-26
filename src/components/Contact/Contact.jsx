@@ -7,7 +7,6 @@ import {
   FaLinkedin,
   FaCheckCircle,
   FaTimes,
-  FaExternalLinkAlt,
   FaSpinner
 } from "react-icons/fa";
 import SEOHead from '../SEO/SEOHead'
@@ -19,7 +18,7 @@ import profileData from '../../data/profile.json';
 const CONTACT_HEADER = {
   badge: profileData.status.message,
   title: "Get In Touch",
-  description: "Looking for a Java Backend Developer? Let's connect and discuss how I can contribute to your team."
+  description: "Looking for a Full Stack Developer? Let's connect and discuss how I can contribute to your team."
 };
 
 // Icon mapping
@@ -27,6 +26,18 @@ const iconMap = {
   email: FaEnvelope,
   phone: FaWhatsapp,
   linkedin: FaLinkedin
+};
+
+// Emphasize matching phrases in text (for availability bullets)
+const emphasizeAvailability = (text, emphasizingWords) => {
+  if (!emphasizingWords?.length) return text;
+  const sorted = [...emphasizingWords].sort((a, b) => b.length - a.length);
+  let result = text;
+  sorted.forEach((word) => {
+    const re = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+    result = result.replace(re, '<span class="text-amber-400 font-semibold">$1</span>');
+  });
+  return result;
 };
 
 function Contact() {
@@ -143,8 +154,8 @@ function Contact() {
             </p>
           </motion.div>
 
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-5 gap-8 lg:items-end">
+          {/* Main Content Grid - right column stretches to match form height */}
+          <div className="grid lg:grid-cols-5 gap-8 lg:items-stretch">
             
             {/* Contact Form - Takes 3 columns */}
             <motion.div
@@ -153,8 +164,8 @@ function Contact() {
               transition={{ delay: 0.1 }}
               className="lg:col-span-3 flex flex-col"
             >
-              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-neutral-800 flex-1 flex flex-col">
-                <h2 className="text-xl font-semibold text-neutral-100 mb-6">
+              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-neutral-800 flex-1 flex flex-col min-h-0">
+                <h2 className="text-xl font-semibold text-neutral-100 mb-6 text-center">
                   Send a Message
                 </h2>
 
@@ -232,56 +243,74 @@ function Contact() {
               </div>
             </motion.div>
 
-            {/* Contact Info - Takes 2 columns */}
+            {/* Right column: Direct Contact (icons only) + Availability (fills to form bottom) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="lg:col-span-2 flex flex-col space-y-6"
+              className="lg:col-span-2 flex flex-col min-h-0"
             >
-              {/* Direct Contact */}
-              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-800">
-                <h2 className="text-lg font-semibold text-neutral-100 mb-5">
+              {/* Direct Contact - icons only, horizontal, centered */}
+              <div className="bg-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-800 flex-shrink-0 flex flex-col items-center justify-center text-center">
+                <h2 className="text-lg font-semibold text-neutral-100 mb-4">
                   Direct Contact
                 </h2>
-                
-                <div className="space-y-4">
+                <div className="flex flex-wrap gap-3 justify-center items-center">
                   {contactMethods.map((method) => {
                     const Icon = method.icon;
                     return (
                       <a
                         key={method.id}
                         href={method.href}
-                        target={method.href.startsWith('http') ? '_blank' : undefined}
-                        rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="flex items-center gap-4 p-4 rounded-xl bg-neutral-800/40 hover:bg-neutral-800/70 border border-neutral-700/50 hover:border-amber-500/30 transition-all duration-300 group"
+                        target={method.href.startsWith("http") ? "_blank" : undefined}
+                        rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="w-12 h-12 rounded-xl bg-neutral-800/40 hover:bg-neutral-800/70 border border-neutral-700/50 hover:border-amber-500/30 flex items-center justify-center text-amber-400 hover:bg-amber-500/10 hover:text-amber-300 transition-all duration-300"
+                        title={method.label}
+                        aria-label={method.label}
                       >
-                        <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:bg-amber-500/20 transition-colors">
-                          <Icon className="text-lg" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs text-neutral-500 mb-0.5">{method.label}</p>
-                          <p className="text-sm text-neutral-200 truncate">{method.value}</p>
-                        </div>
-                        <FaExternalLinkAlt className="text-xs text-neutral-500 group-hover:text-amber-400 transition-colors" />
+                        <Icon className="text-xl" />
                       </a>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Availability Status */}
-              <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 rounded-2xl p-6 border border-amber-500/20 mt-auto">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="flex h-3 w-3 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                  </span>
-                  <span className="text-sm font-semibold text-amber-400">{profileData.status.message}</span>
+              {/* Availability - fills space from direct contact bottom to form bottom */}
+              <div className="flex-1 min-h-0 mt-6 flex flex-col">
+                <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 rounded-2xl p-6 border border-amber-500/20 flex-1 flex flex-col min-h-0 overflow-y-auto">
+                  <div className="flex items-center gap-3 mb-4 flex-shrink-0">
+                    <span className="flex h-3 w-3 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+                    </span>
+                    <span className="text-sm font-semibold text-amber-400">
+                      {profileData.status.message}
+                    </span>
+                  </div>
+                  <ul className="space-y-2.5 text-sm text-neutral-400 leading-relaxed flex-1 pl-5">
+                    {(profileData.status.description || "")
+                      .split(",")
+                      .map((s) => s.trim())
+                      .filter(Boolean)
+                      .map((feature, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2.5 group"
+                        >
+                          <span className="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500/60 group-hover:bg-amber-400 group-hover:scale-125 transition-all duration-300" />
+                          <span
+                            className="group-hover:text-neutral-300 transition-colors duration-300"
+                            dangerouslySetInnerHTML={{
+                              __html: emphasizeAvailability(
+                                feature,
+                                profileData.status.emphasizing
+                              ),
+                            }}
+                          />
+                        </li>
+                      ))}
+                  </ul>
                 </div>
-                <p className="text-sm text-neutral-400 leading-relaxed">
-                  {profileData.status.description}
-                </p>
               </div>
             </motion.div>
           </div>

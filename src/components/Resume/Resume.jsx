@@ -277,7 +277,7 @@ function Resume() {
             </motion.div>
 
             <h3 className="text-3xl font-bold text-neutral-100 mb-4">
-              Ready to collaborate?
+               Open to New Opportunities
             </h3>
 
             <p className="text-neutral-400 text-lg mb-8 max-w-2xl mx-auto">

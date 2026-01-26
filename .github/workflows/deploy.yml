@@ -30,9 +30,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if [ -f "giasi-dev-portfolio/package.json" ]; then
-            echo "Found package.json in giasi-dev-portfolio/"
-            cd giasi-dev-portfolio
+          if [ -f "alex-brito-tech-portfolio/package.json" ]; then
+            echo "Found package.json in alex-brito-tech-portfolio/"
+            cd alex-brito-tech-portfolio
             npm install --legacy-peer-deps
           elif [ -f "package.json" ]; then
             echo "Found package.json in root"
@@ -44,8 +44,8 @@ jobs:
 
       - name: Build project
         run: |
-          if [ -f "giasi-dev-portfolio/package.json" ]; then
-            cd giasi-dev-portfolio
+          if [ -f "alex-brito-tech-portfolio/package.json" ]; then
+            cd alex-brito-tech-portfolio
             npm run build
           else
             npm run build
@@ -53,8 +53,8 @@ jobs:
 
       - name: Run linting
         run: |
-          if [ -f "giasi-dev-portfolio/package.json" ]; then
-            cd giasi-dev-portfolio
+          if [ -f "alex-brito-tech-portfolio/package.json" ]; then
+            cd alex-brito-tech-portfolio
             npm run lint || echo "Linting completed with warnings"
           else
             npm run lint || echo "Linting completed with warnings"

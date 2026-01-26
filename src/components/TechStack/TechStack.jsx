@@ -57,7 +57,7 @@ function TechStack() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               A comprehensive overview of the technologies, frameworks, and tools I use to build 
-              modern, scalable applications. From backend development to cloud deployment.
+              modern, scalable applications. From full stack development to cloud engineering.
             </motion.p>
           </div>
 

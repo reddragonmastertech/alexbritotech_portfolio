@@ -8,11 +8,12 @@
   "status": {
     "available": true,
     "message": "Available for opportunities",
-    "description": ""
+    "description": "Remote-First Workflow, Full US Time Zone Overlap, Asynchronous Communication, Cross-Cultural Team Player, Nearshore Collaboration, Early-Stage Contributor, End-to-End Ownership, Rapid Prototyping, Immediate Starter, Available for 40+ Hours/Week",
+    "emphasizing": ["Remote-First", "Full US Time Zone", "40+ Hours", "Asynchronous", "Immediate Starter", "End-to-End", "Rapid Prototyping", "Cross-Cultural", "Nearshore", "Early-Stage"]
   },
   "devProfile": {
     "title": "Full Stack Developer | AI & Automation Engineer | DevOps & Cloud Engineer",
-    "headline": "",
+    "headline": "Experienced Full Stack Developer Specializing in Scalable SaaS Solutions, AI-Powered Applications, and High-Performance Web & Mobile Platforms",
     "summary": "Full Stack Developer with 6+ years of experience delivering 20+ scalable SaaS platforms and high-performance web and mobile applications across FinTech, Healthcare, and AI-driven domains. Specialized in building modern front-end systems with React, Next.js, and Vue.js, and back-end services using Node.js, Django, and FastAPI supporting 50K+ users. Hands-on experience integrating LLMs, NLP pipelines, and automation workflows to improve product efficiency. Experienced in remote, cross-functional development environments, mentoring 5+ junior engineers, and maintaining production-grade, scalable codebases.",
     "emphasizing": ["Full Stack Developer", "6+", "FinTech, Healthcare, and AI-driven domains", "React, Next.js, and Vue.js", "Node.js, Django, and FastAPI", "LLMs, NLP pipelines, and automation workflows"]
   },
@@ -26,7 +27,7 @@
     {
       "id": 2,
       "title": "AI-powered App Development",
-      "description": "Integrating AI capabilities and machine learning into applications",
+      "description": "Integrating AI capabilities and machine learning into applications using modern AI & LLM technologies",
       "icon": "brain"
     },
     {
@@ -38,31 +39,31 @@
     {
       "id": 4,
       "title": "SaaS Platform Development",
-      "description": "Building scalable software-as-a-service platforms for businesses",
+      "description": "Building secure, scalable SaaS products - ready for real users and growth",
       "icon": "cloud"
     },
     {
       "id": 5,
       "title": "UI/UX-Focused Frontend Development",
-      "description": "Creating intuitive and beautiful user interfaces with exceptional UX",
+      "description": "Creating responsive, accessible, and high-performance user interfaces with exceptional UX",
       "icon": "design"
     },
     {
       "id": 6,
       "title": "Backend & Database Architecture",
-      "description": "Designing robust server-side systems and optimized database structures",
+      "description": "Designing robust, secure, and scalable backend systems that power modern applications and mobile platforms",
       "icon": "server"
     },
     {
       "id": 7,
       "title": "Mobile App Development",
-      "description": "Building native and cross-platform mobile applications",
+      "description": "Developing high-quality cross-platform mobile applications with clean UI, smooth performance",
       "icon": "mobile"
     },
     {
       "id": 8,
       "title": "DevOps & Cloud Engineering",
-      "description": "Setting up CI/CD pipelines and cloud infrastructure for scalable deployment",
+      "description": "Setting up CI/CD pipelines and monitoring, and scalable infrastructure to ensure reliability and high availability",
       "icon": "devops"
     }
   ],
@@ -76,19 +77,19 @@
     {
       "id": 2,
       "title": "AI-Powered Product Features",
-      "description": "Integrating AI capabilities and machine learning into applications",
+      "description": "Integrating AI into your product to create smarter, more competitive experiences",
       "icon": "brain"
     },
     {
       "id": 3,
       "title": "Startup Automation & Internal Tools",
-      "description": "Streamlining business processes with intelligent automation solutions",
+      "description": "Automating manual processes and build internal tools to save time, reduce costs",
       "icon": "automation"
     },
     {
       "id": 4,
       "title": "MVP Development (Idea -> Launch)",
-      "description": "Building scalable software-as-a-service platforms for businesses",
+      "description": "Turning ideas into functional MVPs quickly, focusing on speed, scalability, and real user feedback",
       "icon": "cloud"
     },
     {

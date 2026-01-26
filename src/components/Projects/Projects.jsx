@@ -77,7 +77,7 @@ function Projects() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Featured <span className="gradient-text">Projects</span>
+              <span className="gradient-text">Projects</span>
             </h2>
             <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
               A collection of projects showcasing my skills in full-stack development
